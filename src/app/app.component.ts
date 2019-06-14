@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PexelApiService } from './pexel-api.service'
+// import { PexelApiService } from './pexel-api.service'
 
 @Component({
   selector: 'app-root',
