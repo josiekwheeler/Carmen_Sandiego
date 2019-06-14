@@ -7,10 +7,9 @@ import { Location1Component } from './location1/location1.component';
 import { Location2Component } from './location2/location2.component';
 import { Location3Component } from './location3/location3.component';
 import { Location4Component } from './location4/location4.component';
-import{ApiService} from './api.service';
-import {HttpClientModule} from '@angular/common/http';
+import { ApiService } from './api.service';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
-import { RestcountryapiComponent } from './restcountryapi/restcountryapi.component';
 
 
 @NgModule({
@@ -26,8 +25,7 @@ import { RestcountryapiComponent } from './restcountryapi/restcountryapi.compone
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-    RestcountryapiComponent
+    FormsModule
   ],
 
   providers: [ApiService],
