@@ -1,0 +1,9 @@
+<form #countryForm="ngForm" (ngSubmit)="searchCountry(countryForm)">
+  <label for="">Which Country</label>
+  <input type="text" ngModel name="countryName">
+  <button>Search</button>
+</form>
+
+<div *ngFor="let country of countries">
+  <img src="{{country.data}}">
+</div>
