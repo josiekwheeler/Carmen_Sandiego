@@ -1,0 +1,5 @@
+<form #countryForm="ngForm" (ngSubmit)="searchCountry(countryForm)">
+  <label for="">Which Country</label>
+  <input type="text" ngModel name="countryName">
+  <button>Search</button>
+</form>
