@@ -17,9 +17,11 @@ export class AppComponent {
   ngOnInit() {
     this.pexelService.getLocationPhoto(`${this.nextLocation}`).subscribe(response => {
       console.log(this.randomIndex);
-      this.photo = response[`photos`][`${this.randomIndex}`].src.small;
+      this.photo = response[`photos`][`${this.randomIndex}`].src.medium;
       console.log(response);
       return this.photo;
     });
   }
+
+
 }
