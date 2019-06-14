@@ -10,12 +10,14 @@ export class AppComponent {
   title = 'Carmen-Sandiego-FP';
   photo: any[];
   nextLocation: string = 'Moscow';
+  randomIndex: number = Math.floor((Math.random() * 9));
 
   constructor(private pexelService: PexelApiService) { }
  
   ngOnInit() {
     this.pexelService.getLocationPhoto(`${this.nextLocation}`).subscribe(response => {
-      this.photo = response.photos[0].src.small;
+      console.log(this.randomIndex);
+      this.photo = response[`photos`][`${this.randomIndex}`].src.small;
       console.log(response);
       return this.photo;
     });
