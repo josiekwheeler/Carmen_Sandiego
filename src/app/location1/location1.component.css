@@ -1,0 +1,43 @@
+.locationLanding {
+  background-image: url(../../assets/paris.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: lightblue;
+  width: 95vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Below delays the clue pop-up for 2seconds  */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+.cluePopUp {
+  border-radius: 10px;
+    opacity:0;
+    -webkit-animation:fadeIn ease-in 1;
+    -moz-animation:fadeIn ease-in 1;
+    animation:fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode:forwards; 
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:0.5;
+    -moz-animation-duration:0.5;
+    animation-duration:0.5;
+    animation-delay: 2s;
+    background-color: rgba(247, 241, 233, 0.719);
+    width: 80vw;
+    height: 15vh;
+}
+.messageIcon {
+  color: green;
+}
+.clueTop {
+  display: flex;
+  justify-content: space-between;
+
+}
