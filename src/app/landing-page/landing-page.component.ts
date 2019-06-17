@@ -11,7 +11,13 @@ export class LandingPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
 
+  shouldBeShown: boolean = true;
+
   ngOnInit() {
+  }
+
+  toggleDisplay() :void {
+    this.shouldBeShown = !this.shouldBeShown;
   }
 
 }

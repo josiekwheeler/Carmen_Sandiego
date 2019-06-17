@@ -1,11 +1,65 @@
-/* *{
-    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Srtm_ramp2.world.21600x10800.jpg/1280px-Srtm_ramp2.world.21600x10800.jpg);
+body {
+    background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    color: aliceblue;
-} */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-section {
+.home {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+
+img {
+    height: 500px;
+    width: 500px;
+}
+
+button {
+    font-size: 15px;
+    color: black;
+    height: 5%;
+    width: 30%;
+    border-radius: 8px;
+    margin-top: 2%;
+    opacity: 0.5;
+    background-color: white;
+    border-color: rgb(77, 78, 78);
+}
+
+.agentForm {
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 50%;
+}
+
+.acme {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.beginCase {
+    height: 40%;
+    width: 90%;
+}
+
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;
