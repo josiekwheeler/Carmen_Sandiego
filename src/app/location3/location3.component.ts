@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { getClosureSafeProperty } from '@angular/core/src/util/property';
+import { ClueService } from '../clue.service';
 
 @Component({
   selector: 'location3',
@@ -7,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Location3Component implements OnInit {
 
-  clueNumber = 0;
+  clueNumber = -1;
+  clues;
   tempClueNumber = 0;
   flight = false;
-  constructor() { }
+  nextCity = ['Detroit'];
+
+  constructor(private clueService: ClueService) { }
   showClue() {
     console.log(this.clueNumber);
     this.clueNumber++;
@@ -25,8 +30,15 @@ export class Location3Component implements OnInit {
     this.clueNumber = this.tempClueNumber;
     this.flight = !this.flight;
   }
+  nextClue() {
+    this.clueNumber++;
+  }
 
   ngOnInit() {
+    this.clueService.getClues(this.nextCity).subscribe(response => {
+      this.clues = response;
+      // console.log(this.clues);
+    });
   }
 
 
