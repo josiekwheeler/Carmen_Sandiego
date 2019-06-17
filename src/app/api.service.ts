@@ -11,4 +11,5 @@ export class ApiService {
   getCountryData(countryName:string) {
     return this.http.get(`https://restcountries.eu/rest/v2/name/${countryName}`);
   }
+  
 }
