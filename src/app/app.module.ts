@@ -18,8 +18,8 @@ const appRoutes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "location1", component: Location1Component },
   { path: "location2", component: Location2Component },
-  { path: "location3", component: Location3Component }
-
+  { path: "location3", component: Location3Component },
+  { path: "location4", component: Location4Component }
 
 ]
 

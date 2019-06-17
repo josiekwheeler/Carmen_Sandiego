@@ -1,13 +1,14 @@
 <div class="locationLanding">
-    <div *ngIf="clueNumber === 0" class="cluePopUp">
+    <div *ngIf="clueNumber === 0" class="cluePopUp" >
        <p class="clueTop"><span><i class="material-icons messageIcon">
           textsms
           </i> MESSAGES   </span> <span>now</span></p> 
+     
       <p >
-        Hi, I'm a clue! <button (click)="showClue()">Let's Party!</button>
+      Hi i am a Clue<button (click)="showClue()">Let's Party!</button>
       </p>
-    </div>
-
+      
+</div>
   <div *ngIf="clueNumber == 1" class="clue">
     <p> I'm a clue. You should go where I lead</p>
     <button>Search For More Clues <i class="material-icons">
