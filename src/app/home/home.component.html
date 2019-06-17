@@ -1,9 +1,13 @@
-<section>
+<body>
   <div class="smartphone" [ngClass]="isOn ? 'lockscreen' : 'none'" [ngStyle]="{'background-color': (isOn ? 'white' : 'rgb(37, 37, 37)')} ">
     <div class="content" [ngClass]="isOn ? 'lockscreen' : 'none'" [ngStyle]="{'background-color': (isOn ? 'white' : 'rgb(37, 37, 37)')} ">
       <p>ACME HEADQUARTERS</p>
+      <section class="email">
+      <p>Carmen Sandiego has stolen the Eiffel Tower! You need to catch her</p>
+      <button routerLink="/location1" routerLinkActive="active">View Message</button>
+      </section>
       <div (click)="onFlip()" class="littlebtn"></div>
     </div>
   </div>
-</section>
+</body>
 

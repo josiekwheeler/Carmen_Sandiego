@@ -1,4 +1,14 @@
-.locationLanding {
+
+  body {
+    margin:0;
+    height: 100%;
+    width: 100%;
+    background-image: url(https://images.pexels.com/photos/269063/pexels-photo-269063.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+/* .locationLanding {
   background-image: url(../../assets/paris.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,7 +19,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 /* Below delays the clue pop-up for 2seconds  */
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
