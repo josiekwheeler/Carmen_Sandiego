@@ -1,3 +1,9 @@
-<p>
-  home works!
-</p>
+<section>
+  <div class="smartphone" [ngClass]="isOn ? 'lockscreen' : 'none'" [ngStyle]="{'background-color': (isOn ? 'white' : 'rgb(37, 37, 37)')} ">
+    <div >
+      <p>ACME HEADQUARTERS</p>
+      <div (click)="onFlip()" class="littlebtn"></div>
+    </div>
+  </div>
+</section>
+
