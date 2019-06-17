@@ -21,6 +21,10 @@ export class Location3Component implements OnInit {
     this.clueNumber = -1;
     this.flight = true;
   }
+  goBack() {
+    this.clueNumber = this.tempClueNumber;
+    this.flight = !this.flight;
+  }
 
   ngOnInit() {
   }
