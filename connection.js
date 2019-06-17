@@ -1,11 +1,11 @@
 "use strict"
 const {Pool} = require("pg");
-const cules = {
+const credentials = {
     user: "postgres",
     password: "password",
     host: "localhost",
-    port: 5433,
+    port: 5432,
     database: "CarmenSandiego",
     ssl: false
 };
-module.exports = new Pool(cules);
+module.exports = new Pool(credentials);

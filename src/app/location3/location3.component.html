@@ -1,5 +1,5 @@
 <div class="locationLanding">
-    <div *ngIf="clueNumber === 0" class="cluePopUp" >
+    <div *ngIf="clueNumber === -1" class="cluePopUp" >
        <p class="clueTop"><span><i class="material-icons messageIcon">
           textsms
           </i> MESSAGES   </span> <span>now</span></p> 
@@ -9,13 +9,15 @@
       </p>
       
 </div>
-  <div *ngIf="clueNumber == 1" class="clue">
-    <p> I'm a clue. You should go where I lead</p>
-    <button>Search For More Clues <i class="material-icons">
+  <div  *ngFor="let clue of clues; index as i" >
+    <div *ngIf="i === this.clueNumber" class="clue"> 
+    <p> {{clue.clues}} </p>
+    <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Search For More Clues <i class="material-icons">
         fingerprint
         </i></button> <button (click)="flyOut()">Fly Out<i class="material-icons">
             airplanemode_active
             </i> </button>
+          </div>
   </div>
 
   <div *ngIf="flight" class="flyOut">  
