@@ -1,3 +1,29 @@
-<p>
-  location3 works!
-</p>
+<div class="locationLanding">
+    <div *ngIf="clueNumber === 0" class="cluePopUp">
+       <p class="clueTop"><span><i class="material-icons messageIcon">
+          textsms
+          </i> MESSAGES   </span> <span>now</span></p> 
+      <p >
+        Hi, I'm a clue! <button (click)="showClue()">Let's Party!</button>
+      </p>
+    </div>
+
+  <div *ngIf="clueNumber == 1" class="clue">
+    <p> I'm a clue. You should go where I lead</p>
+    <button>Search For More Clues <i class="material-icons">
+        fingerprint
+        </i></button> <button (click)="flyOut()">Fly Out<i class="material-icons">
+            airplanemode_active
+            </i> </button>
+  </div>
+
+  <div *ngIf="flight" class="flyOut">  
+      <form action="">Fly Out
+      <input type="radio"> City 1
+      <input type="radio"> City 2
+      <input type="radio"> City 3
+      <button>Fly Out!</button>
+      </form>
+      <button (click)="goBack()">Go Back</button>
+    </div>
+  </div>
