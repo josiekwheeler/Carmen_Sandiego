@@ -7,15 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  isOn: boolean = false;
+  // isOn: boolean = false;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onFlip() {
-    this.isOn = !this.isOn;
-  }
+  // onFlip() {
+  //   this.isOn = !this.isOn;
+  // }
 
 }
