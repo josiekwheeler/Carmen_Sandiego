@@ -4,13 +4,13 @@ p {
     text-align: center;
 }
 
-.lockscreen {
-    animation: fadeOut 7s;
+.fade {
+    animation: fade 5s;
 }
 
-@keyframes fadeOut {
-    0% {background: rgb(37, 37, 37);}
-    50% {background: white;}
+@keyframes fade {
+    0% {opacity: 0}
+    50% {opacity: 1}
 }
 
 
@@ -126,7 +126,7 @@ p {
     border-style: solid;
     border-color: black;
     border-width: 24px 24px 80px;
-    background-color: black;
+    /* background-color: black; */
     border-top-width: none;
     border-bottom-width: none
   
@@ -152,8 +152,8 @@ p {
     content: '';
     display: block;
     position: absolute;
-    width: 250px;
-    height: 30px;
+    width: 60%;
+    height: 10px;
     bottom: -110px;
     left: 50%;
     transform: translate(-50%);
