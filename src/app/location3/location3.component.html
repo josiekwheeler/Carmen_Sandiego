@@ -3,7 +3,7 @@
        <p class="clueTop"><span><i class="material-icons messageIcon">
           textsms
           </i> MESSAGES   </span> <span>now</span></p> 
-     
+    <p>You have {{time}} hours left to capture Carmen Agent!</p>
       <p >
       Hi i am a Clue<button (click)="showClue()">Let's Party!</button>
       </p>
@@ -13,11 +13,12 @@
     <div *ngIf="i === this.clueNumber" class="clue"> 
     <p *ngIf="clue.clues != undefined; else photo" > {{clue.clues}} </p>
     <ng-template #photo> She dropped this photo: <img src="{{clue.photo}}"  alt="">  </ng-template>
-    <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Search For More Clues <i class="material-icons">
+    <button *ngIf="this.clueNumber<2" (click)="nextClue()"(click)="onClue()">Search For More Clues <i class="material-icons">
         fingerprint
-        </i></button> <button (click)="flyOut()">Fly Out<i class="material-icons">
+        </i></button> <button (click)="flyOut()" (click)="onFlight()">Fly Out<i class="material-icons">
             airplanemode_active
             </i> </button>
+            <p>You now have {{time}} hours left to capture Carmen Agent!</p>
           </div>
   </div>
 
