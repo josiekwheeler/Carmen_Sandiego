@@ -11,15 +11,16 @@ import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
-
+import { ClockService} from './clock.service'
 
 const appRoutes: Routes = [
+  { path: "", redirectTo: "/landing-page", pathMatch: "full" },
   { path: "landing-page", component: LandingPageComponent },
   { path: "home", component: HomeComponent },
   { path: "location1", component: Location1Component },
   { path: "location2", component: Location2Component },
-  { path: "location3", component: Location3Component }
-
+  { path: "location3", component: Location3Component },
+  { path: "location4", component: Location4Component }
 
 ]
 
@@ -40,7 +41,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
 
-  providers: [ApiService],
+  providers: [ApiService,ClockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

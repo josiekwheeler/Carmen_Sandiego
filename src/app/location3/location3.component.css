@@ -1,5 +1,5 @@
 .locationLanding {
-  background-image: url(../../assets/dubai.jpg);
+  /* background-image: url(../../assets/dubai.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   background-color: lightblue;
@@ -30,7 +30,23 @@
     animation-delay: 2s;
     background-color: rgba(247, 241, 233, 0.801);
     width: 80vw;
-    height: 15vh;
+    height: 25vh;
+}
+.clock {
+  position: relative;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-20%);
+  font-size: 30px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 0;
+  line-height: 0;
+}
+.date {
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
 }
 .messageIcon {
   color: green;
@@ -43,7 +59,7 @@
   border-radius: 10px;
   background-color: rgba(247, 241, 233, 0.801);
   width: 80vw;
-  height: 15vh;
+  height: 35vh;
 }
 .flyOut {
   border-radius: 10px;

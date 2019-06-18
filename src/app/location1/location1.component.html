@@ -3,14 +3,20 @@
   location1 works!
 </p>
 
+<<<<<<< HEAD
 <!--  /*Include Clock*/ -->
+=======
+
+<!-- /*Include Clock*/ -->
+<span>CLOCK</span>
+>>>>>>> upstream/master
 <div class="locationLanding">
-    <div class="cluePopUp">
+    <div class="cluePopUp" *ngFor="let clue of clues, ">
        <p class="clueTop"><span><i class="material-icons messageIcon">
           textsms
           </i> MESSAGES   </span> <span>now</span></p> 
       <p>
-        Hi, I'm a clue! <button>Let's Party!</button>
+       {{clue.city}}<button>Let's Party!</button>
       </p>
       
     </div>
