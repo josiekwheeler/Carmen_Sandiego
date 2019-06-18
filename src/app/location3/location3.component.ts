@@ -11,7 +11,7 @@ export class Location3Component implements OnInit {
 
 
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
-  time: number; // for timer, hold the remaining time.
+  time; // for timer, hold the remaining time.
   clues;  // array to hold our clues 
   tempClueNumber = 0;  // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
   flight = false;  //  used to toggle flight screen or not
@@ -28,6 +28,8 @@ export class Location3Component implements OnInit {
   // method that increases clueNumber so we can show the next clue
   showClue() {
     this.clueNumber = 0;
+    this.clockService.onClue();
+    this.time = this.clockService.getTime();
     // console.log(this.clueNumber);
   }
   // this method temporarily saves the clue number when you bring up the flight screen, sets cluenumber to -1 so it doesn't show
@@ -44,6 +46,8 @@ export class Location3Component implements OnInit {
   // increase clueNumber to display next clue
   nextClue() {
     this.clueNumber++;
+    this.clockService.onClue();
+    this.time = this.clockService.getTime();
   }
 
 
@@ -61,8 +65,8 @@ export class Location3Component implements OnInit {
     });
     // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
-      this.photoURL = response[`photos`][`${this.randomPhoto}`].src.portrait;
-      // console.log(this.photoURL);
+      this.photoURL = response[`photos`][`${this.randomPhoto}`].src.large;
+
       // below is used to shuffle clues array and save it as localClues array
       let currentIndex = this.clues.length;
       while (0 !== currentIndex) {
