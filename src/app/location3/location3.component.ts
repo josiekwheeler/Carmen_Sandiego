@@ -49,19 +49,20 @@ export class Location3Component implements OnInit {
     // this brings in the clues from the DB and adds them to clues array on load
     this.clueService.getClues(this.nextCity).subscribe(response => {
       this.clues = response;
+      this.clues.push({flag: this.clues[1].countrycode});
       // console.log(this.clues);
     });
     // gets a random photo for clue and adds it to clues array
     this.pexelService.getLocationPhoto(this.nextCity).subscribe(response => {
       this.clues.unshift({photo: response[`photos`][`${this.randomDetroitPhoto}`].src.small});
       // console.log(this.clues);
-  });
-  // this gets a random photo of current city to use as background image
+    });
+    // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
       this.photoURL = response[`photos`][`${this.randomPhoto}`].src.portrait;
       // console.log(this.photoURL);
       // below is used to shuffle clues array and save it as localClues array
-      let currentIndex = 3;
+      let currentIndex = this.clues.length;
       while (0 !== currentIndex) {
         const randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
