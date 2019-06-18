@@ -11,7 +11,7 @@ import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
-
+import { ClockService} from './clock.service'
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing-page", pathMatch: "full" },
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
 
-  providers: [ApiService],
+  providers: [ApiService,ClockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
