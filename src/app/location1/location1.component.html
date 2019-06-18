@@ -17,7 +17,7 @@
               <p *ngIf="clue.clues != undefined; else photo" > {{clue.clues}} </p>
               <ng-template #photo> She dropped this photo: <img src="{{clue.photo}}"  alt="">  </ng-template>
               <div class="buttons">
-                <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Search For More Clues <i class="material-icons">fingerprint</i></button> 
+                <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Clues <i class="material-icons">fingerprint</i></button> 
                 <button (click)="flyOut()">Fly Out<i class="material-icons">airplanemode_active</i> </button>
               </div>
             </div>
