@@ -1,4 +1,4 @@
-<div class="locationLanding">
+<div class="locationLanding" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
     <div *ngIf="clueNumber === -1" class="cluePopUp" >
        <p class="clueTop"><span><i class="material-icons messageIcon">
           textsms
@@ -9,9 +9,10 @@
       </p>
       
 </div>
-  <div  *ngFor="let clue of clues; index as i" >
+  <div  *ngFor="let clue of localClues; index as i" >
     <div *ngIf="i === this.clueNumber" class="clue"> 
-    <p> {{clue.clues}} </p>
+    <p *ngIf="clue.clues != undefined; else photo" > {{clue.clues}} </p>
+    <ng-template #photo> She dropped this photo: <img src="{{clue.photo}}"  alt="">  </ng-template>
     <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Search For More Clues <i class="material-icons">
         fingerprint
         </i></button> <button (click)="flyOut()">Fly Out<i class="material-icons">
