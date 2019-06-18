@@ -40,3 +40,14 @@ values(
 'Detroit','this city is the first city to assign individual phone numbers in 1879.')
 
 select * from clues;
+
+*******NEW COLUMN STUFF BELOW ******************
+ALTER TABLE clues ADD COLUMN countryCode varChar(2);
+select * from clues;
+
+update clues set countryCode='RU' where city='Moscow';
+
+update clues set countryCode='US' where city='Detroit';
+
+update clues set countryCode='AE' where city='Dubai';
+
