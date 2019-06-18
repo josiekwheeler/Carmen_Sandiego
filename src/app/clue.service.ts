@@ -7,11 +7,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ClueService {
 
-  
 
   constructor(private http: HttpClient) { }
   getClues(nextCity) {
-    console.log(nextCity);
     return this.http.get(`http://localhost:3000/clues/${nextCity}`, { responseType: 'json'});
   }
 }
