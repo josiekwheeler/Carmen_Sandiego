@@ -10,7 +10,7 @@ import { PexelApiService } from '../pexel-api.service';
 })
 export class Location3Component implements OnInit {
 
-  clueNumber = -1;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
+  clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   clues;  // array to hold our clues 
   tempClueNumber = 0;  // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
   flight = false;  //  used to toggle flight screen or not
@@ -20,12 +20,13 @@ export class Location3Component implements OnInit {
   localClues;  // array to hold shuffled array of clues
   randomPhoto: number = Math.floor((Math.random() * 9));  // used to get a random index number for background photo
   randomDetroitPhoto: number = Math.floor((Math.random() * 2));  // detroit only had 3 photos, this selects on of those
-
+  redHerring;
+  wrongLocation;
 
   constructor(private clueService: ClueService, private pexelService: PexelApiService) { }
   // method that increases clueNumber so we can show the next clue
   showClue() {
-    this.clueNumber++;
+    this.clueNumber = 0;
     // console.log(this.clueNumber);
   }
   // this method temporarily saves the clue number when you bring up the flight screen, sets cluenumber to -1 so it doesn't show
@@ -70,8 +71,10 @@ export class Location3Component implements OnInit {
         this.clues[currentIndex] = this.clues[randomIndex];
         this.clues[randomIndex] = temporaryValue;
         this.localClues = this.clues;
-        console.log(this.localClues);
+        // console.log(this.localClues);
       }
+      this.redHerring = this.clueService.redHerrings[3];
+      this.wrongLocation = this.clueService.wrongLocations[2];
       return this.localClues;
     });
 

@@ -1,7 +1,7 @@
 <!-- the ngStyle here is used to apply the random background image to the location -->
 <!-- the ngIf clueNumber starts at -1 since the ngFor below brings in array of clues and the index there starts at 0 -->
 <div class="locationLanding" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
-    <div *ngIf="clueNumber === -1" class="cluePopUp" >
+    <div *ngIf="clueNumber === -2" class="cluePopUp" >
        <p class="clueTop"><span><i class="material-icons messageIcon">
           textsms
           </i> MESSAGES   </span> <span>now</span></p> 
@@ -29,9 +29,9 @@
 
   <div *ngIf="flight" class="flyOut">  
       <form action="">Fly Out
-      <input type="radio"> City 1
-      <input type="radio"> City 2
-      <input type="radio"> City 3
+      <input type="radio"> {{this.nextCity}}
+      <input type="radio"> {{this.redHerring}}
+      <input type="radio"> {{this.wrongLocation}}
       <button>Fly Out!</button>
       </form>
       <button (click)="goBack()">Go Back</button>
