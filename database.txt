@@ -1,0 +1,42 @@
+CREATE table clues(
+city varchar (30),
+clues varchar (300)
+);
+
+insert into clues(city,clues)
+values(
+'Moscow','this city is the capital of Russia')
+
+insert into clues(city,clues)
+values(
+'Moscow','Carmen was heading to a city here the Tsar lived.')
+
+insert into clues(city,clues)
+values(
+'Moscow','Carmen is going to a city were the spoken Language is Russian')
+
+
+insert into clues(city,clues)
+values(
+'Dubai','Carmen is going to a city were the spoken Language is Arabic')
+
+insert into clues(city,clues)
+values(
+'Dubai','Carmen is going to city with the tallest building in the world is located')
+insert into clues(city,clues)
+values(
+'Dubai','Carmen is going to url')
+
+insert into clues(city,clues)
+values(
+'Detroit','Carmen is going to the Car capital of the World, MotorCity')
+
+insert into clues(city,clues)
+values(
+'Detroit','Carmen is going to a City with the Ambassordor bridge')
+
+insert into clues(city,clues)
+values(
+'Detroit','this city is the first city to assign individual phone numbers in 1879.')
+
+select * from clues;

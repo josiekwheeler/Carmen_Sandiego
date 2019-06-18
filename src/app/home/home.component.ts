@@ -9,15 +9,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  isOn: boolean = false;
+  // isOn: boolean = false;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
-  onFlip() {
-    this.isOn = !this.isOn;
-  }
+  // onFlip() {
+  //   this.isOn = !this.isOn;
+  // }
 
 }

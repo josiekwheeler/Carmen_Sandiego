@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class PexelApiService {
 
   apiKey:string = "563492ad6f9170000100000128cb04362abc4b32b717e2c8e9125276";
-  location:string = "Paris"
+  // location:string;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,7 +18,7 @@ export class PexelApiService {
 
   constructor(private http: HttpClient) { }
 
-  getLocationPhoto(location:string) {
+  getLocationPhoto(location) {
     return this.http.get(`https://api.pexels.com/v1/search?query=${location}+query&per_page=10&page=1`, this.httpOptions);
   }
 }
