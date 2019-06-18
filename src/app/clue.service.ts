@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 export class ClueService {
 
   locations = ['Paris', 'Moscow', 'Dubai', 'Detroit'];
-  redHerrings = ['Cannes', 'Sochi', 'Abu Dhabi', 'Cleveland'];
+  redHerring = ['Cannes', 'Sochi', 'Abu Dhabi', 'Cleveland'];
   wrongLocations = ['London', 'Madrid', 'Hong Kong', 'Washington, DC', 'New York', 'Dublin', 'Berlin', 'Rome', 'Warsaw'];
 
   constructor(private http: HttpClient) { }

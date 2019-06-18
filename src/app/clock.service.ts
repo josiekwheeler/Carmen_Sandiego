@@ -6,19 +6,23 @@ import { Injectable } from '@angular/core';
 })
 
 export class ClockService {
-time:number =24 ;
+  clock = new Date(2019, 5, 28, 12, 0, 0);
+time:number = 24;
 
   constructor() { }
 
 
 getTime(){
-  return this.time;
+  return this.clock;
 }
-
-  onClue() {
-  return  this.time -= 1;
+onClue() {
+  this.clock.setHours(this.clock.getHours()+1);
 
   }
+  // onClue() {
+  // return  this.time -= 1;
+
+  // }
   onFlight() {
    return this.time -= 3;
 
