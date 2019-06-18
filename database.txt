@@ -23,6 +23,7 @@ values(
 insert into clues(city,clues)
 values(
 'Dubai','Carmen is going to city with the tallest building in the world is located')
+
 insert into clues(city,clues)
 values(
 'Dubai','Carmen is going to url')

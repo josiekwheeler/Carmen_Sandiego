@@ -1,4 +1,148 @@
 
+  .device,
+  .device::before,
+  .device::after,
+  .device *,
+  .device *::before,
+  .device *::after {
+    box-sizing: border-box;
+    display: block;
+  }
+
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .device {
+    position: relative;
+    transform: scale(1);
+    z-index: 1;
+  }
+  
+  .device .device-frame {
+    z-index: 1;
+  }
+  
+  .device .device-content {
+    background-color: #fff;
+    background-position: center center;
+    background-size: cover;
+    object-fit: cover;
+    position: relative;
+  }
+  
+  .device-macbook-pro {
+      height: 444px;
+      width: 740px;
+    }
+    
+    .device-macbook-pro .device-frame {
+      background: #0d0d0d;
+      border-radius: 20px;
+      box-shadow: inset 0 0 0 2px #c8cacb;
+      height: 650px;
+      margin: 0 auto;
+      padding: 29px 19px 39px 19px;
+      position: relative;
+      width: 1000px;
+     }
+    
+     .device-macbook-pro .device-frame::after {
+      background: #272626;
+      border-radius: 0 0 20px 20px;
+      bottom: 2px;
+      content: "";
+      height: 26px;
+      left: 2px;
+      position: absolute;
+      width: 996px;
+     }
+    
+    .device-macbook-pro .device-frame::before {
+      bottom: 10px;
+      color: #c8cacb;
+      content: "MacBook Pro";
+      font-size: 12px;
+      height: 16px;
+      left: 50%;
+      line-height: 16px;
+      margin-left: -100px;
+      position: absolute;
+      text-align: center;
+      width: 200px;
+      z-index: 1;
+    }
+    
+    .device-macbook-pro .device-content {
+      border: 2px solid #121212;
+      border-radius: 2px;
+      height: 360px;
+      width: 576px;
+    }
+    
+    .device-macbook-pro .device-power {
+      background: #e2e3e4;
+      border: solid #d5d6d8;
+      border-radius: 2px 2px 0 0;
+      border-width: 2px 4px 0 4px;
+      height: 20px;
+      margin-top: -10px;
+      position: relative;
+      width: 1050px;
+      z-index: 9;
+     }
+    
+    .device-macbook-pro .device-power::after,
+    .device-macbook-pro .device-power::before {
+      content: "";
+      position: absolute;
+    }
+    
+    .device-macbook-pro .device-power::after {
+      background: #d5d6d8;
+      border-radius: 0 0 10px 10px;
+      box-shadow: inset 0 0 4px 2px #babdbf;
+      height: 10px;
+      left: 50%;
+      margin-left: -60px;
+      top: -2px;
+      width: 120px;
+    }
+    
+   .device-macbook-pro .device-power::before {
+    background: #a0a3a7;
+    border-radius: 0 0 180px 180px/ 0 0 12px 12px;
+    box-shadow: inset 0 -2px 6px 0 #474a4d;
+    height: 18px;
+    left: -4px;
+    margin: 0 auto;
+    top: 15px;
+    width: 1050px;;
+   }
+    
+    .device-macbook-pro.device-spacegray .device-frame {
+      box-shadow: inset 0 0 0 2px #767a7d;
+    }
+    
+    .device-macbook-pro.device-spacegray .device-power {
+      background: #909496;
+      border-color: #767a7d;
+    }
+    
+    .device-macbook-pro.device-spacegray .device-power::after {
+      background: #83878a;
+      box-shadow: inset 0 0 4px 2px #6a6d70;
+    }
+    
+    .device-macbook-pro.device-spacegray .device-power::before {
+      background: #515456;
+      box-shadow: inset 0 -2px 6px 0 black;
+    }
+  
+  
   body {
     margin:0;
     height: 100%;
@@ -8,7 +152,7 @@
     background-size: cover;
   }
 
-
+/* 
 .fade {
     animation: fade 5s;
 }
@@ -17,10 +161,10 @@
     0% {opacity: 0}
     50% {opacity: 1}
 }
-
+ */
 
 /* The device with borders */
-.smartphone {
+/* .smartphone {
     position: relative;
     width: 320px;
     height: 500px;
@@ -29,10 +173,10 @@
     border-top-width: 60px;
     border-bottom-width: 60px;
     border-radius: 36px;
-}
+} */
   
   /* The horizontal line on the top of the device */
-.smartphone:before {
+/* .smartphone:before {
     content: '';
     display: block;
     width: 60px;
@@ -43,9 +187,9 @@
     transform: translate(-50%, -50%);
     background: #333;
     border-radius: 10px;
-}
+} */
   
-/* The circle on the bottom of the device */
+/* The circle on the bottom of the device
   .littlebtn {
     content: '';
     display: block;
@@ -57,7 +201,7 @@
     transform: translate(-50%, -50%);
     background: #333;
     border-radius: 50%;
-}
+} */
   
   /* The screen (or content) of the device */
 .smartphone .content {
@@ -78,11 +222,11 @@
   border-radius: 8px;
   opacity: 0.7;
 }
-
-@media only screen and (min-width: 768px) {
+/* 
+@media only screen and (min-width: 768px) { */
 
     /* The device with borders */
-.smartphone {
+/* .smartphone {
     position: relative;
     width: 668px;
     height: 700px;
@@ -91,10 +235,10 @@
     border-top-width: 60px;
     border-bottom-width: 60px;
     border-radius: 36px;
-  }
+  } */
   
   /* The horizontal line on the top of the device */
-  .smartphone:before {
+  /* .smartphone:before {
     content: '';
     display: block;
     width: 60px;
@@ -106,9 +250,9 @@
     background: #333;
     border-radius: 10px;
   }
-  
+   */
   /* The circle on the bottom of the device */
-  .littlebtn {
+  /* .littlebtn {
     content: '';
     display: block;
     width: 35px;
@@ -120,9 +264,9 @@
     background: #333;
     border-radius: 50%;
   }
-  
+   */
   /* The screen (or content) of the device */
-  .smartphone .content {
+  /* .smartphone .content {
     width: 668px;
     height: 700px;
     background: white;
@@ -143,10 +287,10 @@
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 1024px) { */
 
     /* The laptop with borders */
-.smartphone {
+/* .smartphone {
     transform-origin: 0 0;
     transform: scale(.7) translate(-50%); 
     left: 50%;
@@ -156,15 +300,15 @@
     border-radius: 6px;
     border-style: solid;
     border-color: black;
-    border-width: 24px 24px 80px;
-    /* background-color: black; */
+    border-width: 24px 24px 80px; */
+    /* background-color: black;
     border-top-width: none;
     border-bottom-width: none;
     margin-top: 150px;
-  }
+  } */
   
   /* The keyboard of the laptop */
-  .littlebtn {
+  /* .littlebtn {
     content: '';
     display: block;
     position: absolute;
@@ -176,10 +320,10 @@
     transform: none;
     left: 0;
     bottom: 0;
-  }
+  } */
   
   /* The top of the keyboard */
-  .smartphone:before {
+  /* .smartphone:before {
     content: '';
     display: block;
     position: absolute;
@@ -193,17 +337,17 @@
     border-bottom-right-radius: 5px;
     z-index: 1;
     top: 95%;
-  }
+  } */
   
   /* The screen (or content) of the device */
-  .smartphone .content {
+  /* .smartphone .content {
     width: 1366px;
     height: 800px;
     overflow: hidden;
     border: none;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
+  } */
 
   .content {
     flex-direction: column;
@@ -223,6 +367,5 @@
     height: 40%;
     border-radius: 8px;
     opacity: 0.7;
+    font-family: 'Roboto', sans-serif;
   }
-
-}

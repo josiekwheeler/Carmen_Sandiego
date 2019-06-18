@@ -1,41 +1,43 @@
-
-
-
-<!-- /*Include Clock*/ -->
-<div class="locationLanding">
-    <div class="cluePopUp" *ngFor="let clue of clues, ">
-       <p class="clueTop"><span><i class="material-icons messageIcon">
-          textsms
-          </i> MESSAGES   </span> <span>now</span></p> 
-      <p>
-       {{clue.city}}<button>Let's Party!</button>
-      </p>
-      
-    </div> -->
-  <!-- </div> -->
-
  <link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 <body>
-<section class="clueOneScreen">
-    <p class="time">12:01</p>
-    <p class="date">Friday, June 28</p>
-  <div class="clueDiv">
-    <p class="clueText">This is the capital of Russia</p>
-  </div>
-  <div class="icons">
-    <i class="material-icons">message</i>
-    <i class="material-icons">airplanemode_active</i>
-    <!-- <button class="clueIcon"></button>
-    <button class="planeIcon"></button> -->
+
+<section>
+    <div class="device device-macbook-pro ">
+      <div class="device-frame">
+        <div class="device-content">
+          <div class="clueOneScreen" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
+            <div *ngIf="clueNumber === -1" class="cluePopUp" >
+              <p class="clueText">Hi i am a Clue</p>
+              <button (click)="showClue()">Let's Party!</button>
+            </div>
+
+          <div *ngFor="let clue of localClues; index as i" >
+            <div class="clueDiv" *ngIf="i === this.clueNumber" > 
+              <p *ngIf="clue.clues != undefined; else photo" > {{clue.clues}} </p>
+              <ng-template #photo> She dropped this photo: <img src="{{clue.photo}}"  alt="">  </ng-template>
+              <div class="buttons">
+                <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Search For More Clues <i class="material-icons">fingerprint</i></button> 
+                <button (click)="flyOut()">Fly Out<i class="material-icons">airplanemode_active</i> </button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="flight" class="flyOut">  
+            <form action="">Fly Out
+              <input type="radio"> City 1
+              <input type="radio"> City 2
+              <input type="radio"> City 3
+              <button>Fly Out!</button>
+            </form>
+          <button (click)="goBack()">Go Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="device-stripe"></div>
+      <div class="device-header"></div>
+      <div class="device-sensors"></div>
+      <div class="device-btns"></div>
+      <div class="device-power"></div>
   </div>
 </section>
-
-<form action="">Fly Out
-    <input type="radio"> City 1
-    <input type="radio"> City 2
-    <input type="radio"> City 3
-    <button>Fly Out!</button>
-    </form>
-  
-</body>

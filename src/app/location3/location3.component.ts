@@ -11,7 +11,7 @@ import { PexelApiService } from '../pexel-api.service';
 export class Location3Component implements OnInit {
 
   clueNumber = -1;
-  clues: any[] = [];
+  clues;
   tempClueNumber = 0;
   flight = false;
   nextCity = ['Detroit'];
