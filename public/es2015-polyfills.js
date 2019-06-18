@@ -7022,8 +7022,13 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\Users\jeffr\Documents\bootcamp\angular\Carmen_Sandiego\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\es2015-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es2015-polyfills.js");
 module.exports = __webpack_require__(/*! C:\Users\jeffr\Documents\bootcamp\angular\Carmen_Sandiego\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\es2015-jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es2015-jit-polyfills.js");
+=======
+__webpack_require__(/*! /Users/josiekwheeler/Documents/Carmen_Sandiego/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es2015-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es2015-polyfills.js");
+module.exports = __webpack_require__(/*! /Users/josiekwheeler/Documents/Carmen_Sandiego/node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es2015-jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/es2015-jit-polyfills.js");
+>>>>>>> d91983f700a2f806d4b1da89c199a934a25c711c
 
 
 /***/ })

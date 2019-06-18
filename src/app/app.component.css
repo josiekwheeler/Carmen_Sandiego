@@ -1,6 +1,4 @@
-main{
-    height:900px;
-    width: 400px;
-    /* background: url(CarmenSandiegoLogo.jpg) no-repeat; */
-    background-size: 400px;
+body {
+   height: 100vh;
+   width: 100vw;
 }
