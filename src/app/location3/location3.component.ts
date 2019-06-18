@@ -20,8 +20,8 @@ export class Location3Component implements OnInit {
   localClues;  // array to hold shuffled array of clues
   randomPhoto: number = Math.floor((Math.random() * 9));  // used to get a random index number for background photo
   randomDetroitPhoto: number = Math.floor((Math.random() * 2));  // detroit only had 3 photos, this selects on of those
-  redHerring;
-  wrongLocation;
+  redHerring; // a fake out location that is similar to the next city
+  wrongLocation;  // a randomw wrong option
 
   constructor(private clueService: ClueService, private pexelService: PexelApiService) { }
   // method that increases clueNumber so we can show the next clue
@@ -73,6 +73,7 @@ export class Location3Component implements OnInit {
         this.localClues = this.clues;
         // console.log(this.localClues);
       }
+      // gets the redHerring option from service then a wrong city
       this.redHerring = this.clueService.redHerrings[3];
       this.wrongLocation = this.clueService.wrongLocations[2];
       return this.localClues;
