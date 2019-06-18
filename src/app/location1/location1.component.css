@@ -2,8 +2,8 @@
   .device::before,
   .device::after,
   .device *,
-  .device *::before,
-  .device *::after {
+  .device ::before,
+  .device ::after {
    box-sizing: border-box;
    display: block;
   }
@@ -24,6 +24,7 @@
    background-size: cover;
    object-fit: cover;
    position: relative;
+   
   }
   ​
   
@@ -67,13 +68,17 @@
     text-align: center;
     width: 200px;
     z-index: 1;
+    font-family: 'Roboto', sans-serif;
    }
    
    .device-macbook-pro .device-content {
     border: 2px solid #121212;
     border-radius: 2px;
-    height: 360px;
-    width: 576px;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    align-items: center;
    }
    
    .device-macbook-pro .device-power {
@@ -170,6 +175,10 @@
     background-color: rgba(247, 241, 233, 0.801);
     width: 300px;
     height: 100px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     
 }
 .messageIcon {
@@ -190,14 +199,23 @@ form{
   background-repeat: no-repeat;
   background-size: cover;
   background-color: lightblue;
-  border-radius: 20px;
-  width: 30%;
-  height: 700px;
-  display: flex;
+  width: 50%;
+  height: 100%;
+  display: flex !important;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Roboto', sans-serif;
+  /* padding-top: 200px;
+  padding-left: 90px; */
+}
+
+.background-image {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .time, .clueDiv {

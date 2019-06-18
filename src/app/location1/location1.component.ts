@@ -52,7 +52,7 @@ export class Location1Component implements OnInit {
       // console.log(this.clues);
   });
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
-      this.photoURL = response[`photos`][`${this.randomPhoto}`].src.portrait;
+      this.photoURL = response[`photos`][`${this.randomPhoto}`].src.large;
       // console.log(this.photoURL);
       let currentIndex = 3;
       while (0 !== currentIndex) {
