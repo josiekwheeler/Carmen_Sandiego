@@ -6,7 +6,7 @@
           textsms
           </i> MESSAGES   </span> <span>now</span></p> 
     <p>You have {{time}} hours left to capture Carmen Agent!</p>
-      <p >
+      <p>
       Hi i am a Clue<button (click)="showClue()">Let's Party!</button>
       </p>
       
@@ -17,13 +17,9 @@
       <!-- this ngIf is if the clue is not a photo show the text clue -->
     <p *ngIf="clue.clues != undefined; else photo" > {{clue.clues}} </p>
     <!-- this ng-template loads the photo if the clue is a photo -->
-
     <ng-template #photo> <p *ngIf="clue.photo != undefined; else flag"> She dropped this photo: <img src="{{clue.photo}}"  alt=""> </p> </ng-template>
     <ng-template #flag> <p> She drop this flag <img src="https://www.countryflags.io/{{clue.flag}}/shiny/64.png"> </p> </ng-template>
     <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Search For More Clues <i class="material-icons">
-    <ng-template #photo> She dropped this photo: <img src="{{clue.photo}}"  alt="">  </ng-template>
-    <button *ngIf="this.clueNumber<2" (click)="nextClue()"(click)="onClue()">Search For More Clues <i class="material-icons">
-
         fingerprint
         </i></button> <button (click)="flyOut()" (click)="onFlight()">Fly Out<i class="material-icons">
             airplanemode_active
