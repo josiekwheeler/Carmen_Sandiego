@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -6,17 +7,18 @@ import { Injectable } from '@angular/core';
 })
 
 export class ClockService {
-  clock = new Date(2019, 5, 28, 12, 0, 0);
-time:number = 24;
+clock = new Date(2019, 5, 28, 12, 0, 0);
+timeLeft:number = 24;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
 
 getTime(){
   return this.clock;
 }
 onClue() {
-  this.clock.setHours(this.clock.getHours()+1);
+  this.clock.setHours(this.clock.getHours() + 1);
+  this.timeLeft--;
 
   }
   // onClue() {
@@ -24,10 +26,20 @@ onClue() {
 
   // }
   onFlight() {
-   return this.time -= 3;
+    this.clock.setHours(this.clock.getHours() + 3);
+    this.timeLeft -= 4;
 
   }
   onWrong() {
-  return  this.time -= 2;
+    this.clock.setHours(this.clock.getHours() + 5);
+    this.timeLeft -= 5;
+  }
+
+  isTimeLeft() {
+    if (this.timeLeft < 24) {
+      return;
+    } else {
+      this.router.navigate(['/gameover']);
+    }
   }
 }
