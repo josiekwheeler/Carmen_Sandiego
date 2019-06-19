@@ -1,3 +1,188 @@
+  
+  
+  body {
+    margin:0;
+    height: 100%;
+    width: 100%;
+    background-image: url(https://images.pexels.com/photos/269063/pexels-photo-269063.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+/* Below delays the clue pop-up for 2seconds  */
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+.cluePopUp {
+  border-radius: 10px;
+    opacity:0;
+    -webkit-animation:fadeIn ease-in 1;
+    -moz-animation:fadeIn ease-in 1;
+    animation:fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode:forwards; 
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:0.5;
+    -moz-animation-duration:0.5;
+    animation-duration:0.5;
+    animation-delay: 2s;
+    background-color: rgba(247, 241, 233, 0.801);
+    width: 300px;
+    height: 100px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+.messageIcon {
+  color: green;
+}
+.clueTop {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+form{
+  background-color: rgba(247, 241, 233, 0.719);
+}
+
+.clueOneScreen {
+  background-image: url(https://www.iclarified.com/images/news/60886/292380/292380-1280.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: lightblue;
+  width: 100vw;
+  height: 100vh;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  /* padding-top: 200px;
+  padding-left: 90px; */
+}
+
+.background-image {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time, .clueDiv {
+  display: flex;
+  justify-content: center;
+}
+
+.time {
+  font-size: 75px;
+  margin: 30px;
+  margin-bottom: 0px;
+  color: white;
+}
+
+.date {
+  color: white;
+  margin-top: 0px;
+}
+
+.clueDiv {
+  background-color: white;
+  /* opacity: 0.75; */
+  border-radius: 20px;
+  height: 300px;
+  width: 300px;
+  display: flex !important;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+button {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clueText {
+  font-size: 25px;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  width: 90%;
+  height: 70px;
+  margin-top: 125px;
+  margin-bottom: 20px;
+  align-items: center;
+  background-color: white;
+  opacity: 0.75;
+}
+
+.material-icons {
+  width: 10%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.thetime {
+  position: absolute;
+  top: 15%;
+  display: flex;
+  flex-direction: column;
+}
+
+.clock, .date {
+  color: white;
+  text-align: center;
+}
+.clock {
+  font-size: 70px;
+}
+
+.date {
+  font-size: 45px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .clueOneScreen {
+    background-image: url(https://www.iclarified.com/images/news/60886/292380/292380-1280.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: lightblue;
+    width: 50%;
+    height: 100%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+    /* padding-top: 200px;
+    padding-left: 90px; */
+  }
+  
   .device,
   .device::before,
   .device::after,
@@ -5,7 +190,7 @@
   .device ::before,
   .device ::after {
    box-sizing: border-box;
-   display: block;
+   /* display: block; */
   }
   ​
   .device {
@@ -139,177 +324,31 @@
     background: #515456;
     box-shadow: inset 0 -2px 6px 0 black;
    }
-  
-  body {
-    margin:0;
-    height: 100%;
-    width: 100%;
-    background-image: url(https://images.pexels.com/photos/269063/pexels-photo-269063.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260);
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-/* Below delays the clue pop-up for 2seconds  */
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-.cluePopUp {
-  border-radius: 10px;
-    opacity:0;
-    -webkit-animation:fadeIn ease-in 1;
-    -moz-animation:fadeIn ease-in 1;
-    animation:fadeIn ease-in 1;
 
-    -webkit-animation-fill-mode:forwards; 
-    -moz-animation-fill-mode:forwards;
-    animation-fill-mode:forwards;
-
-    -webkit-animation-duration:0.5;
-    -moz-animation-duration:0.5;
-    animation-duration:0.5;
-    animation-delay: 2s;
-    background-color: rgba(247, 241, 233, 0.801);
-    width: 300px;
-    height: 100px;
-    display: flex !important;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    
-}
-.messageIcon {
-  color: green;
-}
-.clueTop {
+   /* desktop styling------------------------------------ */
+.thetime {
+  position: absolute;
   display: flex;
-  justify-content: space-between;
-
+  flex-direction: column-reverse;
+  border: 5px solid white;
+  background-color: silver;
+  top: 79%;
+  right: 104%;
+  width: 18%;
+  padding: 1%;
 }
 
-form{
-  background-color: rgba(247, 241, 233, 0.719);
-}
-
-.clueOneScreen {
-  background-image: url(https://www.iclarified.com/images/news/60886/292380/292380-1280.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: lightblue;
-  width: 50%;
-  height: 100%;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Roboto', sans-serif;
-  /* padding-top: 200px;
-  padding-left: 90px; */
-}
-
-.background-image {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.time, .clueDiv {
-  display: flex;
-  justify-content: center;
-}
-
-.time {
-  font-size: 75px;
-  margin: 30px;
-  margin-bottom: 0px;
-  color: white;
-}
-
-.date {
-  color: white;
-  margin-top: 0px;
-}
-
-.clueDiv {
-  background-color: white;
-  /* opacity: 0.75; */
-  border-radius: 20px;
-  height: 300px;
-  width: 300px;
-  display: flex !important;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-}
-
-.buttons {
-  display: flex !important;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 100%;
-}
-
-button {
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.clueText {
+.clock{
+  color: cyan;
+  text-align: center;
   font-size: 25px;
 }
 
-.icons {
-  display: flex;
-  justify-content: space-around;
-  border-radius: 10px;
-  width: 90%;
-  height: 70px;
-  margin-top: 125px;
-  margin-bottom: 20px;
-  align-items: center;
-  background-color: white;
-  opacity: 0.75;
-}
-
-.material-icons {
-  width: 10%;
-  height: 75%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-}
-
-.thetime {
-  top: 10%;
-  position: absolute;
-  top: 15%;
-}
-
-.clock, .date {
-  color: red;
+.date {
+  font-size: 15px;
   text-align: center;
 }
-.clock {
-  font-size: 25px;
 }
 
-/* .clock{
-  position: fixed;
-  top: 5%;
-  color: red;
-  font-size: 30px;
-}
 
-.date {
-  color: red;
-  top: 10%;
-  font-size: 20px;
-} */
+
