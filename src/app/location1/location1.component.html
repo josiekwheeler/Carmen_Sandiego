@@ -1,20 +1,21 @@
- <link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <body>
 
-<section>
+  <section>
     <div class="device device-macbook-pro ">
       <div class="device-frame">
         <div class="device-content">
           <div class="clueOneScreen" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
-            <div *ngIf="clueNumber === -2" class="cluePopUp" >
+            <div *ngIf="clueNumber === -2" class="cluePopUp">
               <p class="clueText">Hi i am a Clue</p>
               <button (click)="showClue()">Let's Party!</button>
             </div>
 
 
-<!-- /*Include Clock*/ -->
-<!-- <span>CLOCK</span>
+            <!-- /*Include Clock*/ -->
+            <!-- <span>CLOCK</span>
 <div class="locationLanding">
     <div class="cluePopUp" *ngFor="let clue of clues, ">
        <p class="clueTop"><span><i class="material-icons messageIcon">
@@ -23,33 +24,42 @@
       <p>
        {{clue.city}}<button>Let's Party!</button>
       </p> -->
-      
-          <div *ngFor="let clue of localClues; index as i" >
-            <div class="clueDiv" *ngIf="i === this.clueNumber" > 
-              <p *ngIf="clue.clues != undefined; else photo" > {{clue.clues}} </p>
-              <ng-template #photo> She dropped this photo: <img src="{{clue.photo}}"  alt="">  </ng-template>
-              <div class="buttons">
-                <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Clues <i class="material-icons">fingerprint</i></button> 
-                <button (click)="flyOut()">Fly Out<i class="material-icons">airplanemode_active</i> </button>
+
+            <div *ngFor="let clue of localClues; index as i">
+              <div class="clueDiv" *ngIf="i === this.clueNumber">
+                <div class="thetime">
+                  <div class="clock">
+                    <span> {{ time | date: 'shortTime'}} </span>
+                  </div>
+                  <div class="date">
+                    <span> {{ time | date}} </span>
+                  </div>
+                </div>
+                <p *ngIf="clue.clues != undefined; else photo"> {{clue.clues}} </p>
+                <ng-template #photo> She dropped this photo: <img src="{{clue.photo}}" alt=""> </ng-template>
+                <div class="buttons">
+                  <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Clues <i
+                      class="material-icons">fingerprint</i></button>
+                  <button (click)="flyOut()">Fly Out<i class="material-icons">airplanemode_active</i> </button>
+                </div>
               </div>
             </div>
-          </div>
-          <div *ngIf="flight" class="flyOut">  
-            <form action="">Fly Out
-              <input type="radio"> City 1
-              <input type="radio"> City 2
-              <input type="radio"> City 3
-              <button>Fly Out!</button>
-            </form>
-          <button (click)="goBack()">Go Back</button>
+            <div *ngIf="flight" class="flyOut">
+              <form action="">Fly Out
+                <input type="radio"> City 1
+                <input type="radio"> City 2
+                <input type="radio"> City 3
+                <button>Fly Out!</button>
+              </form>
+              <button (click)="goBack()">Go Back</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
       <div class="device-stripe"></div>
       <div class="device-header"></div>
       <div class="device-sensors"></div>
       <div class="device-btns"></div>
       <div class="device-power"></div>
-  </div>
-</section>
+    </div>
+  </section>

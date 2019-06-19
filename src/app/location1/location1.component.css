@@ -286,3 +286,30 @@ button {
   align-items: center;
   border-radius: 10px;
 }
+
+.thetime {
+  top: 10%;
+  position: absolute;
+  top: 15%;
+}
+
+.clock, .date {
+  color: red;
+  text-align: center;
+}
+.clock {
+  font-size: 25px;
+}
+
+/* .clock{
+  position: fixed;
+  top: 5%;
+  color: red;
+  font-size: 30px;
+}
+
+.date {
+  color: red;
+  top: 10%;
+  font-size: 20px;
+} */
