@@ -148,8 +148,8 @@ button {
 }
 
 .thetime {
-  position: absolute;
-  top: 15%;
+  position: relative;
+  bottom: 70%;
   display: flex;
   flex-direction: column;
 }
@@ -332,7 +332,7 @@ button {
   flex-direction: column-reverse;
   border: 5px solid white;
   background-color: silver;
-  top: 79%;
+  bottom: 7%;
   right: 104%;
   width: 18%;
   padding: 1%;
