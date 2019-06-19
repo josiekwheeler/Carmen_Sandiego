@@ -15,4 +15,7 @@ export class ClueService {
   getClues(nextCity) {
     return this.http.get(`http://localhost:3000/clues/${nextCity}`, { responseType: 'json'});
   }
+
+
 }
+

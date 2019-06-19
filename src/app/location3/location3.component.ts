@@ -85,4 +85,5 @@ export class Location3Component implements OnInit {
     });
     this.time = this.clockService.getTime();
   }
+ 
 }
