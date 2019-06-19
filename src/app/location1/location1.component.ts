@@ -21,7 +21,6 @@ export class Location1Component implements OnInit {
   photoURL; // variable to hold URL for random background photo
   localClues;  // array to hold shuffled array of clues
   randomPhoto: number = Math.floor((Math.random() * 9));  // used to get a random index number for background photo
-  randomDetroitPhoto: number = Math.floor((Math.random() * 2));  // detroit only had 3 photos, this selects on of those
   redHerring; // a fake out location that is similar to the next city
   wrongLocation;  // a randomw wrong option
   timeLeft;
@@ -90,8 +89,8 @@ export class Location1Component implements OnInit {
     });
     // gets a random photo for clue and adds it to clues array
     this.pexelService.getLocationPhoto(this.nextCity).subscribe(response => {
-      this.clues.unshift({ photo: response[`photos`][`${this.randomDetroitPhoto}`].src.small });
-      // console.log(this.clues);
+      this.clues.unshift({ photo: response[`photos`][`${this.randomPhoto}`].src.small });
+      console.log(this.clues);
     });
     // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
@@ -109,8 +108,8 @@ export class Location1Component implements OnInit {
         // console.log(this.localClues);
       }
       // gets the redHerring option from service then a wrong city
-      this.redHerring = this.clueService.redHerring[3];
-      this.wrongLocation = this.clueService.wrongLocations[2];
+      this.redHerring = this.clueService.redHerring[1];
+      this.wrongLocation = this.clueService.wrongLocations[1];
       this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
       console.log(this.locations);
       return this.localClues;
