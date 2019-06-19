@@ -3,7 +3,8 @@ import { ClueService } from '../clue.service';
 import { PexelApiService } from '../pexel-api.service';
 import { ClockService } from '../clock.service';
 
-import { UserService } from '../user.service'
+import { UserService} from '../user.service';
+
 
 @Component({
   selector: 'location1',
@@ -31,8 +32,11 @@ export class Location1Component implements OnInit {
   locations = [];
   wrong = false;
   selectedCity;
+  userName;
 
-  constructor(private userService: UserService,private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
+
+
+  constructor(private userService: UserService, private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
 
   // method that increases clueNumber so we can show the next clue
   showClue() {
@@ -135,6 +139,7 @@ export class Location1Component implements OnInit {
     });
     this.time = this.clockService.getTime();
     this.timeLeft = this.clockService.getTimeLeft();
+    this.userName = this.userService.userName;
   }
 
 }

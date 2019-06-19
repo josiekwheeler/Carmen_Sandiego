@@ -37,6 +37,9 @@ rel="stylesheet">
           <button (click)="goBack()">Return to clue</button>
           <button (click)="selectLocation()">Fly Out</button>
       </div>
+      <div *ngIf="wrong" class="wrong">
+          <button (click)="goBackAirport()">Try Again!</button>
+            </div>
 </div>
 </div>
 <div class="device-stripe"></div>

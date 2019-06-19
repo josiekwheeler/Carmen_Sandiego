@@ -15,7 +15,8 @@
             <div *ngIf="clueNumber === -2" class="cluePopUp" >
               <div class="clock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
 
-              <p class="clueText">Hi i am a Clue</p>
+              <p class="clueText">Hi Agent {{userName}} i am a Clue</p>
+
               <button (click)="showClue()">Let's Party!</button>
             </div>
 
@@ -57,6 +58,9 @@
             <button (click)="selectLocation()">Fly Out</button>
 
         </div>
+        <div *ngIf="wrong" class="wrong">
+            <button (click)="goBackAirport()">Try Again!</button>
+              </div>
       </div>
       <div class="device-stripe"></div>
       <div class="device-header"></div>

@@ -19,9 +19,10 @@ userName: string;
   toggleDisplay() :void {
     this.shouldBeShown = !this.shouldBeShown;
   }
-setUserName(form){
+  setUserName(form){
   console.log(form);
   this.userService.getUserName(form);
+  console.log(this.userName);
   // return this.userName
 }
 }
