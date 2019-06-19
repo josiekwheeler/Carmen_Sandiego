@@ -12,6 +12,7 @@
               <button (click)="showClue()">Let's Party!</button>
             </div>
 
+
           <div *ngFor="let clue of localClues; index as i" >
             <div class="clueDiv" *ngIf="i === this.clueNumber" > 
               <div class="clock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
@@ -35,6 +36,16 @@
           </div>
         </div>
       </div>
+<div class="locationLanding">
+    <div class="cluePopUp" *ngFor="let clue of clues, ">
+       <p class="clueTop"><span><i class="material-icons messageIcon">
+          textsms
+          </i> MESSAGES   </span> <span>now</span></p> 
+      <p>
+       {{clue.city}}<button>Let's Party!</button>
+      </p>
+      
+
     </div>
       <div class="device-stripe"></div>
       <div class="device-header"></div>
