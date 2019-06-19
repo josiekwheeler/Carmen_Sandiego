@@ -48,6 +48,7 @@ export class Location3Component implements OnInit {
     this.clueNumber++;
     this.clockService.onClue();
     this.time = this.clockService.getTime();
+    this.clockService.isTimeLeft();
   }
 
 

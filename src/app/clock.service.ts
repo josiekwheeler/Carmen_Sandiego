@@ -1,25 +1,23 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class ClockService {
-clock = new Date(2019, 5, 28, 12, 0, 0);
-timeLeft:number = 24;
+  // clock is to display date and time on screen for user as current date and time
+  clock = new Date();
+  // timeLeft is to keep track of how much time user has left if 0, game is over
+  timeLeft: number = 24;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
-
-getTime(){
-  return this.clock;
-}
-onClue() {
-  this.clock.setHours(this.clock.getHours() + 1);
-  this.timeLeft--;
-
+  getTime() {
+    return this.clock;
+  }
+  onClue() {
+    this.clock.setHours(this.clock.getHours() + 1);
+    this.timeLeft--;
   }
   // onClue() {
   // return  this.time -= 1;
@@ -28,7 +26,6 @@ onClue() {
   onFlight() {
     this.clock.setHours(this.clock.getHours() + 3);
     this.timeLeft -= 4;
-
   }
   onWrong() {
     this.clock.setHours(this.clock.getHours() + 5);
@@ -36,10 +33,10 @@ onClue() {
   }
 
   isTimeLeft() {
-    if (this.timeLeft < 24) {
+    if (this.timeLeft > 0) {
       return;
     } else {
-      this.router.navigate(['/gameover']);
+      this.router.navigate(["/gameover"]);
     }
   }
 }
