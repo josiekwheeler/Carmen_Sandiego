@@ -11,12 +11,14 @@ import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
-import { ClockService} from './clock.service'
+import { ClockService} from './clock.service';
+import { GameoverComponent } from './gameover/gameover.component'
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing-page", pathMatch: "full" },
   { path: "landing-page", component: LandingPageComponent },
   { path: "home", component: HomeComponent },
+  { path: "gameover", component: GameoverComponent },
   { path: "location1", component: Location1Component },
   { path: "location2", component: Location2Component },
   { path: "location3", component: Location3Component },
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     Location1Component,
     Location2Component,
     Location3Component,
-    Location4Component
+    Location4Component,
+    GameoverComponent
   ],
   imports: [
     BrowserModule,

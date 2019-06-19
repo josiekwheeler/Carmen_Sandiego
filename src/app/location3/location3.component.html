@@ -1,48 +1,49 @@
 <!-- the ngStyle here is used to apply the random background image to the location -->
 <!-- the ngIf clueNumber starts at -1 since the ngFor below brings in array of clues and the index there starts at 0 -->
 <div class="locationLanding" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
-      <div *ngIf="clueNumber === -2" >
-          <div class="clock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
-          <div class="cluePopUp">
-       <p class="clueTop"><span><i class="material-icons messageIcon">
-          textsms
-          </i> MESSAGES   </span> <span>now</span></p> 
-    <!-- <p>You have {{time}} hours left to capture Carmen Agent!</p> -->
-      <p>
-      Hi i am a Clue<button (click)="showClue()">Let's Party!</button>
-      </p>
+    <div *ngIf="clueNumber === -2" >
+        <div class="clock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
+        <div class="cluePopUp">
+     <p class="clueTop"><span><i class="material-icons messageIcon">
+        textsms
+        </i> MESSAGES   </span> <span>now</span></p> 
+  <!-- <p>You have {{time}} hours left to capture Carmen Agent!</p> -->
+    <p> Hi i am a Clue </p>
+    <p>You have {{ timeLeft }} hours left to capture Carmen Agent!</p>
+    <button (click)="showClue()">Let's Party!</button>
     </div>
-      
+    
 </div>
 <!-- ngFor to display all our beautiful clues with ngIf to only show 1 at a time -->
-  <div  *ngFor="let clue of localClues; index as i" >
-    <div *ngIf="i === this.clueNumber" class="clue"> 
-        <div class="clock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
-      <!-- this ngIf is if the clue is not a photo show the text clue -->
-    <p *ngIf="clue.clues != undefined; else photo" > {{clue.clues}} </p>
-    <!-- this ng-template loads the photo if the clue is a photo -->
-    <ng-template #photo> <p *ngIf="clue.photo != undefined; else flag"> She dropped this photo: <img src="{{clue.photo}}"  alt=""> </p> </ng-template>
-    <ng-template #flag> <p> She dropped this flag <img src="https://www.countryflags.io/{{clue.flag}}/shiny/64.png"> </p> </ng-template>
-    <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Search For More Clues <i class="material-icons">
-        fingerprint
-        </i></button> <button (click)="flyOut(); onFlight()">Fly Out<i class="material-icons">
-            airplanemode_active
-            </i> </button>
-            <!-- <p>You now have {{ time | date: 'medium'}} hours left to capture Carmen Agent!</p> -->
-          </div>
+<div  *ngFor="let clue of localClues; index as i" >
+  <div *ngIf="i === this.clueNumber" class="clue"> 
+      <div class="clock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
+    <!-- this ngIf is if the clue is not a photo show the text clue -->
+  <p *ngIf="clue.clues != undefined; else photo" > {{clue.clues}} </p> 
+  <!-- this ng-template loads the photo if the clue is a photo -->
+  <ng-template #photo> <p *ngIf="clue.photo != undefined; else flag"> She dropped this photo: <img src="{{clue.photo}}"  alt=""> </p> </ng-template>
+  <ng-template #flag> <p> She dropped this flag <img src="https://www.countryflags.io/{{clue.flag}}/shiny/64.png"> </p> </ng-template>
+  <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Search For More Clues <i class="material-icons">
+      fingerprint
+      </i></button> <button (click)="flyOut()">Fly Out<i class="material-icons">
+          airplanemode_active
+          </i> </button>
+                  </div>
+</div>
+
+<div *ngIf="flight" class="flyOut"> 
+    <div class="flyOutClock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
+  <div *ngFor="let location of locations"> 
+    <label for="{{location}}">
+      <input type="radio" id="{{location}}" name="nextCity" [value]="location" [(ngModel)]="selectedCity">
+      {{location}}
+    </label>
   </div>
+  <button (click)="goBack()">Return to clue</button>
+  <button (click)="selectLocation()">Fly Out</button>
 
-  <div *ngIf="flight" class="flyOut">  
-      <form action="">Fly Out
-        <!-- below calls on the variables declared for the next city, a fake-out city, and a wrong location -->
-      <input type="radio"> {{this.nextCity}}
-      <input type="radio"> {{this.redHerring}}
-      <input type="radio"> {{this.wrongLocation}}
-      <button>Fly Out!</button>
-      </form>
-      <button (click)="goBack()">Go Back</button>
+</div>
+<div *ngIf="wrong" class="wrong">
+  <button (click)="goBackAirport()">Try Again!</button>
     </div>
-
-
-
   </div>
