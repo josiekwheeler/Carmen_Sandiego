@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .home {
     background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);
     background-repeat: no-repeat;
@@ -88,3 +89,11 @@ input {
 }
 
 
+=======
+*{
+    background: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Srtm_ramp2.world.21600x10800.jpg/1280px-Srtm_ramp2.world.21600x10800.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: aliceblue;
+}
+>>>>>>> master

@@ -12,6 +12,7 @@
               <button (click)="showClue()">Let's Party!</button>
             </div>
 
+
           <div *ngFor="let clue of localClues; index as i" >
             <div class="clueDiv" *ngIf="i === this.clueNumber" > 
               <div class="clock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
@@ -35,6 +36,16 @@
           </div>
         </div>
       </div>
+<div class="locationLanding">
+    <div class="cluePopUp" *ngFor="let clue of clues, ">
+       <p class="clueTop"><span><i class="material-icons messageIcon">
+          textsms
+          </i> MESSAGES   </span> <span>now</span></p> 
+      <p>
+       {{clue.city}}<button>Let's Party!</button>
+      </p>
+      
+
     </div>
       <div class="device-stripe"></div>
       <div class="device-header"></div>
@@ -42,4 +53,30 @@
       <div class="device-btns"></div>
       <div class="device-power"></div>
   </div>
+<<<<<<< HEAD
 </section>
+=======
+  <form action="">Fly Out
+  <input type="radio"> City 1
+  <input type="radio"> City 2
+  <input type="radio"> City 3
+  <button>Fly Out!</button>
+  </form>
+
+ <link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+<section class="clueOneScreen">
+    <p class="time">12:01</p>
+    <p class="date">Friday, June 28</p>
+  <div class="clueDiv">
+    <p class="clueText">This is the capital of Russia</p>
+  </div>
+  <div class="icons">
+    <i class="material-icons">message</i>
+    <i class="material-icons">airplanemode_active</i>
+    <!-- <button class="clueIcon"></button>
+    <button class="planeIcon"></button> -->
+  </div>
+</section>
+>>>>>>> master
