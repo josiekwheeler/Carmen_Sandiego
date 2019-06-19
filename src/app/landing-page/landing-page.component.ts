@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService, } from '../user.service'
 
 @Component({
   selector: 'landing-page',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
+  
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
-  constructor() { }
-
+  shouldBeShown: boolean = true;
+userName: string;
   ngOnInit() {
   }
 
+  toggleDisplay() :void {
+    this.shouldBeShown = !this.shouldBeShown;
+  }
+setUserName(form){
+  console.log(form);
+  this.userService.getUserName(form);
+  // return this.userName
+}
 }

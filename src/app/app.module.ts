@@ -23,7 +23,6 @@ const appRoutes: Routes = [
   { path: "location2", component: Location2Component },
   { path: "location3", component: Location3Component },
   { path: "location4", component: Location4Component }
-
 ]
 
 @NgModule({
