@@ -39,6 +39,17 @@
   transform: translateX(-20%);
   font-size: 30px;
   font-weight: 500;
+  width: auto;
+  color: white;
+  margin-bottom: 0;
+  line-height: 0;
+}
+.flyOutClock {
+  position: fixed;
+  top: 5%;
+  font-size: 30px;
+  font-weight: 500;
+  width: auto;
   color: white;
   margin-bottom: 0;
   line-height: 0;
@@ -69,4 +80,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.wrong {
+  background-image: url(https://media.giphy.com/media/Wq9RLX06zRg4UM42Qf/giphy.gif);
+  background-size: cover;
+  height: 80vh;
+  width: 95vw;
 }

@@ -23,6 +23,7 @@ export class Location3Component implements OnInit {
   randomDetroitPhoto: number = Math.floor((Math.random() * 2));  // detroit only had 3 photos, this selects on of those
   redHerring; // a fake out location that is similar to the next city
   wrongLocation;  // a randomw wrong option
+  timeLeft;
   locations =[];
   wrong = false;
   selectedCity;
@@ -44,6 +45,11 @@ export class Location3Component implements OnInit {
   // method that returns cluenumber to what it was before you click on flight screen and toggles flight back
   goBack() {
     this.clueNumber = this.tempClueNumber;
+    this.flight = false;
+    this.wrong = false;
+  }
+  goBackAirport() {
+    this.wrong = !this.wrong;
     this.flight = !this.flight;
   }
   // increase clueNumber to display next clue
@@ -52,12 +58,17 @@ export class Location3Component implements OnInit {
     this.clockService.onClue();
     this.time = this.clockService.getTime();
     this.clockService.isTimeLeft();
+    this.timeLeft = this.clockService.getTimeLeft();
   }
   selectLocation() {
     if (this.selectedCity !== this.nextCity) {
       this.flight = !this.flight;
       this.wrong = !this.wrong;
+      this.clockService.onWrong();
+      this.clockService.isTimeLeft();
     } else {
+      this.clockService.onFlight();
+      this.clockService.isTimeLeft();
       this.clueService.rightChoice();
     }
     console.log(this.selectedCity);
@@ -100,5 +111,6 @@ export class Location3Component implements OnInit {
       return this.localClues;
     });
     this.time = this.clockService.getTime();
+    this.timeLeft = this.clockService.getTimeLeft();
   }
 }

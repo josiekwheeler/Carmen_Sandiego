@@ -1,8 +1,8 @@
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ClockService {
   // clock is to display date and time on screen for user as current date and time
@@ -11,7 +11,9 @@ export class ClockService {
   timeLeft: number = 24;
 
   constructor(private router: Router) {}
-
+  getTimeLeft() {
+    return this.timeLeft;
+  }
   getTime() {
     return this.clock;
   }
@@ -36,7 +38,7 @@ export class ClockService {
     if (this.timeLeft > 0) {
       return;
     } else {
-      this.router.navigate(["/gameover"]);
+      this.router.navigate(['/gameover']);
     }
   }
 }
