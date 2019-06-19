@@ -10,19 +10,24 @@ import { ClockService } from '../clock.service';
 export class Location2Component implements OnInit {
 
 
+
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   time; // for timer, hold the remaining time.
   clues;  // array to hold our clues 
   tempClueNumber = 0;  // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
   flight = false;  //  used to toggle flight screen or not
-  nextCity = 'Detroit';  // what the next city location is
-  currentCity = 'Dubai';  // current city
+  nextCity = 'Dubai';  // what the next city location is
+  currentCity = 'Moscow';  // current city
   photoURL; // variable to hold URL for random background photo
   localClues;  // array to hold shuffled array of clues
   randomPhoto: number = Math.floor((Math.random() * 9));  // used to get a random index number for background photo
   randomDetroitPhoto: number = Math.floor((Math.random() * 2));  // detroit only had 3 photos, this selects on of those
   redHerring; // a fake out location that is similar to the next city
   wrongLocation;  // a randomw wrong option
+  timeLeft;
+  locations = [];
+  wrong = false;
+  selectedCity;
 
   constructor(private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
   // method that increases clueNumber so we can show the next clue
@@ -41,6 +46,11 @@ export class Location2Component implements OnInit {
   // method that returns cluenumber to what it was before you click on flight screen and toggles flight back
   goBack() {
     this.clueNumber = this.tempClueNumber;
+    this.flight = false;
+    this.wrong = false;
+  }
+  goBackAirport() {
+    this.wrong = !this.wrong;
     this.flight = !this.flight;
   }
   // increase clueNumber to display next clue
@@ -48,14 +58,30 @@ export class Location2Component implements OnInit {
     this.clueNumber++;
     this.clockService.onClue();
     this.time = this.clockService.getTime();
+    this.clockService.isTimeLeft();
+    this.timeLeft = this.clockService.getTimeLeft();
   }
+  selectLocation() {
+    if (this.selectedCity !== this.nextCity) {
+      this.flight = !this.flight;
+      this.wrong = !this.wrong;
+      this.clockService.onWrong();
+      this.clockService.isTimeLeft();
+    } else {
+      this.clockService.onFlight();
+      this.clockService.isTimeLeft();
+      this.clueService.rightChoice();
+    }
+    console.log(this.selectedCity);
+  }
+
 
 
   ngOnInit() {
     // this brings in the clues from the DB and adds them to clues array on load
     this.clueService.getClues(this.nextCity).subscribe(response => {
       this.clues = response;
-      this.clues.push({flag: this.clues[1].countrycode});
+      this.clues.push({ flag: this.clues[1].countrycode });
       // console.log(this.clues);
     });
     // gets a random photo for clue and adds it to clues array
@@ -81,9 +107,12 @@ export class Location2Component implements OnInit {
       // gets the redHerring option from service then a wrong city
       this.redHerring = this.clueService.redHerring[3];
       this.wrongLocation = this.clueService.wrongLocations[2];
+      this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
+      console.log(this.locations);
       return this.localClues;
     });
     this.time = this.clockService.getTime();
+    this.timeLeft = this.clockService.getTimeLeft();
   }
-}
 
+}
