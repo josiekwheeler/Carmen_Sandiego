@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClueService } from '../clue.service';
 import { PexelApiService } from '../pexel-api.service';
 import { ClockService } from '../clock.service';
+import { UserService } from '../user.service'
 @Component({
   selector: 'location1',
   templateUrl: './location1.component.html',
@@ -9,7 +10,7 @@ import { ClockService } from '../clock.service';
 })
 export class Location1Component implements OnInit {
 
-
+  userName: string;
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   time; // for timer, hold the remaining time.
   clues;  // array to hold our clues 
@@ -28,7 +29,7 @@ export class Location1Component implements OnInit {
   wrong = false;
   selectedCity;
 
-  constructor(private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
+  constructor(private userService: UserService,private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
   // method that increases clueNumber so we can show the next clue
   showClue() {
     this.clueNumber = 0;
@@ -72,11 +73,15 @@ export class Location1Component implements OnInit {
       this.clueService.rightChoice();
     }
     console.log(this.selectedCity);
+    
   }
 
 
 
   ngOnInit() {
+    this.userName = this.userService.returnUserName();
+    console.log(this.userName);
+    
     // this brings in the clues from the DB and adds them to clues array on load
     this.clueService.getClues(this.nextCity).subscribe(response => {
       this.clues = response;

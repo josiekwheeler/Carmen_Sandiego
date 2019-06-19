@@ -14,7 +14,7 @@ export class ClueService {
   // just random wrong locations to use
   wrongLocations = ['London', 'Madrid', 'Hong Kong', 'Washington, DC', 'New York', 'Dublin', 'Berlin', 'Rome', 'Warsaw'];
   // id is used to keep track of what location component we are in
-  id:number = 0;
+  id:number = 1;
 
   constructor(private http: HttpClient, private router: Router) { }
   getClues(nextCity) {
