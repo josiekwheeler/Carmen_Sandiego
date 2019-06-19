@@ -181,6 +181,22 @@ border-radius: 10px;
   align-items: center;
   
 }
+
+.clock {
+  position: relative;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-20%);
+  font-size: 30px;
+  font-weight: 500;
+  color: white;
+  margin-bottom: 0;
+  line-height: 0;
+}
+.date {
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
 .messageIcon {
 color: green;
 }
