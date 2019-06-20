@@ -94,7 +94,7 @@ export class Location3Component implements OnInit {
     });
     // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
-      this.photoURL = response[`photos`][`${this.randomPhoto}`].src.large;
+      this.photoURL = response[`photos`][`${this.randomPhoto}`].src.landscape;
 
       // below is used to shuffle clues array and save it as localClues array
       let currentIndex = this.clues.length;

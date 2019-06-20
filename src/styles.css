@@ -195,7 +195,7 @@ form{
 background-color: rgba(247, 241, 233, 0.719);
 }
 
-.clueOneScreen {
+.clueOneScreen{
 width: 50%;
 height: 100%;
 display: flex !important;
@@ -213,7 +213,7 @@ justify-content: center;
 align-items: center;
 }
 
-.time, .clueDiv {
+.time, .clueDiv, .flyOutClock {
 display: flex;
 justify-content: center;
 }
@@ -230,7 +230,7 @@ color: white;
 margin-top: 0px;
 }
 
-.clueDiv {
+.clueDiv, .flyOut  {
 background-color: white;
 /* opacity: 0.75; */
 border-radius: 20px;
