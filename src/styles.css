@@ -81,20 +81,20 @@ body {
     font-size: 75px;
     margin: 30px;
     margin-bottom: 0px;
-    color: white;
+    color: pink;
 }
 
 .date {
-    color: white;
+    color: pink;
     margin-top: 0px;
 }
 
 .clueDiv {
     background-color: white;
-    /* opacity: 0.75; */
+    opacity: 0.8;
     border-radius: 20px;
-    height: 300px;
-    width: 300px;
+    height: 600px;
+    width: 400px;
     display: flex !important;
     justify-content: space-evenly;
     align-items: center;
@@ -154,7 +154,7 @@ button {
 
 .clock,
 .date {
-    color: white;
+    color: pink;
     text-align: center;
     transform: translate(30);
 }
@@ -169,36 +169,19 @@ button {
 
 @media only screen and (min-width: 1024px) {
     .clueOneScreen {
-        /* background-image: url(https://www.iclarified.com/images/news/60886/292380/292380-1280.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-color: lightblue; */
-        width: 50%;
+        width: 100%;
         height: 100%;
         display: flex !important;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Roboto', sans-serif;
-        /* padding-top: 200px;
-    padding-left: 90px; */
+        justify-content: flex-start;
+        align-items: flex-end;
     }
+
     /* desktop styling------------------------------------ */
-    /* .thetime {
-  position: absolute;
-  display: flex;
-  flex-direction: column-reverse;
-  border: 5px solid white;
-  background-color: silver;
-  bottom: 7%;
-  right: 104%;
-  width: 18%;
-  padding: 1%;
-} */
     .clock {
-        color: cyan;
+        color: pink;
         text-align: center;
-        font-size: 25px;
+        font-size: 50px;
         transform: translateY(30) !important;
     }
     .date {
@@ -217,5 +200,20 @@ button {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .clueDiv, .flyOut {
+        background-color: white;
+        opacity: 0.8;
+        border-radius: 20px;
+        height: 600px;
+        width: 800px;
+        display: flex !important;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Roboto', sans-serif;
+        margin-right: 450px;
+        margin-top: 200px;
     }
 }

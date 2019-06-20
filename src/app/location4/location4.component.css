@@ -25,9 +25,12 @@ section {
 
 p {
     display: flex;
-    font-size: 40px;
+    font-size: 300px;
     justify-content: center;
     align-items: center;
     font-family: 'Bangers', cursive;
     margin-top: 0px;
+    position: absolute;
+    margin-top: 250px;
+    margin-right:100px;
 }
