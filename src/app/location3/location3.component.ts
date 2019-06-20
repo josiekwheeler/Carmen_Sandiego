@@ -107,8 +107,8 @@ export class Location3Component implements OnInit {
         // console.log(this.localClues);
       }
       // gets the redHerring option from service then a wrong city
-      this.redHerring = this.clueService.redHerring[1];
-      this.wrongLocation = this.clueService.wrongLocations[1];
+      this.redHerring = this.clueService.redHerring[3];
+      this.wrongLocation = this.clueService.wrongLocations[4];
       this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
       console.log(this.locations);
       return this.localClues;
