@@ -73,7 +73,9 @@ button {
     justify-content: center;
     align-items: center;
 }
-
+form {
+    background-color: lightgray;
+}
 .enterName {
     margin-top: 0;
     font-size: 20px;

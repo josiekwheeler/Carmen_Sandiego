@@ -1,27 +1,3 @@
-body {
-    background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    /* position: absolute; */
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-    height: 100vh;
-    width: 100vw;
-}
-
-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.captured {
-    display: flex;
-    flex-direction: column;
-    color: white;
-}
 
 p {
     display: flex;
@@ -33,4 +9,5 @@ p {
     position: absolute;
     margin-top: 250px;
     margin-right:100px;
+
 }

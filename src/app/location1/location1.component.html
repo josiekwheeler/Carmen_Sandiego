@@ -1,6 +1,6 @@
- <link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet"> 
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet"> <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+rel="stylesheet">
 
   <section class="background-image" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
   
@@ -24,23 +24,21 @@
             </div>
           </div>
 
-          <div *ngIf="flight" class="flyOut"> 
-              <div class="flyOutClock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
-            <div *ngFor="let location of locations"> 
-              <label for="{{location}}">
-                <input type="radio" id="{{location}}" name="nextCity" [value]="location" [(ngModel)]="selectedCity">
-                {{location}}
-              </label>
-            </div>
-            <button (click)="goBack()">Return to clue</button>
-            <button (click)="selectLocation()">Fly Out</button>
-        </div>
-
-          <div *ngIf="wrong" class="wrong">
-            <button (click)="goBackAirport()">Try Again!</button>
+        <div *ngIf="flight" class="flyOut"> 
+            <div class="flyOutClock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
+          <div *ngFor="let location of locations"> 
+            <label for="{{location}}">
+              <input type="radio" id="{{location}}" name="nextCity" [value]="location" [(ngModel)]="selectedCity">
+              {{location}}
+            </label>
           </div>
-     
-
-    </div>
-    
+          <button (click)="goBack()">Return to clue</button>
+          <button (click)="selectLocation()">Fly Out</button>
+      </div>
+      <div *ngIf="wrong" class="wrong">
+        <h2>Sorry, there's no sign of her here!</h2>
+          <button (click)="goBackAirport()">Try Again!</button>
+            </div>
+</div>
 </section>
+
