@@ -29,6 +29,7 @@ export class Location3Component implements OnInit {
   wrong = false;
   selectedCity;
 
+
   constructor(private userService: UserService,private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
   // method that increases clueNumber so we can show the next clue
   showClue() {
@@ -116,6 +117,7 @@ export class Location3Component implements OnInit {
     });
     this.time = this.clockService.getTime();
     this.timeLeft = this.clockService.getTimeLeft();
+    this.userName = this.userService.userName;
   }
  
 }
