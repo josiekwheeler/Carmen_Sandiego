@@ -3,7 +3,7 @@ rel="stylesheet">
 
 
 <section>
-<div class="device device-macbook-pro ">
+div class="device device-macbook-pro ">
 <div class="device-frame">
   <div class="device-content" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
     <div class="clueOneScreen" >
@@ -12,6 +12,8 @@ rel="stylesheet">
 
         <p class="clueText">Agent {{userName}}, you just missed her! You have {{timeLeft}} hours to go. </p>
         <button (click)="showClue()">Find a clue</button>
+  <div class="device-content"> 
+ 
       </div>
 
       <div *ngFor="let clue of localClues; index as i" >
@@ -43,12 +45,12 @@ rel="stylesheet">
           <button (click)="goBackAirport()">Try Again!</button>
             </div>
 </div>
-</div>
+<!-- </div> -->
 <div class="device-stripe"></div>
 <div class="device-header"></div>
 <div class="device-sensors"></div>
 <div class="device-btns"></div>
 <div class="device-power"></div>
-</div>
-</div>
-</section>
+<!-- </div>
+</div> -->
+<!-- </section> -->

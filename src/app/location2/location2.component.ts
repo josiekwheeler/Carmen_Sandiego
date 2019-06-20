@@ -3,6 +3,7 @@ import { ClueService } from '../clue.service';
 import { PexelApiService } from '../pexel-api.service';
 import { ClockService } from '../clock.service';
 import { UserService} from '../user.service';
+
 @Component({
   selector: 'location2',
   templateUrl: './location2.component.html',
@@ -11,7 +12,7 @@ import { UserService} from '../user.service';
 export class Location2Component implements OnInit {
 
 
-
+  userName: string;
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   time; // for timer, hold the remaining time.
   clues;  // array to hold our clues 
@@ -31,7 +32,9 @@ export class Location2Component implements OnInit {
   selectedCity;
   userName;
 
+
   constructor(private userService: UserService, private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
+
   // method that increases clueNumber so we can show the next clue
   showClue() {
     this.clueNumber = 0;
@@ -86,6 +89,8 @@ export class Location2Component implements OnInit {
       this.clues = response;
       this.clues.push({ flag: this.clues[1].countrycode });
       // console.log(this.clues);
+      this.userName = this.userService.returnUserName();
+      console.log(this.userName);
     });
     // gets a random photo for clue and adds it to clues array
     this.pexelService.getLocationPhoto(this.nextCity).subscribe(response => {
