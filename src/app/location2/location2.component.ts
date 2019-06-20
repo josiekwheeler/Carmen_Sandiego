@@ -30,7 +30,6 @@ export class Location2Component implements OnInit {
   locations = [];
   wrong = false;
   selectedCity;
-  userName;
 
 
   constructor(private userService: UserService, private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
