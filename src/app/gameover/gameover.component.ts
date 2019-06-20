@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-gameover',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./gameover.component.css']
 })
 export class GameoverComponent implements OnInit {
+  userName: string;
 
-  constructor() { }
+  constructor(private userService: UserService,) { }
 
   ngOnInit() {
-  }
+    this.userName = this.userService.returnUserName();
+    console.log(this.userName);
+    this.userName = this.userService.userName;
+  };
 
+ 
+ 
 }
