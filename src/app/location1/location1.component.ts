@@ -76,11 +76,9 @@ export class Location1Component implements OnInit {
   }
 
 
-
   ngOnInit() {
     this.userName = this.userService.returnUserName();
     console.log(this.userName);
-
     // this brings in the clues from the DB and adds them to clues array on load
     this.clueService.getClues(this.nextCity).subscribe(response => {
       this.clues = response;
@@ -90,7 +88,8 @@ export class Location1Component implements OnInit {
     // gets a random photo for clue and adds it to clues array
     this.pexelService.getLocationPhoto(this.nextCity).subscribe(response => {
       this.clues.unshift({ photo: response[`photos`][`${this.randomPhoto}`].src.small });
-      // console.log(this.clues);
+
+
     });
     // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
@@ -108,6 +107,7 @@ export class Location1Component implements OnInit {
         // console.log(this.localClues);
       }
       // gets the redHerring option from service then a wrong city
+
       this.redHerring = this.clueService.redHerring[3];
       this.wrongLocation = this.clueService.wrongLocations[2];
       this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
@@ -120,3 +120,4 @@ export class Location1Component implements OnInit {
   }
 
 }
+
