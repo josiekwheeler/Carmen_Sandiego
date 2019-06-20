@@ -116,6 +116,7 @@ export class Location3Component implements OnInit {
     });
     this.time = this.clockService.getTime();
     this.timeLeft = this.clockService.getTimeLeft();
+    this.userName = this.userService.userName;
   }
  
 }
