@@ -52,3 +52,56 @@ update clues set countryCode='US' where city='Detroit';
 
 update clues set countryCode='AE' where city='Dubai';
 
+
+
+*******NEW TABLE STUFF BELOW ******************
+CREATE TABLE stolenGoods (city varchar(50), stolenGood varchar(500));
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Paris', 'We have just been alerted that known criminal mastermind, Carmen Sandiego has stolen the Eiffel Tower from Paris, France.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Paris', 'We have just been informed that Carmen Sandiego has stolen Notre Dame Cathedral from Paris, France.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Moscow', 'We have just been informed that Carmen Sandiego has stolen the Peter The Great Statue from Moscow, Russia.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Moscow', 'We have just been alerted that Carmen Sandiego has stolen the Kremlin from Moscow, Russia.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Dubai', 'We have just been alerted that Carmen Sandiego has stolen the Palm Islands from Dubai.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Dubai', 'We have just been informed that Carmen Sandiego has stolen the Burj Khalifa from Dubai.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Beijing', 'We have just been informed that Carmen Sandiego has stolen the Great Wall of China in Beijing.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Beijing', 'We have just been alerted that Carmen Sandiego has stolen Tiananmen Square from Beijing, China.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('London', 'We have just been alerted that Carmen Sandiego has stolen Big Ben from London, England.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('London', 'We have just been informed that Carmen Sandiego has stolen the Tower Bridge from London, England.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Berlin', 'We have just been informed that Carmen Sandiego has stolen the Brandenburg Gate in Berlin.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Berlin', 'We have just been alerted that criminal mastermind, Carmen Sandiego has stolen the Checkpoint Charlie from Berlin, Germany.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Tokyo', 'We have just been alerted that criminal mastermind, Carmen Sandiego has stolen the Tokyo Skytree.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Tokyo', 'We have just been informed Carmen Sandiego has stolen the Tokyo Tower.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Sydney', 'We have just been informed Carmen Sandiego has stolen the Sydney Opera House.');
+
+insert into stolenGoods (city, stolenGood)
+VALUES ('Sydney', 'We have just been informed Carmen Sandiego has stolen the Sydney Opera House.');
+
