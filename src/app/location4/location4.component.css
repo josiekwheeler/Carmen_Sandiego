@@ -9,6 +9,7 @@ body {
   height: 100vh;
   width: 100vw;
 }
+
 button {
   height: 20px;
   position: relative;
@@ -56,7 +57,7 @@ width: 450px
     height: 50%;
     width: 50%
 }
-
+/* 
 #spotlight {
   animation: bottom-right 6s ease-in-out alternate infinite;
   border-bottom: none;
@@ -79,4 +80,4 @@ width: 450px
   100% {
     transform: rotate(70deg);
   }
-}
+} */
