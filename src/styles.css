@@ -1,4 +1,12 @@
 
+
+header {
+	display: none;
+}
+
+footer {
+	display: none;
+}
 body {
   margin:0;
   height: 100vh;
@@ -76,17 +84,16 @@ align-items: center;
 }
 
 .thetime {
-  position: relative;
-  bottom: 70%;
+  position: absolute;
   display: flex;
   flex-direction: column;
   top: 10%;
-  position: absolute;
-  top: 15%;
+  /* bottom: 50%; */
 }
 
 .clock, .date {
-  color: red;
+  color: white;
+  margin: 0;
   text-align: center;
 }
 .clock {
@@ -110,30 +117,40 @@ background-color: white;
 opacity: 0.75;
 }
 
-.date {
-    font-size: 45px;
-}
-
-/* @media only screen and (min-width: 1024px) {
-    .clueOneScreen {
-        width: 100%;
-        height: 100%;
-        display: flex !important;
-        flex-direction: column;
-        
-    } */
+@media only screen and (min-width: 1024px) {
+  .thetime {
+    position: absolute;
+    display: flex;
+    flex-direction: row-reverse;
+    top: 0%;
+    right: 8%;
+  }
+  
+  .clock, .date {
+    color: black;
+    margin: 0;
+    text-align: center;
+    margin-right: 10px;
+  }
+  .clock {
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .date {
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .clueOneScreen {
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    flex-direction: column;    
+  }
 
     /* desktop styling------------------------------------ */
-    /* .clock {
-        color: pink;
-        text-align: center;
-        font-size: 50px;
-        transform: translateY(30) !important;
-    }
-    .date {
-        font-size: 15px;
-        text-align: center;
-    }
+  
     section {
         width: 100%;
         height: 100%;
@@ -181,4 +198,171 @@ border-radius: 10px;
   color: white;
 
 }
-} */
+
+
+
+body {
+  /* background: url(https://www.hdwallpapers.in/download/macos_sierra_stock_mountains_4k-3840x2400.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+font-family: 'Helvetica', sans-serif; */
+margin: 0;
+overflow: hidden;
+padding: 0;
+perspective-origin: 0 0;
+}
+
+/*--Header--*/
+header {
+background: linear-gradient(to bottom, rgba(230,230,230,1) 0%, rgba(163,163,163,1) 100%);
+display: block;
+font-size: 1em;
+height: 3%;
+position: fixed;
+top: 0%;
+width: 100%;
+
+}
+header ul {
+margin: 0 5px;
+padding: 0 3px;
+}
+header li {
+display: inline-block;
+line-height: 1.3em;
+padding: 0 0.5em;
+position: relative;
+/* cursor: default; */
+}
+header .left {
+float: left;
+}
+header .right {
+float: right;
+}
+a {
+color: #000;
+text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+
+/*--Desktop--*/
+#Desktop {
+display: flex;
+align-content:right;
+flex-direction:column;
+align-items:flex-end;
+height: 85vh;
+padding: 25px;
+position: absolute;
+right: 0!important;
+text-align: right;
+z-index: -1;
+width:100%;
+}
+
+/*--Dock--*/
+footer {
+bottom: 0;
+display: inline-block;
+height: 4.4em;
+left: 50%;
+min-width: 35em;
+padding: 0 10px;
+perspective: 1000px;
+position: absolute;
+text-align: center;
+  transform: translatex(-50%);
+}
+footer:before {
+background: linear-gradient(to top, rgba(230,230,230,1) 0%, rgba(163,163,163,1) 100%);
+bottom: 0;
+content: '';
+height: 4em;
+left: 0;
+margin-top: 15px;
+position: absolute;
+right: 0;
+top: 0;
+transform: rotatex(45deg);
+width: 100%;
+z-index: -1;
+}
+
+footer ul {
+display: inline-block;
+margin: 0 0.1em;
+padding: 0;
+transform-origin: bottom center!important;
+}
+footer li {
+display: inline-block;
+vertical-align: top;
+position: relative;
+transform: scale(1.0);
+transform-origin: bottom center;
+  transition: transform 2s;
+}
+footer li:before {
+background: rgba(0,0,0,0.3);
+border-radius: 12px;
+color: #fff;
+content: attr(data-title);
+display: block;
+float: left;
+font-size: 0.9em;
+left: 50%;
+margin: 2px auto;
+opacity: 0;
+padding: 0 10px;
+position: absolute;
+text-align: center;
+top: -35px;
+transform: translatex(-50%);
+transform-origin: bottom center!important;
+visibility: hidden;
+width: auto;
+}
+footer li:hover:before {
+opacity: 1;
+top: -45px;
+visibility: visible;
+}
+
+
+footer img {
+-webkit-box-reflect: below -5px -webkit-gradient(linear, left bottom, left top, color-stop(0%,rgba(230,230,230,0.2)), color-stop(100%,rgba(255,255,255,0)));
+align-items: center;
+bottom: 0;
+display: flex;
+justify-content: center;
+margin: 0 5px;
+position: relative;
+transform: scale(1);
+transform-origin: bottom center!important;
+transition: all 0.2s;
+  width: 4em;
+}
+
+footer img:hover {
+margin: 0 10px;
+transform: scale(1.2);
+}
+
+
+@-webkit-keyframes JUMP {
+0% {
+  bottom: 0;
+}
+50% {
+  bottom: 20px;
+  padding-bottom:20px;
+}
+100% {
+  bottom: 0;
+};}
+
+}
