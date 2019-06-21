@@ -1,13 +1,14 @@
 <body>
       <div class="device-frame">
         <div class="device-content">
-              <div class="email">
+              <div class="email" *ngFor="let stolengood of stolenGoods">
               <p>ACME HEADQUARTERS</p>
 
               <p>
                 <!-- <img src="src/app/home/giphy-3.gif" alt=""> -->
               </p>
-              <p>Agent {{userName}} we have just been informed that Carmen Sandiego has stolen the Eiffel Tower! You need to catch her</p>
+              <p>Agent {{userName}}</p>
+              <p> {{stolengood.stolengood}} </p>
               <p>You have 24 hours to capture Carmen before the trail goes cold, hurry Agent {{userName}}, don't let Carmen escape! </p>
               <button routerLink="/location1" routerLinkActive="active">View Message</button>
             </div>

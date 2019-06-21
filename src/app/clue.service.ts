@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Location1Component } from './location1/location1.component';
 import { PexelApiService } from './pexel-api.service';
 
 @Injectable({
@@ -22,11 +21,15 @@ export class ClueService {
   loc1Clues;
   loc2Clues;
   loc3Clues;
+  stolenGood;
 
   constructor(private http: HttpClient, private router: Router, private pexelService: PexelApiService) { }
-  
+
   getClues(nextCity) {
     return this.http.get(`http://localhost:3000/clues/${nextCity}`, { responseType: 'json'});
+  }
+  getStolenGoods(startingCity){
+    return this.http.get(`http://localhost:3000/stolenGoods/${startingCity}`, { responseType: 'json'});
   }
   rightChoice() {
     this.id++;
@@ -68,9 +71,9 @@ setLoc1Clues() {
     // console.log(this.clues);
   });
   this.pexelService.getLocationPhoto(this.secondCity).subscribe(response => {
-    this.loc1Clues.unshift({ photo: response[`photos`][`${this.randomPhoto}`].src.small });
+    this.loc1Clues.push({ photo: response[`photos`][`${this.randomPhoto}`].src.small });
    });
-}
+  }
 setLoc2Clues() {
   this.getClues(this.thirdCity).subscribe(response => {
     this.loc2Clues = response;
@@ -78,7 +81,7 @@ setLoc2Clues() {
     // console.log(this.clues);
   });
   this.pexelService.getLocationPhoto(this.thirdCity).subscribe(response => {
-    this.loc2Clues.unshift({ photo: response[`photos`][`${this.randomPhoto}`].src.small });
+    this.loc2Clues.push({ photo: response[`photos`][`${this.randomPhoto}`].src.small });
    });
 }
 setLoc3Clues() {
@@ -88,8 +91,10 @@ setLoc3Clues() {
     // console.log(this.clues);
   });
   this.pexelService.getLocationPhoto(this.location4).subscribe(response => {
-    this.loc3Clues.unshift({ photo: response[`photos`][0].src.small });
+    this.loc3Clues.push({ photo: response[`photos`][0].src.small });
    });
 }
+
 }
+
 

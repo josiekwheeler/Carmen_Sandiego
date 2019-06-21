@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService} from '../user.service';
+import { ClueService } from '../clue.service';
 
 @Component({
   selector: 'home',
@@ -10,13 +11,20 @@ import { UserService} from '../user.service';
 export class HomeComponent implements OnInit {
 userName: string;
   // isOn: boolean = false;
+  stolenGoods;
+  startingCity;
 
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private clueService: ClueService) { }
 
   ngOnInit() {
+    this.startingCity = this.clueService.startingCity;
+    this.clueService.getStolenGoods(this.startingCity).subscribe(response => {
+        this.stolenGoods = response;
+        console.log(this.stolenGoods);
+      });
     this.userName = this.userService.userName;
     console.log(this.userName);
-    
+    // this.stolenGood = this.clueService.stolenGood;
   }
 
 

@@ -79,8 +79,8 @@ export class Location1Component implements OnInit {
       this.clueService.rightChoice();
     }
     console.log(this.selectedCity);
-
   }
+  
   
 
 
