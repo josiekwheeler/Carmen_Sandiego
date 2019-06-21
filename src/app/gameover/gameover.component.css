@@ -17,6 +17,7 @@ button {
   top: 50%;
   left: 100%;
 
+
 }
 p {
   display: flex;
@@ -51,4 +52,5 @@ h3 {
   align-items: center;
   font-family: 'Bangers',
     cursive;
+
 }

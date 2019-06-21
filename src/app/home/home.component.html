@@ -1,20 +1,16 @@
+<link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
 <body>
 
-      <div class="device-frame">
-        <div class="device-content">
-              <div class="email" *ngFor="let stolengood of stolenGoods">
+  <div class="email" *ngFor="let stolengood of stolenGoods">
+    <p class = "acme">ACME HEADQUARTERS</p>
+    <p>Agent {{userName}} </p>
+     <p> {{stolengood.stolengood}} </p>
+    <p class="directions">You must travel around the world to pursue and capture Carmen Sandiego. Each location has 3 clues that provide information about the culprit’s location. You can fly out to the next location at anytime by clicking on the airplane icon. If you need more clues, click on the fingerprint and you’ll receive the next clue. Your task is to piece together the clues, choose the correct location and arrest Carmen Sandiego before the 24 hour deadline.</p>
+    <button routerLink="/location1" routerLinkActive="active">BEGIN THE CASE</button>
+  </div>
 
-              <p>ACME HEADQUARTERS</p>
 
-              <p>
-                <!-- <img src="src/app/home/giphy-3.gif" alt=""> -->
-              </p>
-              <p>Agent {{userName}}</p>
-              <p> {{stolengood.stolengood}} </p>
-              <p>You have 24 hours to capture Carmen before the trail goes cold, hurry Agent {{userName}}, don't let Carmen escape! </p>
-              <button routerLink="/location1" routerLinkActive="active">View Message</button>
-            </div>
-        
-   
+
 </body>
   
