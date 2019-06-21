@@ -399,7 +399,9 @@ var ClueService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  display: flex;\n  flex-direction: row-reverse;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n  width: 100vw;\n}\nbutton {\n  height: 20px;\n  position: relative;\n  margin: -20px -50px;\n  width: 100px;\n  top: 50%;\n  left: 100%;\n\n}\np {\n  display: flex;\n  font-size: 30px;\n  justify-content: center;\n  align-items: center;\n  font-family: 'Bangers', cursive;\n  margin-top: 0px;\n  margin-top: 25px;\n  margin-right: 10px;\n  color: white;\n  flex-direction: column;\n  text-align: center;\n  width: 450px\n}\nimg{\n    width: 80%;\n    height: 50%;\n}\n.gif{\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n\n}\nh3 {\n  color: red;\n  display: flex;\n  font-size: 30px;\n  justify-content: center;\n  align-items: center;\n  font-family: 'Bangers',\n    cursive;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZ2FtZW92ZXIvZ2FtZW92ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtKQUFrSjtFQUNsSiw0QkFBNEI7RUFDNUIsc0JBQXNCO0VBQ3RCLGFBQWE7RUFDYiwyQkFBMkI7RUFDM0IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixhQUFhO0VBQ2IsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixZQUFZO0VBQ1osUUFBUTtFQUNSLFVBQVU7O0FBRVo7QUFDQTtFQUNFLGFBQWE7RUFDYixlQUFlO0VBQ2YsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQiwrQkFBK0I7RUFDL0IsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLHNCQUFzQjtFQUN0QixrQkFBa0I7RUFDbEI7QUFDRjtBQUNBO0lBQ0ksVUFBVTtJQUNWLFdBQVc7QUFDZjtBQUNBO0VBQ0UsYUFBYTtFQUNiLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFDbkIsc0JBQXNCOztBQUV4QjtBQUNBO0VBQ0UsVUFBVTtFQUNWLGFBQWE7RUFDYixlQUFlO0VBQ2YsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQjtXQUNTO0FBQ1giLCJmaWxlIjoic3JjL2FwcC9nYW1lb3Zlci9nYW1lb3Zlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gIGJhY2tncm91bmQ6IHVybChodHRwczovL2kyLndwLmNvbS93d3cua2FsdXNhbG9uYW5kc3BhLmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxNy8wMS9ibGFjay1icmljay1iYWNrZ3JvdW5kLWthbHUtc2Fsb24tYmxhY2stZnJpZGF5LXNhbGVzLXdlYi5qcGcpO1xuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93LXJldmVyc2U7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBoZWlnaHQ6IDEwMHZoO1xuICB3aWR0aDogMTAwdnc7XG59XG5idXR0b24ge1xuICBoZWlnaHQ6IDIwcHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWFyZ2luOiAtMjBweCAtNTBweDtcbiAgd2lkdGg6IDEwMHB4O1xuICB0b3A6IDUwJTtcbiAgbGVmdDogMTAwJTtcblxufVxucCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZvbnQtZmFtaWx5OiAnQmFuZ2VycycsIGN1cnNpdmU7XG4gIG1hcmdpbi10b3A6IDBweDtcbiAgbWFyZ2luLXRvcDogMjVweDtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xuICBjb2xvcjogd2hpdGU7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgd2lkdGg6IDQ1MHB4XG59XG5pbWd7XG4gICAgd2lkdGg6IDgwJTtcbiAgICBoZWlnaHQ6IDUwJTtcbn1cbi5naWZ7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuXG59XG5oMyB7XG4gIGNvbG9yOiByZWQ7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZvbnQtZmFtaWx5OiAnQmFuZ2VycycsXG4gICAgY3Vyc2l2ZTtcbn0iXX0= */"
+
 
 
 /***/ }),
@@ -412,7 +414,9 @@ module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandsp
 /***/ (function(module, exports) {
 
 
+
 module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Bangers&display=swap\" rel=\"stylesheet\">\n\n<body>\n  <div>\n<h3>GAME OVER!</h3>\n<p>\n  It looks like you ran out of time and Carmen got away Agent {{userName}}, better brush up on your skills so that you\n  can capture her next\n  time! </p>\n</div>\n<div>\n<p class=\"gif\">\n    <img src=\"https://media2.giphy.com/media/lkpT33i3KSjN6/giphy.gif?cid=790b76115d0d225872543549731cd040&rid=giphy.gif\"\n      alt=\"\">\n      <button type=\"button\" class=\"beginNewCase\" routerLink=\"/landing-page\" routerLinkActive=\"active\">Return to\n        Office</button>\n</p>\n</div>\n\n\n\n</body>"
+
 
 
 /***/ }),
@@ -466,7 +470,9 @@ var GameoverComponent = /** @class */ (function () {
 /***/ (function(module, exports) {
 
 
+
 module.exports = "body{\n   background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n   background-repeat: no-repeat;\n   background-size: cover;\n   display: flex;\n   flex-direction: column;\n   justify-content: center;\n   align-items: center;\n   height: 100%;\n   width: 100%;\n}\n\n  .email {\n    border: 1px solid black;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    background-color: white;\n    border-radius: 8px;\n    opacity: 0.7;\n    width: 80%;\n    height: 70%;\n    font-family: 'Roboto', sans-serif;\n    font-size: 15px;\n  }\n\n  button {\n    font-family: 'Roboto', sans-serif;\n  }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7R0FDRyxrSkFBa0o7R0FDbEosNEJBQTRCO0dBQzVCLHNCQUFzQjtHQUN0QixhQUFhO0dBQ2Isc0JBQXNCO0dBQ3RCLHVCQUF1QjtHQUN2QixtQkFBbUI7R0FDbkIsWUFBWTtHQUNaLFdBQVc7QUFDZDs7RUFFRTtJQUNFLHVCQUF1QjtJQUN2QixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsdUJBQXVCO0lBQ3ZCLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osVUFBVTtJQUNWLFdBQVc7SUFDWCxpQ0FBaUM7SUFDakMsZUFBZTtFQUNqQjs7RUFFQTtJQUNFLGlDQUFpQztFQUNuQyIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keXtcbiAgIGJhY2tncm91bmQ6IHVybChodHRwczovL2kyLndwLmNvbS93d3cua2FsdXNhbG9uYW5kc3BhLmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxNy8wMS9ibGFjay1icmljay1iYWNrZ3JvdW5kLWthbHUtc2Fsb24tYmxhY2stZnJpZGF5LXNhbGVzLXdlYi5qcGcpO1xuICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICBkaXNwbGF5OiBmbGV4O1xuICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgIGhlaWdodDogMTAwJTtcbiAgIHdpZHRoOiAxMDAlO1xufVxuXG4gIC5lbWFpbCB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIG9wYWNpdHk6IDAuNztcbiAgICB3aWR0aDogODAlO1xuICAgIGhlaWdodDogNzAlO1xuICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJywgc2Fucy1zZXJpZjtcbiAgICBmb250LXNpemU6IDE1cHg7XG4gIH1cblxuICBidXR0b24ge1xuICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJywgc2Fucy1zZXJpZjtcbiAgfVxuIl19 */"
+
 
 
 /***/ }),
@@ -478,7 +484,9 @@ module.exports = "body{\n   background: url(https://i2.wp.com/www.kalusalonandsp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "<body>\n    \n              <div class=\"email\">\n              <p>ACME HEADQUARTERS</p>\n\n              <p>\n                <!-- <img src=\"src/app/home/giphy-3.gif\" alt=\"\"> -->\n              </p>\n              <p>Agent {{userName}} we have just been informed that Carmen Sandiego has stolen the Eiffel Tower! You need to catch her</p>\n              <p>You have 24 hours to capture Carmen before the trail goes cold, hurry Agent {{userName}}, don't let Carmen escape! </p>\n              <button routerLink=\"/location1\" routerLinkActive=\"active\">View Message</button>\n            </div>\n        \n   \n</body>\n  "
+
 
 /***/ }),
 
@@ -631,7 +639,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
+
 
 /***/ }),
 
@@ -666,9 +676,7 @@ var Location1Component = /** @class */ (function () {
         this.clueNumber = -2; // variable that is used for ngIfs to only show one pop-up message/clue at a time
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
-
-        this.randomPhoto = Math.floor((Math.random() * 15)); // used to get a random index number for background photo
-
+         this.randomPhoto = Math.floor((Math.random() * 15)); // used to get a random index number for background photo
         this.locations = [];
         this.wrong = false;
     }
@@ -740,7 +748,6 @@ var Location1Component = /** @class */ (function () {
 
             _this.redHerring = _this.clueService.redHerrings[1];
             _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
-
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
@@ -794,7 +801,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
+
 
 /***/ }),
 
@@ -829,6 +838,7 @@ var Location2Component = /** @class */ (function () {
         this.clueNumber = -2; // variable that is used for ngIfs to only show one pop-up message/clue at a time
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
+
 
         this.randomPhoto = Math.floor((Math.random() * 15)); // used to get a random index number for background photo
         this.locations = [];
@@ -901,7 +911,6 @@ var Location2Component = /** @class */ (function () {
 
             _this.redHerring = _this.clueService.redHerrings[2];
             _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
-
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
@@ -955,7 +964,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
+
 
 /***/ }),
 
@@ -991,8 +1002,8 @@ var Location3Component = /** @class */ (function () {
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
 
-        this.randomPhoto = Math.floor((Math.random() * 8)); // used to get a random index number for background photo
 
+        this.randomPhoto = Math.floor((Math.random() * 8)); // used to get a random index number for background photo
         this.locations = [];
         this.wrong = false;
     }
@@ -1044,6 +1055,7 @@ var Location3Component = /** @class */ (function () {
     Location3Component.prototype.ngOnInit = function () {
         var _this = this;
 
+
         this.currentCity = this.clueService.thirdCity;
         this.clues = this.clueService.loc3Clues;
 
@@ -1065,7 +1077,6 @@ var Location3Component = /** @class */ (function () {
 
             _this.redHerring = _this.clueService.location4redHerring;
             _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
-
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
@@ -1111,6 +1122,7 @@ var Location3Component = /** @class */ (function () {
 
 module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  display: flex;\n  flex-direction: row-reverse;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n  width: 100vw;\n}\nbutton {\n  height: 20px;\n  position: relative;\n  margin: -20px -50px;\n  width: 100px;\n  top: 50%;\n  left: 50%;\n}\np {\n  display: flex;\n  font-size: 30px;\n  justify-content: center;\n  align-items: center;\n  font-family: 'Bangers', cursive;\n  margin-top: 0px;\n  margin-top: 25px;\n  margin-right: 10px;\ncolor: white;\nflex-direction: column;\ntext-align: center;\nwidth: 450px\n}\n#top {\n  left: 5%;\n  top: 10%;\n  position: absolute;\n  width: 400px;\n  height: 400px\n}\n#under {\n  left: 5%;\n  top: 10%;\n  position: absolute;\n  width: 385px;\n  height: 385px\n}\n.jail{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n    height: 50%;\n    width: 50%\n}\n#spotlight {\n  -webkit-animation: bottom-right 6s ease-in-out alternate infinite;\n          animation: bottom-right 6s ease-in-out alternate infinite;\n  border-bottom: none;\n  border-left: solid 30vh transparent;\n  border-right: solid 30vh transparent;\n  border-bottom: solid 200vh rgba(255, 255, 255, .5);\n  transform-origin: top;\n\n}\n#spotlight {\n  -webkit-animation: bottom-left 4s ease-in-out alternate infinite;\n          animation: bottom-left 4s ease-in-out alternate infinite;\n  left: auto;\n  right: 0;\n}\n@-webkit-keyframes bottom-left {\n  0% {\n    transform: rotate(-10deg);\n  }\n\n  100% {\n    transform: rotate(70deg);\n  }\n}\n@keyframes bottom-left {\n  0% {\n    transform: rotate(-10deg);\n  }\n\n  100% {\n    transform: rotate(70deg);\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9jYXRpb240L2xvY2F0aW9uNC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0pBQWtKO0VBQ2xKLDRCQUE0QjtFQUM1QixzQkFBc0I7RUFDdEIsYUFBYTtFQUNiLDJCQUEyQjtFQUMzQix1QkFBdUI7RUFDdkIsbUJBQW1CO0VBQ25CLGFBQWE7RUFDYixZQUFZO0FBQ2Q7QUFDQTtFQUNFLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixRQUFRO0VBQ1IsU0FBUztBQUNYO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsZUFBZTtFQUNmLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFDbkIsK0JBQStCO0VBQy9CLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCLFlBQVk7QUFDWixzQkFBc0I7QUFDdEIsa0JBQWtCO0FBQ2xCO0FBQ0E7QUFFQTtFQUNFLFFBQVE7RUFDUixRQUFRO0VBQ1Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWjtBQUNGO0FBRUE7RUFDRSxRQUFRO0VBQ1IsUUFBUTtFQUNSLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1o7QUFDRjtBQUVBO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsc0JBQXNCO0lBQ3RCLFdBQVc7SUFDWDtBQUNKO0FBRUE7RUFDRSxpRUFBeUQ7VUFBekQseURBQXlEO0VBQ3pELG1CQUFtQjtFQUNuQixtQ0FBbUM7RUFDbkMsb0NBQW9DO0VBQ3BDLGtEQUFrRDtFQUNsRCxxQkFBcUI7O0FBRXZCO0FBQ0E7RUFDRSxnRUFBd0Q7VUFBeEQsd0RBQXdEO0VBQ3hELFVBQVU7RUFDVixRQUFRO0FBQ1Y7QUFDQTtFQUNFO0lBQ0UseUJBQXlCO0VBQzNCOztFQUVBO0lBQ0Usd0JBQXdCO0VBQzFCO0FBQ0Y7QUFSQTtFQUNFO0lBQ0UseUJBQXlCO0VBQzNCOztFQUVBO0lBQ0Usd0JBQXdCO0VBQzFCO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9sb2NhdGlvbjQvbG9jYXRpb240LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgYmFja2dyb3VuZDogdXJsKGh0dHBzOi8vaTIud3AuY29tL3d3dy5rYWx1c2Fsb25hbmRzcGEuY29tL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE3LzAxL2JsYWNrLWJyaWNrLWJhY2tncm91bmQta2FsdS1zYWxvbi1ibGFjay1mcmlkYXktc2FsZXMtd2ViLmpwZyk7XG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3ctcmV2ZXJzZTtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGhlaWdodDogMTAwdmg7XG4gIHdpZHRoOiAxMDB2dztcbn1cbmJ1dHRvbiB7XG4gIGhlaWdodDogMjBweDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBtYXJnaW46IC0yMHB4IC01MHB4O1xuICB3aWR0aDogMTAwcHg7XG4gIHRvcDogNTAlO1xuICBsZWZ0OiA1MCU7XG59XG5wIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZm9udC1zaXplOiAzMHB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgZm9udC1mYW1pbHk6ICdCYW5nZXJzJywgY3Vyc2l2ZTtcbiAgbWFyZ2luLXRvcDogMHB4O1xuICBtYXJnaW4tdG9wOiAyNXB4O1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG5jb2xvcjogd2hpdGU7XG5mbGV4LWRpcmVjdGlvbjogY29sdW1uO1xudGV4dC1hbGlnbjogY2VudGVyO1xud2lkdGg6IDQ1MHB4XG59XG5cbiN0b3Age1xuICBsZWZ0OiA1JTtcbiAgdG9wOiAxMCU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDQwMHB4O1xuICBoZWlnaHQ6IDQwMHB4XG59XG5cbiN1bmRlciB7XG4gIGxlZnQ6IDUlO1xuICB0b3A6IDEwJTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMzg1cHg7XG4gIGhlaWdodDogMzg1cHhcbn1cblxuLmphaWx7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgaGVpZ2h0OiA1MCU7XG4gICAgd2lkdGg6IDUwJVxufVxuXG4jc3BvdGxpZ2h0IHtcbiAgYW5pbWF0aW9uOiBib3R0b20tcmlnaHQgNnMgZWFzZS1pbi1vdXQgYWx0ZXJuYXRlIGluZmluaXRlO1xuICBib3JkZXItYm90dG9tOiBub25lO1xuICBib3JkZXItbGVmdDogc29saWQgMzB2aCB0cmFuc3BhcmVudDtcbiAgYm9yZGVyLXJpZ2h0OiBzb2xpZCAzMHZoIHRyYW5zcGFyZW50O1xuICBib3JkZXItYm90dG9tOiBzb2xpZCAyMDB2aCByZ2JhKDI1NSwgMjU1LCAyNTUsIC41KTtcbiAgdHJhbnNmb3JtLW9yaWdpbjogdG9wO1xuXG59XG4jc3BvdGxpZ2h0IHtcbiAgYW5pbWF0aW9uOiBib3R0b20tbGVmdCA0cyBlYXNlLWluLW91dCBhbHRlcm5hdGUgaW5maW5pdGU7XG4gIGxlZnQ6IGF1dG87XG4gIHJpZ2h0OiAwO1xufVxuQGtleWZyYW1lcyBib3R0b20tbGVmdCB7XG4gIDAlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgtMTBkZWcpO1xuICB9XG5cbiAgMTAwJSB7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoNzBkZWcpO1xuICB9XG59Il19 */"
 
+
 /***/ }),
 
 /***/ "./src/app/location4/location4.component.html":
@@ -1120,7 +1132,9 @@ module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandsp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+
 module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Oswald&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css?family=Special+Elite&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css?family=Bangers&display=swap\" rel=\"stylesheet\">\n\n\n<body>\n  <div class=\"captured\">\n    <p >Congradualtions agent {{userName}}.</p>\n    <p >You have captured Carmen Sandiego!</p>\n    <p> You have been promoted to Sleuth.</p>\n      <button type=\"button\" class=\"beginNewCase\" routerLink=\"/landing-page\" routerLinkActive=\"active\">Return to\n        Office</button>\n  </div>\n\n<div class=\"jail\">\n\n<img id=\"under\"\nsrc=\"https://vignette.wikia.nocookie.net/qubo-channel/images/e/ed/Carmen_Sandiego.png/revision/latest?cb=20170716201725\"> \n\n   <img id=\"top\" class=\"animated bounceInDown\"\n      src=\"https://ecowall.com.ua/files/images/fabric/6/4.png\"> \n    \n</div>\n <!-- <div id=\"spotlight\"></div> -->\n</body>\n"
+
 
 /***/ }),
 
@@ -1255,7 +1269,7 @@ __webpack_require__.r(__webpack_exports__);
 var PexelApiService = /** @class */ (function () {
     function PexelApiService(http) {
         this.http = http;
- 
+
         this.apiKey = "563492ad6f917000010000014a9669d68f174ec5af529706f09b0407";
         // apiKey:string = "563492ad6f91700001000001e6e48cd47bd449b78f60933192bbf8b8";
 
@@ -1385,6 +1399,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! /Users/josiekwheeler/Documents/Carmen_Sandiego/src/main.ts */"./src/main.ts");
+
 
 
 /***/ })

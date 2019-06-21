@@ -1,4 +1,20 @@
+.contact {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
 
+.clueText {
+  margin-left: 10px;
+}
+
+header {
+	display: none;
+}
+
+footer {
+	display: none;
+}
 body {
   margin:0;
   height: 100vh;
@@ -16,8 +32,6 @@ body {
 
 
 .cluePopUp {
-    border-radius: 10px;
-    opacity: 0;
     -webkit-animation: fadeIn ease-in 1;
     -moz-animation: fadeIn ease-in 1;
     animation: fadeIn ease-in 1;
@@ -28,18 +42,23 @@ body {
     -moz-animation-duration: 0.5;
     animation-duration: 0.5;
     animation-delay: 2s;
-    background-color: rgba(247, 241, 233, 0.801);
+    background-color: lightgrey;
+    opacity: 0.9;
+    border-radius: 8px;
+    height: 70px;
     width: 300px;
-    height: 500px;
     display: flex !important;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
+    flex-direction: row;
+    margin-top: 6px;
+    margin-right: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .clueOneScreen {
-    width: 50%;
-    height: 100%;
+    width: 100vw;
+    height: stretch;
     display: flex !important;
     flex-direction: column;
     justify-content: center;
@@ -47,29 +66,12 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.time,
-.clueDiv {
-    display: flex;
-    justify-content: center;
-}
-
-.time {
-    font-size: 75px;
-    margin: 30px;
-    margin-bottom: 0px;
-    color: pink;
-}
-
-.date {
-    color: pink;
-    margin-top: 0px;
-}
 
 .clueDiv {
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.9;
     border-radius: 20px;
-    height: 600px;
+    height: 500px;
     width: 400px;
     display: flex !important;
     justify-content: space-evenly;
@@ -91,17 +93,25 @@ justify-content: center;
 align-items: center;
 }
 
-
-.clock,
-.date {
-    color: pink;
-    text-align: center;
-    transform: translate(30);
+.thetime {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 10%;
+  /* bottom: 50%; */
 }
 
-.clueText {
+.clock, .date {
+  color: white;
+  margin: 0;
+  text-align: center;
+}
+.clock {
+  font-size: 70px;
+}
 
-font-size: 25px;
+.date {
+  font-size: 45px;
 }
 
 .icons {
@@ -117,31 +127,56 @@ background-color: white;
 opacity: 0.75;
 }
 
-.date {
-    font-size: 45px;
+@media only screen and (min-width: 1024px) {
+  
+  .cluePopUp {
+    height: 70px;
+    width: 300px;
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 6px;
+    margin-right: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-@media only screen and (min-width: 1024px) {
-    .clueOneScreen {
-        width: 100%;
-        height: 100%;
-        display: flex !important;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-end;
-    }
+  .thetime {
+    position: absolute;
+    display: flex;
+    flex-direction: row-reverse;
+    top: 0%;
+    right: 8%;
+  }
+  
+  .clock, .date {
+    color: black;
+    margin: 0;
+    text-align: center;
+    margin-right: 10px;
+  }
+  .clock {
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .date {
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .clueOneScreen {
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: 50px;    
+  }
 
     /* desktop styling------------------------------------ */
-    .clock {
-        color: pink;
-        text-align: center;
-        font-size: 50px;
-        transform: translateY(30) !important;
-    }
-    .date {
-        font-size: 15px;
-        text-align: center;
-    }
+  
     section {
         width: 100%;
         height: 100%;
@@ -167,7 +202,6 @@ opacity: 0.75;
         align-items: center;
         flex-direction: column;
         font-family: 'Roboto', sans-serif;
-        margin-right: 450px;
         margin-top: 200px;
     }
 
@@ -188,5 +222,174 @@ border-radius: 10px;
   width: 65vw;
   background-color:black;
   color: white;
+
 }
+
+
+
+body {
+  /* background: url(https://www.hdwallpapers.in/download/macos_sierra_stock_mountains_4k-3840x2400.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+font-family: 'Helvetica', sans-serif; */
+margin: 0;
+overflow: hidden;
+padding: 0;
+perspective-origin: 0 0;
+}
+
+/*--Header--*/
+header {
+background: linear-gradient(to bottom, rgba(230,230,230,1) 0%, rgba(163,163,163,1) 100%);
+display: block;
+font-size: 1em;
+height: 3%;
+position: fixed;
+top: 0%;
+width: 100%;
+
+}
+header ul {
+margin: 0 5px;
+padding: 0 3px;
+}
+header li {
+display: inline-block;
+line-height: 1.3em;
+padding: 0 0.5em;
+position: relative;
+/* cursor: default; */
+}
+header .left {
+float: left;
+}
+header .right {
+float: right;
+}
+a {
+color: #000;
+text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+
+/*--Desktop--*/
+#Desktop {
+display: flex;
+align-content:right;
+flex-direction:column;
+align-items:flex-end;
+height: 85vh;
+padding: 25px;
+position: absolute;
+right: 0!important;
+text-align: right;
+z-index: -1;
+width:100%;
+}
+
+/*--Dock--*/
+footer {
+bottom: 0;
+display: inline-block;
+height: 4.4em;
+left: 50%;
+min-width: 30em;
+padding: 0 10px;
+perspective: 1000px;
+position: absolute;
+text-align: center;
+  transform: translatex(-50%);
+}
+footer:before {
+background: linear-gradient(to top, rgba(230,230,230,1) 0%, rgba(163,163,163,1) 100%);
+bottom: 0;
+content: '';
+height: 4em;
+left: 0;
+margin-top: 15px;
+position: absolute;
+right: 0;
+top: 0;
+transform: rotatex(45deg);
+width: 100%;
+z-index: -1;
+}
+
+footer ul {
+display: inline-block;
+margin: 0 0.1em;
+padding: 0;
+transform-origin: bottom center!important;
+}
+footer li {
+display: inline-block;
+vertical-align: top;
+position: relative;
+transform: scale(1.0);
+transform-origin: bottom center;
+  transition: transform 2s;
+}
+footer li:before {
+background: rgba(0,0,0,0.3);
+border-radius: 12px;
+color: #fff;
+content: attr(data-title);
+display: block;
+float: left;
+font-size: 0.9em;
+left: 50%;
+margin: 2px auto;
+opacity: 0;
+padding: 0 10px;
+position: absolute;
+text-align: center;
+top: -35px;
+transform: translatex(-50%);
+transform-origin: bottom center!important;
+visibility: hidden;
+width: auto;
+}
+footer li:hover:before {
+opacity: 1;
+top: -45px;
+visibility: visible;
+}
+
+
+footer img {
+-webkit-box-reflect: below -5px -webkit-gradient(linear, left bottom, left top, color-stop(0%,rgba(230,230,230,0.2)), color-stop(100%,rgba(255,255,255,0)));
+align-items: center;
+bottom: 0;
+display: flex;
+justify-content: center;
+margin: 0 5px;
+position: relative;
+transform: scale(1);
+transform-origin: bottom center!important;
+transition: all 0.2s;
+  width: 3em;
+}
+
+footer img:hover {
+margin: 0 10px;
+transform: scale(1.2);
+}
+
+
+@-webkit-keyframes JUMP {
+0% {
+  bottom: 0;
+}
+50% {
+  bottom: 20px;
+  padding-bottom:20px;
+}
+100% {
+  bottom: 0;
+};}
+
+
 }
