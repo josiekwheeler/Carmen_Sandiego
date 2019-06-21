@@ -23,10 +23,7 @@ color: white;
 flex-direction: column;
 text-align: center;
 }
-button{
-align-self: center;
-  
-}
+
 #top {
   left: 5%;
   top: 10%;
