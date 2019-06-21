@@ -97,9 +97,6 @@ export class Location1Component implements OnInit {
         this.localClues = this.clues;
         console.log(this.localClues);
       }
-      // gets the redHerring option from service then a wrong city
-
-
     let thisIndex = this.locations.length;
     while (0 !== thisIndex) {
       const randomIndex = Math.floor(Math.random() * thisIndex);
