@@ -290,22 +290,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _pexel_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pexel-api.service */ "./src/app/pexel-api.service.ts");
+
 
 
 
 
 var ClueService = /** @class */ (function () {
-    function ClueService(http, router) {
+    function ClueService(http, router, pexelService) {
         this.http = http;
         this.router = router;
-        // array for the locations carmen visits
-        this.locations = ['Paris', 'Moscow', 'Dubai', 'Detroit'];
-        // locations that are locations that are similar to the real locations, each one has the same index number as the real, to make it easy to match
-        this.redHerring = ['Cannes', 'Sochi', 'Abu Dhabi', 'Cleveland'];
-        // just random wrong locations to use
-        this.wrongLocations = ['London', 'Madrid', 'Hong Kong', 'Washington, DC', 'New York', 'Dublin', 'Berlin', 'Rome', 'Warsaw'];
-        // id is used to keep track of what location component we are in
-        this.id = 1;
+        this.pexelService = pexelService;
+        this.locations = ['Paris', 'Moscow', 'Dubai', 'Beijing', 'London', 'Berlin', 'Tokyo', 'Sydney'];
+        this.location4 = 'Detroit';
+        this.location4redHerring = 'Cleveland';
+        this.randomPhoto = Math.floor((Math.random() * 10));
+        this.redHerring = ['Cannes', 'Sochi', 'Abu Dhabi', 'Shanghai', 'Liverpool', 'Munich', 'Kyoto', 'Perth'];
+        this.redHerrings = [];
+        this.wrongLocations = ['Madrid', 'Hong Kong', 'Washington, DC', 'New York', 'Dublin', 'Rome', 'Warsaw', 'Lisbon', 'Mexico City'];
+        this.id = 0;
     }
     ClueService.prototype.getClues = function (nextCity) {
         return this.http.get("http://localhost:3000/clues/" + nextCity, { responseType: 'json' });
@@ -315,11 +318,72 @@ var ClueService = /** @class */ (function () {
         console.log(this.id);
         this.router.navigate(["/location" + this.id]);
     };
+    ClueService.prototype.setLocation1 = function () {
+        var randomIndex = Math.floor(Math.random() * this.locations.length);
+        this.startingCity = this.locations[randomIndex];
+        this.locations.splice(randomIndex, 1);
+        this.redHerrings.push(this.redHerring[randomIndex]);
+        this.redHerring.splice(randomIndex, 1);
+        console.log(this.locations);
+        return this.locations;
+    };
+    ClueService.prototype.setLocation2 = function () {
+        var randomIndex = Math.floor(Math.random() * this.locations.length);
+        this.secondCity = this.locations[randomIndex];
+        this.locations.splice(randomIndex, 1);
+        this.redHerrings.push(this.redHerring[randomIndex]);
+        this.redHerring.splice(randomIndex, 1);
+        console.log(this.locations);
+        return this.locations;
+    };
+    ClueService.prototype.setLocation3 = function () {
+        var randomIndex = Math.floor(Math.random() * this.locations.length);
+        this.thirdCity = this.locations[randomIndex];
+        this.locations.splice(randomIndex, 1);
+        this.redHerrings.push(this.redHerring[randomIndex]);
+        this.redHerring.splice(randomIndex, 1);
+        console.log(this.locations);
+        console.log(this.redHerrings);
+        return this.locations;
+    };
+    ClueService.prototype.setLoc1Clues = function () {
+        var _this = this;
+        this.getClues(this.secondCity).subscribe(function (response) {
+            _this.loc1Clues = response;
+            _this.loc1Clues.push({ flag: _this.loc1Clues[1].countrycode });
+            // console.log(this.clues);
+        });
+        this.pexelService.getLocationPhoto(this.secondCity).subscribe(function (response) {
+            _this.loc1Clues.unshift({ photo: response["photos"]["" + _this.randomPhoto].src.small });
+        });
+    };
+    ClueService.prototype.setLoc2Clues = function () {
+        var _this = this;
+        this.getClues(this.thirdCity).subscribe(function (response) {
+            _this.loc2Clues = response;
+            _this.loc2Clues.push({ flag: _this.loc2Clues[1].countrycode });
+            // console.log(this.clues);
+        });
+        this.pexelService.getLocationPhoto(this.thirdCity).subscribe(function (response) {
+            _this.loc2Clues.unshift({ photo: response["photos"]["" + _this.randomPhoto].src.small });
+        });
+    };
+    ClueService.prototype.setLoc3Clues = function () {
+        var _this = this;
+        this.getClues(this.location4).subscribe(function (response) {
+            _this.loc3Clues = response;
+            _this.loc3Clues.push({ flag: _this.loc3Clues[1].countrycode });
+            // console.log(this.clues);
+        });
+        this.pexelService.getLocationPhoto(this.location4).subscribe(function (response) {
+            _this.loc3Clues.unshift({ photo: response["photos"][0].src.small });
+        });
+    };
     ClueService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _pexel_api_service__WEBPACK_IMPORTED_MODULE_4__["PexelApiService"]])
     ], ClueService);
     return ClueService;
 }());
@@ -335,7 +399,10 @@ var ClueService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2dhbWVvdmVyL2dhbWVvdmVyLmNvbXBvbmVudC5jc3MifQ== */"
+
+module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  display: flex;\n  flex-direction: row-reverse;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n  width: 100vw;\n}\nbutton {\n  height: 20px;\n  position: relative;\n  margin: -20px -50px;\n  width: 100px;\n  top: 50%;\n  left: 100%;\n\n}\np {\n  display: flex;\n  font-size: 30px;\n  justify-content: center;\n  align-items: center;\n  font-family: 'Bangers', cursive;\n  margin-top: 0px;\n  margin-top: 25px;\n  margin-right: 10px;\n  color: white;\n  flex-direction: column;\n  text-align: center;\n  width: 450px\n}\nimg{\n    width: 80%;\n    height: 50%;\n}\n.gif{\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n\n}\nh3 {\n  color: red;\n  display: flex;\n  font-size: 30px;\n  justify-content: center;\n  align-items: center;\n  font-family: 'Bangers',\n    cursive;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZ2FtZW92ZXIvZ2FtZW92ZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtKQUFrSjtFQUNsSiw0QkFBNEI7RUFDNUIsc0JBQXNCO0VBQ3RCLGFBQWE7RUFDYiwyQkFBMkI7RUFDM0IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixhQUFhO0VBQ2IsWUFBWTtBQUNkO0FBQ0E7RUFDRSxZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLG1CQUFtQjtFQUNuQixZQUFZO0VBQ1osUUFBUTtFQUNSLFVBQVU7O0FBRVo7QUFDQTtFQUNFLGFBQWE7RUFDYixlQUFlO0VBQ2YsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQiwrQkFBK0I7RUFDL0IsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLHNCQUFzQjtFQUN0QixrQkFBa0I7RUFDbEI7QUFDRjtBQUNBO0lBQ0ksVUFBVTtJQUNWLFdBQVc7QUFDZjtBQUNBO0VBQ0UsYUFBYTtFQUNiLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFDbkIsc0JBQXNCOztBQUV4QjtBQUNBO0VBQ0UsVUFBVTtFQUNWLGFBQWE7RUFDYixlQUFlO0VBQ2YsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQjtXQUNTO0FBQ1giLCJmaWxlIjoic3JjL2FwcC9nYW1lb3Zlci9nYW1lb3Zlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gIGJhY2tncm91bmQ6IHVybChodHRwczovL2kyLndwLmNvbS93d3cua2FsdXNhbG9uYW5kc3BhLmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxNy8wMS9ibGFjay1icmljay1iYWNrZ3JvdW5kLWthbHUtc2Fsb24tYmxhY2stZnJpZGF5LXNhbGVzLXdlYi5qcGcpO1xuICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogcm93LXJldmVyc2U7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBoZWlnaHQ6IDEwMHZoO1xuICB3aWR0aDogMTAwdnc7XG59XG5idXR0b24ge1xuICBoZWlnaHQ6IDIwcHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbWFyZ2luOiAtMjBweCAtNTBweDtcbiAgd2lkdGg6IDEwMHB4O1xuICB0b3A6IDUwJTtcbiAgbGVmdDogMTAwJTtcblxufVxucCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZvbnQtZmFtaWx5OiAnQmFuZ2VycycsIGN1cnNpdmU7XG4gIG1hcmdpbi10b3A6IDBweDtcbiAgbWFyZ2luLXRvcDogMjVweDtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xuICBjb2xvcjogd2hpdGU7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgd2lkdGg6IDQ1MHB4XG59XG5pbWd7XG4gICAgd2lkdGg6IDgwJTtcbiAgICBoZWlnaHQ6IDUwJTtcbn1cbi5naWZ7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuXG59XG5oMyB7XG4gIGNvbG9yOiByZWQ7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZvbnQtZmFtaWx5OiAnQmFuZ2VycycsXG4gICAgY3Vyc2l2ZTtcbn0iXX0= */"
+
+
 
 /***/ }),
 
@@ -346,7 +413,11 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Oh No!</h3>\n<p>\n    <img src=\"giphy-4.gif\" alt=\"\">\n</p>\n<p> Sorry!\nIt looks like you ran out of time and Carmen got away Agent {{userName}}, better brush up on your skills so that you can capture her next\n  time! </p>\n<button type=\"button\" class=\"beginNewCase\" routerLink=\"/landing-page\" routerLinkActive=\"active\">Return to Office</button>\n\n"
+
+
+module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Bangers&display=swap\" rel=\"stylesheet\">\n\n<body>\n  <div>\n<h3>GAME OVER!</h3>\n<p>\n  It looks like you ran out of time and Carmen got away Agent {{userName}}, better brush up on your skills so that you\n  can capture her next\n  time! </p>\n</div>\n<div>\n<p class=\"gif\">\n    <img src=\"https://media2.giphy.com/media/lkpT33i3KSjN6/giphy.gif?cid=790b76115d0d225872543549731cd040&rid=giphy.gif\"\n      alt=\"\">\n      <button type=\"button\" class=\"beginNewCase\" routerLink=\"/landing-page\" routerLinkActive=\"active\">Return to\n        Office</button>\n</p>\n</div>\n\n\n\n</body>"
+
+
 
 /***/ }),
 
@@ -398,7 +469,11 @@ var GameoverComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n    background-repeat: no-repeat;\n    background-size: cover;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    height: 100vh;\n    width: 100vw;\n}\n\n  .email {\n    border: 1px solid black;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    background-color: white;\n    border-radius: 8px;\n    opacity: 0.7;\n    width: 80%;\n    height: 70%;\n    font-family: 'Roboto', sans-serif;\n    font-size: 15px;\n  }\n\n  button {\n    font-family: 'Roboto', sans-serif;\n  }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrSkFBa0o7SUFDaEosNEJBQTRCO0lBQzVCLHNCQUFzQjtJQUN0QixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsYUFBYTtJQUNiLFlBQVk7QUFDaEI7O0VBRUU7SUFDRSx1QkFBdUI7SUFDdkIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLHVCQUF1QjtJQUN2QixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLFVBQVU7SUFDVixXQUFXO0lBQ1gsaUNBQWlDO0lBQ2pDLGVBQWU7RUFDakI7O0VBRUE7SUFDRSxpQ0FBaUM7RUFDbkMiLCJmaWxlIjoic3JjL2FwcC9ob21lL2hvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xuICBiYWNrZ3JvdW5kOiB1cmwoaHR0cHM6Ly9pMi53cC5jb20vd3d3LmthbHVzYWxvbmFuZHNwYS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTcvMDEvYmxhY2stYnJpY2stYmFja2dyb3VuZC1rYWx1LXNhbG9uLWJsYWNrLWZyaWRheS1zYWxlcy13ZWIuanBnKTtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgaGVpZ2h0OiAxMDB2aDtcbiAgICB3aWR0aDogMTAwdnc7XG59XG5cbiAgLmVtYWlsIHtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgb3BhY2l0eTogMC43O1xuICAgIHdpZHRoOiA4MCU7XG4gICAgaGVpZ2h0OiA3MCU7XG4gICAgZm9udC1mYW1pbHk6ICdSb2JvdG8nLCBzYW5zLXNlcmlmO1xuICAgIGZvbnQtc2l6ZTogMTVweDtcbiAgfVxuXG4gIGJ1dHRvbiB7XG4gICAgZm9udC1mYW1pbHk6ICdSb2JvdG8nLCBzYW5zLXNlcmlmO1xuICB9XG4iXX0= */"
+
+
+module.exports = "body{\n   background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n   background-repeat: no-repeat;\n   background-size: cover;\n   display: flex;\n   flex-direction: column;\n   justify-content: center;\n   align-items: center;\n   height: 100%;\n   width: 100%;\n}\n\n  .email {\n    border: 1px solid black;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    background-color: white;\n    border-radius: 8px;\n    opacity: 0.7;\n    width: 80%;\n    height: 70%;\n    font-family: 'Roboto', sans-serif;\n    font-size: 15px;\n  }\n\n  button {\n    font-family: 'Roboto', sans-serif;\n  }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9ob21lLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7R0FDRyxrSkFBa0o7R0FDbEosNEJBQTRCO0dBQzVCLHNCQUFzQjtHQUN0QixhQUFhO0dBQ2Isc0JBQXNCO0dBQ3RCLHVCQUF1QjtHQUN2QixtQkFBbUI7R0FDbkIsWUFBWTtHQUNaLFdBQVc7QUFDZDs7RUFFRTtJQUNFLHVCQUF1QjtJQUN2QixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsdUJBQXVCO0lBQ3ZCLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osVUFBVTtJQUNWLFdBQVc7SUFDWCxpQ0FBaUM7SUFDakMsZUFBZTtFQUNqQjs7RUFFQTtJQUNFLGlDQUFpQztFQUNuQyIsImZpbGUiOiJzcmMvYXBwL2hvbWUvaG9tZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYm9keXtcbiAgIGJhY2tncm91bmQ6IHVybChodHRwczovL2kyLndwLmNvbS93d3cua2FsdXNhbG9uYW5kc3BhLmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxNy8wMS9ibGFjay1icmljay1iYWNrZ3JvdW5kLWthbHUtc2Fsb24tYmxhY2stZnJpZGF5LXNhbGVzLXdlYi5qcGcpO1xuICAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICBkaXNwbGF5OiBmbGV4O1xuICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgIGhlaWdodDogMTAwJTtcbiAgIHdpZHRoOiAxMDAlO1xufVxuXG4gIC5lbWFpbCB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIG9wYWNpdHk6IDAuNztcbiAgICB3aWR0aDogODAlO1xuICAgIGhlaWdodDogNzAlO1xuICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJywgc2Fucy1zZXJpZjtcbiAgICBmb250LXNpemU6IDE1cHg7XG4gIH1cblxuICBidXR0b24ge1xuICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJywgc2Fucy1zZXJpZjtcbiAgfVxuIl19 */"
+
+
 
 /***/ }),
 
@@ -409,7 +484,9 @@ module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandsp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n\n  <div class=\"email\">\n    <p>ACME HEADQUARTERS</p>\n\n    <p>\n      <img src=\"src/app/home/giphy-3.gif\" alt=\"\">\n    </p>\n    <p>Agent {{userName}} we have just been informed that Carmen Sandiego has stolen the Eiffel Tower! You need to catch\n      her</p>\n    <p>You have 24 hours to capture Carmen before the trail goes cold, hurry Agent {{userName}}, don't let Carmen\n      escape! </p>\n    <button routerLink=\"/location1\" routerLinkActive=\"active\">View Message</button>\n  </div>\n\n</body>"
+
+module.exports = "<body>\n    \n              <div class=\"email\">\n              <p>ACME HEADQUARTERS</p>\n\n              <p>\n                <!-- <img src=\"src/app/home/giphy-3.gif\" alt=\"\"> -->\n              </p>\n              <p>Agent {{userName}} we have just been informed that Carmen Sandiego has stolen the Eiffel Tower! You need to catch her</p>\n              <p>You have 24 hours to capture Carmen before the trail goes cold, hurry Agent {{userName}}, don't let Carmen escape! </p>\n              <button routerLink=\"/location1\" routerLinkActive=\"active\">View Message</button>\n            </div>\n        \n   \n</body>\n  "
+
 
 /***/ }),
 
@@ -463,7 +540,9 @@ var HomeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".home {\n    background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n    background-repeat: no-repeat;\n    background-size: cover;\n    position: absolute;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n}\n\n\nimg {\n    height: 500px;\n    width: 500px;\n}\n\n\nbutton {\n    font-family: 'Roboto', sans-serif;\n    font-size: 15px;\n    height: 5%;\n    width: 30%;\n    border-radius: 8px;\n    margin-top: 2%;\n    opacity: 0.7;\n    background-color: white;\n    border-color: rgb(77, 78, 78);\n}\n\n\n.agentForm {\n    font-family: 'Roboto', sans-serif;\n    position: relative;\n    background-color: lightgray;\n    border-radius: 8px;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    height: 50%;\n    width: 50%;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n\n\n.acme {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    padding: 10px;\n    margin-bottom: 0px;\n    font-size: 20px;\n}\n\n\n.welcome {\n    font-size: 30px;\n    margin-top: 0px;\n}\n\n\n.beginCase {\n    height: 40%;\n    width: 90%;\n    border-radius: 8px;\n    color: black;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n\n\n.form {\n    margin-top: 30px;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n}\n\n\n.enterName {\n    margin-top: 0;\n    font-size: 20px;\n}\n\n\ninput {\n    width:300%;\n    border-radius: 8px;\n    height: 30px;\n    margin-bottom: 10px;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGFuZGluZy1wYWdlL2xhbmRpbmctcGFnZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0pBQWtKO0lBQ2xKLDRCQUE0QjtJQUM1QixzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixZQUFZO0lBQ1osV0FBVztBQUNmOzs7QUFHQTtJQUNJLGFBQWE7SUFDYixZQUFZO0FBQ2hCOzs7QUFFQTtJQUNJLGlDQUFpQztJQUNqQyxlQUFlO0lBQ2YsVUFBVTtJQUNWLFVBQVU7SUFDVixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIsNkJBQTZCO0FBQ2pDOzs7QUFFQTtJQUNJLGlDQUFpQztJQUNqQyxrQkFBa0I7SUFDbEIsMkJBQTJCO0lBQzNCLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsV0FBVztJQUNYLFVBQVU7SUFDViw0RUFBNEU7QUFDaEY7OztBQUVBO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGFBQWE7SUFDYixrQkFBa0I7SUFDbEIsZUFBZTtBQUNuQjs7O0FBRUE7SUFDSSxlQUFlO0lBQ2YsZUFBZTtBQUNuQjs7O0FBRUE7SUFDSSxXQUFXO0lBQ1gsVUFBVTtJQUNWLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osNEVBQTRFO0FBQ2hGOzs7QUFFQTtJQUNJLGdCQUFnQjtJQUNoQixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLHVCQUF1QjtJQUN2QixtQkFBbUI7QUFDdkI7OztBQUVBO0lBQ0ksYUFBYTtJQUNiLGVBQWU7QUFDbkI7OztBQUVBO0lBQ0ksVUFBVTtJQUNWLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osbUJBQW1CO0lBQ25CLDRFQUE0RTtBQUNoRiIsImZpbGUiOiJzcmMvYXBwL2xhbmRpbmctcGFnZS9sYW5kaW5nLXBhZ2UuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5ob21lIHtcbiAgICBiYWNrZ3JvdW5kOiB1cmwoaHR0cHM6Ly9pMi53cC5jb20vd3d3LmthbHVzYWxvbmFuZHNwYS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTcvMDEvYmxhY2stYnJpY2stYmFja2dyb3VuZC1rYWx1LXNhbG9uLWJsYWNrLWZyaWRheS1zYWxlcy13ZWIuanBnKTtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGhlaWdodDogMTAwJTtcbiAgICB3aWR0aDogMTAwJTtcbn1cblxuXG5pbWcge1xuICAgIGhlaWdodDogNTAwcHg7XG4gICAgd2lkdGg6IDUwMHB4O1xufVxuXG5idXR0b24ge1xuICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJywgc2Fucy1zZXJpZjtcbiAgICBmb250LXNpemU6IDE1cHg7XG4gICAgaGVpZ2h0OiA1JTtcbiAgICB3aWR0aDogMzAlO1xuICAgIGJvcmRlci1yYWRpdXM6IDhweDtcbiAgICBtYXJnaW4tdG9wOiAyJTtcbiAgICBvcGFjaXR5OiAwLjc7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gICAgYm9yZGVyLWNvbG9yOiByZ2IoNzcsIDc4LCA3OCk7XG59XG5cbi5hZ2VudEZvcm0ge1xuICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJywgc2Fucy1zZXJpZjtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRncmF5O1xuICAgIGJvcmRlci1yYWRpdXM6IDhweDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBoZWlnaHQ6IDUwJTtcbiAgICB3aWR0aDogNTAlO1xuICAgIGJveC1zaGFkb3c6IDAgNHB4IDhweCAwIHJnYmEoMCwgMCwgMCwgMC4yKSwgMCA2cHggMjBweCAwIHJnYmEoMCwgMCwgMCwgMC4xOSk7XG59XG5cbi5hY21lIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDBweDtcbiAgICBmb250LXNpemU6IDIwcHg7XG59XG5cbi53ZWxjb21lIHtcbiAgICBmb250LXNpemU6IDMwcHg7XG4gICAgbWFyZ2luLXRvcDogMHB4O1xufVxuXG4uYmVnaW5DYXNlIHtcbiAgICBoZWlnaHQ6IDQwJTtcbiAgICB3aWR0aDogOTAlO1xuICAgIGJvcmRlci1yYWRpdXM6IDhweDtcbiAgICBjb2xvcjogYmxhY2s7XG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDZweCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjE5KTtcbn1cblxuLmZvcm0ge1xuICAgIG1hcmdpbi10b3A6IDMwcHg7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi5lbnRlck5hbWUge1xuICAgIG1hcmdpbi10b3A6IDA7XG4gICAgZm9udC1zaXplOiAyMHB4O1xufVxuXG5pbnB1dCB7XG4gICAgd2lkdGg6MzAwJTtcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgaGVpZ2h0OiAzMHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDZweCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjE5KTtcbn1cblxuXG4iXX0= */"
+
+module.exports = ".home {\n    background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n    background-repeat: no-repeat;\n    background-size: cover;\n    position: absolute;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    height: 100%;\n    width: 100%;\n}\n\n\nimg {\n    height: 500px;\n    width: 500px;\n}\n\n\nbutton {\n    font-family: 'Roboto', sans-serif;\n    font-size: 15px;\n    height: 5%;\n    width: 30%;\n    border-radius: 8px;\n    margin-top: 2%;\n    opacity: 0.7;\n    background-color: white;\n    border-color: rgb(77, 78, 78);\n}\n\n\n.agentForm {\n    font-family: 'Roboto', sans-serif;\n    position: relative;\n    background-color: lightgray;\n    border-radius: 8px;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    height: 50%;\n    width: 50%;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n\n\n.acme {\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    padding: 10px;\n    margin-bottom: 0px;\n    font-size: 20px;\n}\n\n\n.welcome {\n    font-size: 30px;\n    margin-top: 0px;\n}\n\n\n.beginCase {\n    height: 40%;\n    width: 90%;\n    border-radius: 8px;\n    color: black;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n\n\n.form {\n    margin-top: 30px;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n}\n\n\nform {\n    background-color: lightgray;\n}\n\n\n.enterName {\n    margin-top: 0;\n    font-size: 20px;\n}\n\n\ninput {\n    width:300%;\n    border-radius: 8px;\n    height: 30px;\n    margin-bottom: 10px;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n\n\n#spotlight {\n  -webkit-animation: bottom-right 6s ease-in-out alternate infinite;\n          animation: bottom-right 6s ease-in-out alternate infinite;\n  border-bottom: none;\n  border-left: solid 30vh transparent;\n  border-right: solid 30vh transparent;\n  border-bottom: solid 200vh rgba(255, 255, 255, .5);\n  transform-origin: top;\n\n}\n\n\n#spotlight {\n  -webkit-animation: bottom-left 4s ease-in-out alternate infinite;\n          animation: bottom-left 4s ease-in-out alternate infinite;\n  left: auto;\n  right: 0;\n}\n\n\n@-webkit-keyframes bottom-left {\n  0% {\n    transform: rotate(-10deg);\n  }\n\n  100% {\n    transform: rotate(70deg);\n  }\n}\n\n\n@keyframes bottom-left {\n  0% {\n    transform: rotate(-10deg);\n  }\n\n  100% {\n    transform: rotate(70deg);\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGFuZGluZy1wYWdlL2xhbmRpbmctcGFnZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0pBQWtKO0lBQ2xKLDRCQUE0QjtJQUM1QixzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixZQUFZO0lBQ1osV0FBVztBQUNmOzs7QUFHQTtJQUNJLGFBQWE7SUFDYixZQUFZO0FBQ2hCOzs7QUFFQTtJQUNJLGlDQUFpQztJQUNqQyxlQUFlO0lBQ2YsVUFBVTtJQUNWLFVBQVU7SUFDVixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIsNkJBQTZCO0FBQ2pDOzs7QUFFQTtJQUNJLGlDQUFpQztJQUNqQyxrQkFBa0I7SUFDbEIsMkJBQTJCO0lBQzNCLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsV0FBVztJQUNYLFVBQVU7SUFDViw0RUFBNEU7QUFDaEY7OztBQUVBO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGFBQWE7SUFDYixrQkFBa0I7SUFDbEIsZUFBZTtBQUNuQjs7O0FBRUE7SUFDSSxlQUFlO0lBQ2YsZUFBZTtBQUNuQjs7O0FBRUE7SUFDSSxXQUFXO0lBQ1gsVUFBVTtJQUNWLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osNEVBQTRFO0FBQ2hGOzs7QUFFQTtJQUNJLGdCQUFnQjtJQUNoQixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLHVCQUF1QjtJQUN2QixtQkFBbUI7QUFDdkI7OztBQUNBO0lBQ0ksMkJBQTJCO0FBQy9COzs7QUFDQTtJQUNJLGFBQWE7SUFDYixlQUFlO0FBQ25COzs7QUFFQTtJQUNJLFVBQVU7SUFDVixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQiw0RUFBNEU7QUFDaEY7OztBQUdBO0VBQ0UsaUVBQXlEO1VBQXpELHlEQUF5RDtFQUN6RCxtQkFBbUI7RUFDbkIsbUNBQW1DO0VBQ25DLG9DQUFvQztFQUNwQyxrREFBa0Q7RUFDbEQscUJBQXFCOztBQUV2Qjs7O0FBRUE7RUFDRSxnRUFBd0Q7VUFBeEQsd0RBQXdEO0VBQ3hELFVBQVU7RUFDVixRQUFRO0FBQ1Y7OztBQUVBO0VBQ0U7SUFDRSx5QkFBeUI7RUFDM0I7O0VBRUE7SUFDRSx3QkFBd0I7RUFDMUI7QUFDRjs7O0FBUkE7RUFDRTtJQUNFLHlCQUF5QjtFQUMzQjs7RUFFQTtJQUNFLHdCQUF3QjtFQUMxQjtBQUNGIiwiZmlsZSI6InNyYy9hcHAvbGFuZGluZy1wYWdlL2xhbmRpbmctcGFnZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmhvbWUge1xuICAgIGJhY2tncm91bmQ6IHVybChodHRwczovL2kyLndwLmNvbS93d3cua2FsdXNhbG9uYW5kc3BhLmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxNy8wMS9ibGFjay1icmljay1iYWNrZ3JvdW5kLWthbHUtc2Fsb24tYmxhY2stZnJpZGF5LXNhbGVzLXdlYi5qcGcpO1xuICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgaGVpZ2h0OiAxMDAlO1xuICAgIHdpZHRoOiAxMDAlO1xufVxuXG5cbmltZyB7XG4gICAgaGVpZ2h0OiA1MDBweDtcbiAgICB3aWR0aDogNTAwcHg7XG59XG5cbmJ1dHRvbiB7XG4gICAgZm9udC1mYW1pbHk6ICdSb2JvdG8nLCBzYW5zLXNlcmlmO1xuICAgIGZvbnQtc2l6ZTogMTVweDtcbiAgICBoZWlnaHQ6IDUlO1xuICAgIHdpZHRoOiAzMCU7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIG1hcmdpbi10b3A6IDIlO1xuICAgIG9wYWNpdHk6IDAuNztcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICBib3JkZXItY29sb3I6IHJnYig3NywgNzgsIDc4KTtcbn1cblxuLmFnZW50Rm9ybSB7XG4gICAgZm9udC1mYW1pbHk6ICdSb2JvdG8nLCBzYW5zLXNlcmlmO1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGdyYXk7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGhlaWdodDogNTAlO1xuICAgIHdpZHRoOiA1MCU7XG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDZweCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjE5KTtcbn1cblxuLmFjbWUge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gICAgbWFyZ2luLWJvdHRvbTogMHB4O1xuICAgIGZvbnQtc2l6ZTogMjBweDtcbn1cblxuLndlbGNvbWUge1xuICAgIGZvbnQtc2l6ZTogMzBweDtcbiAgICBtYXJnaW4tdG9wOiAwcHg7XG59XG5cbi5iZWdpbkNhc2Uge1xuICAgIGhlaWdodDogNDAlO1xuICAgIHdpZHRoOiA5MCU7XG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xuICAgIGNvbG9yOiBibGFjaztcbiAgICBib3gtc2hhZG93OiAwIDRweCA4cHggMCByZ2JhKDAsIDAsIDAsIDAuMiksIDAgNnB4IDIwcHggMCByZ2JhKDAsIDAsIDAsIDAuMTkpO1xufVxuXG4uZm9ybSB7XG4gICAgbWFyZ2luLXRvcDogMzBweDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cbmZvcm0ge1xuICAgIGJhY2tncm91bmQtY29sb3I6IGxpZ2h0Z3JheTtcbn1cbi5lbnRlck5hbWUge1xuICAgIG1hcmdpbi10b3A6IDA7XG4gICAgZm9udC1zaXplOiAyMHB4O1xufVxuXG5pbnB1dCB7XG4gICAgd2lkdGg6MzAwJTtcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgaGVpZ2h0OiAzMHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgYm94LXNoYWRvdzogMCA0cHggOHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDZweCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjE5KTtcbn1cblxuXG4jc3BvdGxpZ2h0IHtcbiAgYW5pbWF0aW9uOiBib3R0b20tcmlnaHQgNnMgZWFzZS1pbi1vdXQgYWx0ZXJuYXRlIGluZmluaXRlO1xuICBib3JkZXItYm90dG9tOiBub25lO1xuICBib3JkZXItbGVmdDogc29saWQgMzB2aCB0cmFuc3BhcmVudDtcbiAgYm9yZGVyLXJpZ2h0OiBzb2xpZCAzMHZoIHRyYW5zcGFyZW50O1xuICBib3JkZXItYm90dG9tOiBzb2xpZCAyMDB2aCByZ2JhKDI1NSwgMjU1LCAyNTUsIC41KTtcbiAgdHJhbnNmb3JtLW9yaWdpbjogdG9wO1xuXG59XG5cbiNzcG90bGlnaHQge1xuICBhbmltYXRpb246IGJvdHRvbS1sZWZ0IDRzIGVhc2UtaW4tb3V0IGFsdGVybmF0ZSBpbmZpbml0ZTtcbiAgbGVmdDogYXV0bztcbiAgcmlnaHQ6IDA7XG59XG5cbkBrZXlmcmFtZXMgYm90dG9tLWxlZnQge1xuICAwJSB7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoLTEwZGVnKTtcbiAgfVxuXG4gIDEwMCUge1xuICAgIHRyYW5zZm9ybTogcm90YXRlKDcwZGVnKTtcbiAgfVxufSJdfQ== */"
+
 
 /***/ }),
 
@@ -474,7 +553,9 @@ module.exports = ".home {\n    background: url(https://i2.wp.com/www.kalusalonan
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Oswald&display=swap\" rel=\"stylesheet\">\n\n\n<body>\n<section class=\"home\">\n<img src=\"http://penrycreative.com/wp-content/uploads/2016/08/Carmen-Sandiego_Circular-Logo-Design.png\" alt=\"Carmen Sandiego Logo\">\n<button class=\"newCase\" (click)=\"toggleDisplay()\">Start A New Case</button>\n</section>\n\n<section class=\"agentForm\" *ngIf=\"!shouldBeShown\">\n  <p class=\"welcome\">Welcome to the ACME Detective Agency! </p>\n  <p class=\"acme\">Our main goal here at ACME is to caputre the elusive Carmen Sandiego!</p>\n  <p class=\"enterName\">If you feel up to the task of catching this international criminal, then please...</p>\n  <form class=\"form\" #agentForm=\"ngForm\" (ngSubmit)=\"setUserName(agentForm)\">\n    <label for=\"\">Enter Agent Name:</label>\n    <input type=\"text\" [(ngModel)]=\"userName\"  name=\"userName\"/>\n    <button type=\"button\" class=\"beginCase\" routerLink=\"/home\" routerLinkActive=\"active\" (click)=\"setUserName(agentForm)\">Begin Case</button>\n  </form>\n</section>\n</body>\n\n"
+
+module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Oswald&display=swap\" rel=\"stylesheet\">\n\n\n<body>\n<section class=\"home\">\n<img src=\"http://penrycreative.com/wp-content/uploads/2016/08/Carmen-Sandiego_Circular-Logo-Design.png\" alt=\"Carmen Sandiego Logo\">\n<button class=\"newCase\" (click)=\"toggleDisplay()\">Start A New Case</button>\n</section>\n\n<section class=\"agentForm\" *ngIf=\"!shouldBeShown\">\n  <p class=\"welcome\">Welcome to the ACME Detective Agency! </p>\n  <p class=\"acme\">Our main goal here at ACME is to caputre the elusive Carmen Sandiego!</p>\n  <p class=\"enterName\">If you feel up to the task of catching this international criminal, then please...</p>\n  <form class=\"form\" #agentForm=\"ngForm\" (ngSubmit)=\"setUserName(agentForm)\">\n    <label for=\"\">Enter Agent Name:</label>\n    <input type=\"text\" [(ngModel)]=\"userName\"  name=\"userName\"/>\n    <button type=\"button\" class=\"beginCase\" routerLink=\"/home\" routerLinkActive=\"active\" (click)=\"setUserName(agentForm)\">Begin Case</button>\n  </form>\n</section>\n <div id=\"spotlight\"></div>\n</body>\n\n"
+
 
 /***/ }),
 
@@ -492,17 +573,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _clue_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clue.service */ "./src/app/clue.service.ts");
+
 
 
 
 
 var LandingPageComponent = /** @class */ (function () {
-    function LandingPageComponent(route, userService) {
+    function LandingPageComponent(route, userService, clueService) {
         this.route = route;
         this.userService = userService;
+        this.clueService = clueService;
         this.shouldBeShown = true;
     }
     LandingPageComponent.prototype.ngOnInit = function () {
+    };
+    LandingPageComponent.prototype.startGame = function () {
+        this.clueService.setLocation1();
+        this.clueService.setLocation2();
+        this.clueService.setLocation3();
+        this.clueService.setLoc1Clues();
+        this.clueService.setLoc2Clues();
+        this.clueService.setLoc3Clues();
     };
     LandingPageComponent.prototype.toggleDisplay = function () {
         this.shouldBeShown = !this.shouldBeShown;
@@ -510,6 +602,7 @@ var LandingPageComponent = /** @class */ (function () {
     LandingPageComponent.prototype.setUserName = function (form) {
         console.log(form);
         this.userService.getUserName(form);
+        this.startGame();
         console.log(this.userName);
         // return this.userName
     };
@@ -519,7 +612,7 @@ var LandingPageComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./landing-page.component.html */ "./src/app/landing-page/landing-page.component.html"),
             styles: [__webpack_require__(/*! ./landing-page.component.css */ "./src/app/landing-page/landing-page.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"], _clue_service__WEBPACK_IMPORTED_MODULE_4__["ClueService"]])
     ], LandingPageComponent);
     return LandingPageComponent;
 }());
@@ -546,7 +639,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n\n<main>\n    <header>\n        <ul class=\"left\">\n            <li><strong>Finder</strong>\n\n            </li>\n            <li>File\n\n            </li>\n            <li>Edit\n\n            </li>\n            <li>View\n\n            </li>\n            <li>Go\n\n            </li>\n            <li>Window\n\n            </li>\n            <li>Help\n\n            </li>\n        </ul>\n        <ul class=\"right\">\n            <li>Agent {{userName}}</li>\n        </ul>\n    </header>\n\n    <!-- desktop top---------------------------------------------- -->\n\n    <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n\n        <div class=\"clueOneScreen\">\n          <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\">\n            <div class=\"thetime\">\n                <p class=\"clock\"> {{ time | date: 'shortTime'}} </p> \n                <p class=\"date\">{{ time | date}} </p>\n            </div>\n            <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n            <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n      \n          <div *ngFor=\"let clue of localClues; index as i\">\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\">\n                <div class=\"thetime\">\n                    <p class=\"clock\"> {{ time | date: 'shortTime'}} </p> \n                    <p class=\"date\">{{ time | date}} </p>\n                </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\"> {{clue.clues}} </p>\n              <ng-template #photo>\n                <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\" alt=\"\"> </p>\n              </ng-template>\n              <ng-template #flag>\n                <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p>\n              </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i\n                    class=\"material-icons\">fingerprint</i></button>\n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n      \n          <div *ngIf=\"flight\" class=\"flyOut\">\n            <div class=\"flyOutClock\">\n              <p> {{ time | date: 'shortTime'}} </p>\n              <p class=\"date\"> {{ time | date}} </p>\n            </div>\n            <div *ngFor=\"let location of locations\">\n              <label for=\"{{location}}\">\n                <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n                {{location}}\n              </label>\n            </div>\n            <button (click)=\"goBack()\">Return to clue</button>\n            <button (click)=\"selectLocation()\">Fly Out</button>\n          </div>\n          <div *ngIf=\"wrong\" class=\"wrong\">\n            <h2>Sorry, there's no sign of her here!</h2>\n            <button (click)=\"goBackAirport()\">Try Again!</button>\n          </div>\n        </div>\n      </section>\n      <!-- desktop bottom------------------------------------------------ -->\n    <footer>\n        <ul>\n            <li data-title=\"Finder\"><img data-title=\"Finder\"\n                    src=\"https://harnerdesigns.com/wp-content/uploads/2018/05/finder.png\"></li>\n            <li data-title=\"Chrome\"><img\n                    src=\"https://harnerdesigns.com/wp-content/uploads/2018/05/Google_Chrome_icon_2011.png\"></li>\n            <li data-title=\"iTunes\" class=\"closed\" id=\"iTunes\"><img\n                    src=\"https://harnerdesigns.com/wp-content/uploads/2018/05/iTunes-logo.svg\"></li>\n            <li data-title=\"Photoshop\"><img\n                    src=\"https://harnerdesigns.com/wp-content/uploads/2018/05/Adobe_Photoshop_CS6_icon.png\"></li>\n            <!-- <li data-title=\"Dreamweaver\"><img\n                    src=\"https://harnerdesigns.com/wp-content/uploads/2018/05/Adobe_Dreamweaver_CS6_Icon.png\"></li>\n            <li data-title=\"LinkedIn\" ><a href=\"https://www.linkedin.com/in/james-g-bosley/\"><img \n                    src=http://www.hr.ubc.ca/hr-networks/files/2014/04/linkedin-300x300.png></a> </li>\n            <li data-title=\"System&nbsp;Preferences\"><img\n                    src=\"https://harnerdesigns.com/wp-content/uploads/2018/05/20140418_System_Preferences.png\"></li>\n            <li data-title=\"Trash\"><img\n                    src=\"https://harnerdesigns.com/wp-content/uploads/2018/05/512-TrashIcon-macosx1.png\"></li> -->\n        </ul>\n    </footer>\n</main>\n"
+
+module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
+
 
 /***/ }),
 
@@ -581,9 +676,7 @@ var Location1Component = /** @class */ (function () {
         this.clueNumber = -2; // variable that is used for ngIfs to only show one pop-up message/clue at a time
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
-        this.nextCity = 'Moscow'; // what the next city location is
-        this.currentCity = 'Paris'; // current city
-        this.randomPhoto = Math.floor((Math.random() * 8)); // used to get a random index number for background photo
+         this.randomPhoto = Math.floor((Math.random() * 15)); // used to get a random index number for background photo
         this.locations = [];
         this.wrong = false;
     }
@@ -634,19 +727,9 @@ var Location1Component = /** @class */ (function () {
     };
     Location1Component.prototype.ngOnInit = function () {
         var _this = this;
-        this.userName = this.userService.returnUserName();
-        console.log(this.userName);
-        // this brings in the clues from the DB and adds them to clues array on load
-        this.clueService.getClues(this.nextCity).subscribe(function (response) {
-            _this.clues = response;
-            _this.clues.push({ flag: _this.clues[1].countrycode });
-            // console.log(this.clues);
-        });
-        // gets a random photo for clue and adds it to clues array
-        this.pexelService.getLocationPhoto(this.nextCity).subscribe(function (response) {
-            _this.clues.unshift({ photo: response["photos"]["" + _this.randomPhoto].src.small });
-            // console.log(this.clues);
-        });
+        this.currentCity = this.clueService.startingCity;
+        this.nextCity = this.clueService.secondCity;
+        this.clues = this.clueService.loc1Clues;
         // this gets a random photo of current city to use as background image
         this.pexelService.getLocationPhoto(this.currentCity).subscribe(function (response) {
             _this.photoURL = response["photos"]["" + _this.randomPhoto].src.landscape;
@@ -659,15 +742,28 @@ var Location1Component = /** @class */ (function () {
                 _this.clues[currentIndex] = _this.clues[randomIndex];
                 _this.clues[randomIndex] = temporaryValue;
                 _this.localClues = _this.clues;
-                // console.log(this.localClues);
+                console.log(_this.localClues);
             }
             // gets the redHerring option from service then a wrong city
-            _this.redHerring = _this.clueService.redHerring[1];
-            _this.wrongLocation = _this.clueService.wrongLocations[1];
+
+            _this.redHerring = _this.clueService.redHerrings[1];
+            _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
         });
+        var currentIndex = this.locations.length;
+        while (0 !== currentIndex) {
+            var randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            var tempArray = [];
+            var temporaryValue = this.locations[currentIndex];
+            this.locations[currentIndex] = this.locations[randomIndex];
+            this.locations[randomIndex] = temporaryValue;
+            tempArray = this.locations;
+            this.locations = tempArray;
+            console.log(this.locations);
+        }
         this.time = this.clockService.getTime();
         this.timeLeft = this.clockService.getTimeLeft();
         this.userName = this.userService.userName;
@@ -705,7 +801,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
+
+module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
+
 
 /***/ }),
 
@@ -740,10 +838,9 @@ var Location2Component = /** @class */ (function () {
         this.clueNumber = -2; // variable that is used for ngIfs to only show one pop-up message/clue at a time
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
-        this.nextCity = 'Dubai'; // what the next city location is
-        this.currentCity = 'Moscow'; // current city
-        this.randomPhoto = Math.floor((Math.random() * 8)); // used to get a random index number for background photo
-        this.randomDetroitPhoto = Math.floor((Math.random() * 2)); // detroit only had 3 photos, this selects on of those
+
+
+        this.randomPhoto = Math.floor((Math.random() * 15)); // used to get a random index number for background photo
         this.locations = [];
         this.wrong = false;
     }
@@ -794,19 +891,9 @@ var Location2Component = /** @class */ (function () {
     };
     Location2Component.prototype.ngOnInit = function () {
         var _this = this;
-        // this brings in the clues from the DB and adds them to clues array on load
-        this.clueService.getClues(this.nextCity).subscribe(function (response) {
-            _this.clues = response;
-            _this.clues.push({ flag: _this.clues[1].countrycode });
-            // console.log(this.clues);
-            _this.userName = _this.userService.returnUserName();
-            console.log(_this.userName);
-        });
-        // gets a random photo for clue and adds it to clues array
-        this.pexelService.getLocationPhoto(this.nextCity).subscribe(function (response) {
-            _this.clues.unshift({ photo: response["photos"]["" + _this.randomPhoto].src.small });
-            console.log(_this.clues);
-        });
+        this.currentCity = this.clueService.secondCity;
+        this.nextCity = this.clueService.thirdCity;
+        this.clues = this.clueService.loc2Clues;
         // this gets a random photo of current city to use as background image
         this.pexelService.getLocationPhoto(this.currentCity).subscribe(function (response) {
             _this.photoURL = response["photos"]["" + _this.randomPhoto].src.landscape;
@@ -819,15 +906,27 @@ var Location2Component = /** @class */ (function () {
                 _this.clues[currentIndex] = _this.clues[randomIndex];
                 _this.clues[randomIndex] = temporaryValue;
                 _this.localClues = _this.clues;
-                // console.log(this.localClues);
+                console.log(_this.localClues);
             }
-            // gets the redHerring option from service then a wrong city
-            _this.redHerring = _this.clueService.redHerring[2];
-            _this.wrongLocation = _this.clueService.wrongLocations[0];
+
+            _this.redHerring = _this.clueService.redHerrings[2];
+            _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
         });
+        var currentIndex = this.locations.length;
+        while (0 !== currentIndex) {
+            var randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            var tempArray = [];
+            var temporaryValue = this.locations[currentIndex];
+            this.locations[currentIndex] = this.locations[randomIndex];
+            this.locations[randomIndex] = temporaryValue;
+            tempArray = this.locations;
+            this.locations = tempArray;
+            console.log(this.locations);
+        }
         this.time = this.clockService.getTime();
         this.timeLeft = this.clockService.getTimeLeft();
         this.userName = this.userService.userName;
@@ -865,7 +964,9 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
+
+module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
+
 
 /***/ }),
 
@@ -900,10 +1001,9 @@ var Location3Component = /** @class */ (function () {
         this.clueNumber = -2; // variable that is used for ngIfs to only show one pop-up message/clue at a time
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
-        this.nextCity = 'Detroit'; // what the next city location is
-        this.currentCity = 'Dubai'; // current city
+
+
         this.randomPhoto = Math.floor((Math.random() * 8)); // used to get a random index number for background photo
-        this.randomDetroitPhoto = Math.floor((Math.random() * 2)); // detroit only had 3 photos, this selects on of those
         this.locations = [];
         this.wrong = false;
     }
@@ -954,17 +1054,11 @@ var Location3Component = /** @class */ (function () {
     };
     Location3Component.prototype.ngOnInit = function () {
         var _this = this;
-        // this brings in the clues from the DB and adds them to clues array on load
-        this.clueService.getClues(this.nextCity).subscribe(function (response) {
-            _this.clues = response;
-            _this.clues.push({ flag: _this.clues[1].countrycode });
-            // console.log(this.clues);
-        });
-        // gets a random photo for clue and adds it to clues array
-        this.pexelService.getLocationPhoto(this.nextCity).subscribe(function (response) {
-            _this.clues.unshift({ photo: response["photos"]["" + _this.randomDetroitPhoto].src.small });
-            console.log(_this.clues);
-        });
+
+
+        this.currentCity = this.clueService.thirdCity;
+        this.clues = this.clueService.loc3Clues;
+
         // this gets a random photo of current city to use as background image
         this.pexelService.getLocationPhoto(this.currentCity).subscribe(function (response) {
             _this.photoURL = response["photos"]["" + _this.randomPhoto].src.landscape;
@@ -977,15 +1071,28 @@ var Location3Component = /** @class */ (function () {
                 _this.clues[currentIndex] = _this.clues[randomIndex];
                 _this.clues[randomIndex] = temporaryValue;
                 _this.localClues = _this.clues;
-                // console.log(this.localClues);
+                console.log(_this.localClues);
             }
             // gets the redHerring option from service then a wrong city
-            _this.redHerring = _this.clueService.redHerring[3];
-            _this.wrongLocation = _this.clueService.wrongLocations[4];
+
+            _this.redHerring = _this.clueService.location4redHerring;
+            _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
         });
+        var currentIndex = this.locations.length;
+        while (0 !== currentIndex) {
+            var randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            var tempArray = [];
+            var temporaryValue = this.locations[currentIndex];
+            this.locations[currentIndex] = this.locations[randomIndex];
+            this.locations[randomIndex] = temporaryValue;
+            tempArray = this.locations;
+            this.locations = tempArray;
+            console.log(this.locations);
+        }
         this.time = this.clockService.getTime();
         this.timeLeft = this.clockService.getTimeLeft();
         this.userName = this.userService.userName;
@@ -1012,7 +1119,9 @@ var Location3Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body {\n    background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n    background-repeat: no-repeat;\n    background-size: cover;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    align-items: center;\n    height: 100vh;\n    width: 100vw;\n}\np {\n    display: flex;\n    font-size: 300px;\n    justify-content: center;\n    align-items: center;\n    font-family: 'Bangers', cursive;\n    margin-top: 0px;\n    position: absolute;\n    margin-top: 250px;\n    margin-right:100px;\n\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9jYXRpb240L2xvY2F0aW9uNC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0pBQWtKO0lBQ2xKLDRCQUE0QjtJQUM1QixzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGFBQWE7SUFDYixZQUFZO0FBQ2hCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsZ0JBQWdCO0lBQ2hCLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsK0JBQStCO0lBQy9CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGtCQUFrQjs7QUFFdEIiLCJmaWxlIjoic3JjL2FwcC9sb2NhdGlvbjQvbG9jYXRpb240LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgICBiYWNrZ3JvdW5kOiB1cmwoaHR0cHM6Ly9pMi53cC5jb20vd3d3LmthbHVzYWxvbmFuZHNwYS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTcvMDEvYmxhY2stYnJpY2stYmFja2dyb3VuZC1rYWx1LXNhbG9uLWJsYWNrLWZyaWRheS1zYWxlcy13ZWIuanBnKTtcbiAgICBiYWNrZ3JvdW5kLXJlcGVhdDogbm8tcmVwZWF0O1xuICAgIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgaGVpZ2h0OiAxMDB2aDtcbiAgICB3aWR0aDogMTAwdnc7XG59XG5wIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZvbnQtc2l6ZTogMzAwcHg7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBmb250LWZhbWlseTogJ0JhbmdlcnMnLCBjdXJzaXZlO1xuICAgIG1hcmdpbi10b3A6IDBweDtcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgbWFyZ2luLXRvcDogMjUwcHg7XG4gICAgbWFyZ2luLXJpZ2h0OjEwMHB4O1xuXG59Il19 */"
+
+module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  display: flex;\n  flex-direction: row-reverse;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n  width: 100vw;\n}\nbutton {\n  height: 20px;\n  position: relative;\n  margin: -20px -50px;\n  width: 100px;\n  top: 50%;\n  left: 50%;\n}\np {\n  display: flex;\n  font-size: 30px;\n  justify-content: center;\n  align-items: center;\n  font-family: 'Bangers', cursive;\n  margin-top: 0px;\n  margin-top: 25px;\n  margin-right: 10px;\ncolor: white;\nflex-direction: column;\ntext-align: center;\nwidth: 450px\n}\n#top {\n  left: 5%;\n  top: 10%;\n  position: absolute;\n  width: 400px;\n  height: 400px\n}\n#under {\n  left: 5%;\n  top: 10%;\n  position: absolute;\n  width: 385px;\n  height: 385px\n}\n.jail{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n    height: 50%;\n    width: 50%\n}\n#spotlight {\n  -webkit-animation: bottom-right 6s ease-in-out alternate infinite;\n          animation: bottom-right 6s ease-in-out alternate infinite;\n  border-bottom: none;\n  border-left: solid 30vh transparent;\n  border-right: solid 30vh transparent;\n  border-bottom: solid 200vh rgba(255, 255, 255, .5);\n  transform-origin: top;\n\n}\n#spotlight {\n  -webkit-animation: bottom-left 4s ease-in-out alternate infinite;\n          animation: bottom-left 4s ease-in-out alternate infinite;\n  left: auto;\n  right: 0;\n}\n@-webkit-keyframes bottom-left {\n  0% {\n    transform: rotate(-10deg);\n  }\n\n  100% {\n    transform: rotate(70deg);\n  }\n}\n@keyframes bottom-left {\n  0% {\n    transform: rotate(-10deg);\n  }\n\n  100% {\n    transform: rotate(70deg);\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9jYXRpb240L2xvY2F0aW9uNC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0pBQWtKO0VBQ2xKLDRCQUE0QjtFQUM1QixzQkFBc0I7RUFDdEIsYUFBYTtFQUNiLDJCQUEyQjtFQUMzQix1QkFBdUI7RUFDdkIsbUJBQW1CO0VBQ25CLGFBQWE7RUFDYixZQUFZO0FBQ2Q7QUFDQTtFQUNFLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsbUJBQW1CO0VBQ25CLFlBQVk7RUFDWixRQUFRO0VBQ1IsU0FBUztBQUNYO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsZUFBZTtFQUNmLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFDbkIsK0JBQStCO0VBQy9CLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCLFlBQVk7QUFDWixzQkFBc0I7QUFDdEIsa0JBQWtCO0FBQ2xCO0FBQ0E7QUFFQTtFQUNFLFFBQVE7RUFDUixRQUFRO0VBQ1Isa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWjtBQUNGO0FBRUE7RUFDRSxRQUFRO0VBQ1IsUUFBUTtFQUNSLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1o7QUFDRjtBQUVBO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsc0JBQXNCO0lBQ3RCLFdBQVc7SUFDWDtBQUNKO0FBRUE7RUFDRSxpRUFBeUQ7VUFBekQseURBQXlEO0VBQ3pELG1CQUFtQjtFQUNuQixtQ0FBbUM7RUFDbkMsb0NBQW9DO0VBQ3BDLGtEQUFrRDtFQUNsRCxxQkFBcUI7O0FBRXZCO0FBQ0E7RUFDRSxnRUFBd0Q7VUFBeEQsd0RBQXdEO0VBQ3hELFVBQVU7RUFDVixRQUFRO0FBQ1Y7QUFDQTtFQUNFO0lBQ0UseUJBQXlCO0VBQzNCOztFQUVBO0lBQ0Usd0JBQXdCO0VBQzFCO0FBQ0Y7QUFSQTtFQUNFO0lBQ0UseUJBQXlCO0VBQzNCOztFQUVBO0lBQ0Usd0JBQXdCO0VBQzFCO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9sb2NhdGlvbjQvbG9jYXRpb240LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgYmFja2dyb3VuZDogdXJsKGh0dHBzOi8vaTIud3AuY29tL3d3dy5rYWx1c2Fsb25hbmRzcGEuY29tL3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE3LzAxL2JsYWNrLWJyaWNrLWJhY2tncm91bmQta2FsdS1zYWxvbi1ibGFjay1mcmlkYXktc2FsZXMtd2ViLmpwZyk7XG4gIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXI7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3ctcmV2ZXJzZTtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGhlaWdodDogMTAwdmg7XG4gIHdpZHRoOiAxMDB2dztcbn1cbmJ1dHRvbiB7XG4gIGhlaWdodDogMjBweDtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBtYXJnaW46IC0yMHB4IC01MHB4O1xuICB3aWR0aDogMTAwcHg7XG4gIHRvcDogNTAlO1xuICBsZWZ0OiA1MCU7XG59XG5wIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZm9udC1zaXplOiAzMHB4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgZm9udC1mYW1pbHk6ICdCYW5nZXJzJywgY3Vyc2l2ZTtcbiAgbWFyZ2luLXRvcDogMHB4O1xuICBtYXJnaW4tdG9wOiAyNXB4O1xuICBtYXJnaW4tcmlnaHQ6IDEwcHg7XG5jb2xvcjogd2hpdGU7XG5mbGV4LWRpcmVjdGlvbjogY29sdW1uO1xudGV4dC1hbGlnbjogY2VudGVyO1xud2lkdGg6IDQ1MHB4XG59XG5cbiN0b3Age1xuICBsZWZ0OiA1JTtcbiAgdG9wOiAxMCU7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgd2lkdGg6IDQwMHB4O1xuICBoZWlnaHQ6IDQwMHB4XG59XG5cbiN1bmRlciB7XG4gIGxlZnQ6IDUlO1xuICB0b3A6IDEwJTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogMzg1cHg7XG4gIGhlaWdodDogMzg1cHhcbn1cblxuLmphaWx7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgaGVpZ2h0OiA1MCU7XG4gICAgd2lkdGg6IDUwJVxufVxuXG4jc3BvdGxpZ2h0IHtcbiAgYW5pbWF0aW9uOiBib3R0b20tcmlnaHQgNnMgZWFzZS1pbi1vdXQgYWx0ZXJuYXRlIGluZmluaXRlO1xuICBib3JkZXItYm90dG9tOiBub25lO1xuICBib3JkZXItbGVmdDogc29saWQgMzB2aCB0cmFuc3BhcmVudDtcbiAgYm9yZGVyLXJpZ2h0OiBzb2xpZCAzMHZoIHRyYW5zcGFyZW50O1xuICBib3JkZXItYm90dG9tOiBzb2xpZCAyMDB2aCByZ2JhKDI1NSwgMjU1LCAyNTUsIC41KTtcbiAgdHJhbnNmb3JtLW9yaWdpbjogdG9wO1xuXG59XG4jc3BvdGxpZ2h0IHtcbiAgYW5pbWF0aW9uOiBib3R0b20tbGVmdCA0cyBlYXNlLWluLW91dCBhbHRlcm5hdGUgaW5maW5pdGU7XG4gIGxlZnQ6IGF1dG87XG4gIHJpZ2h0OiAwO1xufVxuQGtleWZyYW1lcyBib3R0b20tbGVmdCB7XG4gIDAlIHtcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZSgtMTBkZWcpO1xuICB9XG5cbiAgMTAwJSB7XG4gICAgdHJhbnNmb3JtOiByb3RhdGUoNzBkZWcpO1xuICB9XG59Il19 */"
+
 
 /***/ }),
 
@@ -1023,7 +1132,9 @@ module.exports = "body {\n    background: url(https://i2.wp.com/www.kalusalonand
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n    <link href=\"https://fonts.googleapis.com/css?family=Oswald&display=swap\" rel=\"stylesheet\">\n    <link href=\"https://fonts.googleapis.com/css?family=Special+Elite&display=swap\" rel=\"stylesheet\">\n\n    <div class=\"captured\">\n        <p class=\"animated bounceInDown\">CAPTURED!</p>\n\n        <img src=\"http://penrycreative.com/wp-content/uploads/2016/08/Carmen-Sandiego_Circular-Logo-Design.png\"\n            alt=\"Carmen Sandiego Logo\">\n    </div>\n\n</body>"
+
+module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Oswald&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css?family=Special+Elite&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css?family=Bangers&display=swap\" rel=\"stylesheet\">\n\n\n<body>\n  <div class=\"captured\">\n    <p >Congradualtions agent {{userName}}.</p>\n    <p >You have captured Carmen Sandiego!</p>\n    <p> You have been promoted to Sleuth.</p>\n      <button type=\"button\" class=\"beginNewCase\" routerLink=\"/landing-page\" routerLinkActive=\"active\">Return to\n        Office</button>\n  </div>\n\n<div class=\"jail\">\n\n<img id=\"under\"\nsrc=\"https://vignette.wikia.nocookie.net/qubo-channel/images/e/ed/Carmen_Sandiego.png/revision/latest?cb=20170716201725\"> \n\n   <img id=\"top\" class=\"animated bounceInDown\"\n      src=\"https://ecowall.com.ua/files/images/fabric/6/4.png\"> \n    \n</div>\n <!-- <div id=\"spotlight\"></div> -->\n</body>\n"
+
 
 /***/ }),
 
@@ -1158,10 +1269,10 @@ __webpack_require__.r(__webpack_exports__);
 var PexelApiService = /** @class */ (function () {
     function PexelApiService(http) {
         this.http = http;
-        // apiKey:string = "563492ad6f9170000100000128cb04362abc4b32b717e2c8e9125276";
-        // second key
-        // apiKey:string = "563492ad6f917000010000014a9669d68f174ec5af529706f09b0407";
-        this.apiKey = "563492ad6f91700001000001de8fe8f0d0c347eb9f22d6366e0780fd";
+
+        this.apiKey = "563492ad6f917000010000014a9669d68f174ec5af529706f09b0407";
+        // apiKey:string = "563492ad6f91700001000001e6e48cd47bd449b78f60933192bbf8b8";
+
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
                 Authorization: "" + this.apiKey
@@ -1287,7 +1398,8 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/mymac/Carmen_Sandiego/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/josiekwheeler/Documents/Carmen_Sandiego/src/main.ts */"./src/main.ts");
+
 
 
 /***/ })

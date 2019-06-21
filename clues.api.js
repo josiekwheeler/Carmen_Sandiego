@@ -12,4 +12,5 @@ clues.get("/clues/:cityname", (req, res) => {
   pool.query("SELECT * FROM clues WHERE city=$1::text ORDER BY RANDOM()", [req.params.cityname]).then(result => res.json(result.rows));
 })
 
+
 module.exports = clues;

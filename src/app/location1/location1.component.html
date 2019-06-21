@@ -69,6 +69,7 @@
         </div>
       </div>
 
+
       <div *ngIf="flight" class="flyOut">
           <div class="thetime">
               <p class="clock"> {{ time | date: 'shortTime'}} </p>
@@ -82,6 +83,7 @@
         </div>
         <button (click)="goBack()">Return to clue</button>
         <button (click)="selectLocation()">Fly Out</button>
+
       </div>
       <div *ngIf="wrong" class="wrong">
         <h2>Sorry, there's no sign of her here!</h2>

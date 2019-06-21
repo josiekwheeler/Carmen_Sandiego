@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClueService } from '../clue.service';
 import { PexelApiService } from '../pexel-api.service';
 import { ClockService } from '../clock.service';
-import { UserService } from '../user.service'
+import { UserService } from '../user.service';
 @Component({
   selector: 'location3',
   templateUrl: './location3.component.html',
@@ -13,24 +13,22 @@ export class Location3Component implements OnInit {
   userName: string;
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   time; // for timer, hold the remaining time.
-  clues;  // array to hold our clues 
+  clues;  // array to hold our clues
   tempClueNumber = 0;  // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
   flight = false;  //  used to toggle flight screen or not
   nextCity = 'Detroit';  // what the next city location is
-  currentCity = 'Dubai';  // current city
+  currentCity;  // current city
   photoURL; // variable to hold URL for random background photo
   localClues;  // array to hold shuffled array of clues
   randomPhoto: number = Math.floor((Math.random() * 8));  // used to get a random index number for background photo
-  randomDetroitPhoto: number = Math.floor((Math.random() * 2));  // detroit only had 3 photos, this selects on of those
   redHerring; // a fake out location that is similar to the next city
   wrongLocation;  // a randomw wrong option
   timeLeft;
-  locations =[];
+  locations = [];
   wrong = false;
   selectedCity;
 
-
-  constructor(private userService: UserService,private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
+  constructor(private userService: UserService, private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
   // method that increases clueNumber so we can show the next clue
   showClue() {
     this.clueNumber = 0;
@@ -67,55 +65,54 @@ export class Location3Component implements OnInit {
       this.flight = !this.flight;
       this.wrong = !this.wrong;
       this.clockService.onWrong();
-      this.clockService.isTimeLeft();
+      // this.clockService.isTimeLeft();
     } else {
       this.clockService.onFlight();
-      this.clockService.isTimeLeft();
       this.clueService.rightChoice();
     }
     console.log(this.selectedCity);
   }
-  
 
 
 
   ngOnInit() {
-    // this brings in the clues from the DB and adds them to clues array on load
-    this.clueService.getClues(this.nextCity).subscribe(response => {
-      this.clues = response;
-      this.clues.push({ flag: this.clues[1].countrycode });
-      // console.log(this.clues);
-    });
-    // gets a random photo for clue and adds it to clues array
-    this.pexelService.getLocationPhoto(this.nextCity).subscribe(response => {
-      this.clues.unshift({ photo: response[`photos`][`${this.randomDetroitPhoto}`].src.small });
-      console.log(this.clues);
-    });
-    // this gets a random photo of current city to use as background image
-    this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
-      this.photoURL = response[`photos`][`${this.randomPhoto}`].src.landscape;
-
+    this.currentCity = this.clueService.thirdCity;
+    this.clues = this.clueService.loc3Clues;
+    this.photoURL = this.clueService.background3;
       // below is used to shuffle clues array and save it as localClues array
-      let currentIndex = this.clues.length;
-      while (0 !== currentIndex) {
+    let currentIndex = this.clues.length;
+    while (0 !== currentIndex) {
         const randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
         const temporaryValue = this.clues[currentIndex];
         this.clues[currentIndex] = this.clues[randomIndex];
         this.clues[randomIndex] = temporaryValue;
         this.localClues = this.clues;
-        // console.log(this.localClues);
+        console.log(this.localClues);
       }
       // gets the redHerring option from service then a wrong city
-      this.redHerring = this.clueService.redHerring[3];
-      this.wrongLocation = this.clueService.wrongLocations[4];
-      this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
-      console.log(this.locations);
-      return this.localClues;
-    });
+    this.redHerring = this.clueService.location4redHerring;
+    this.wrongLocation = this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
+    this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
+    console.log(this.locations);
+    let thisIndex = 3;
+    while (0 !== thisIndex) {
+        const randomIndex = Math.floor(Math.random() * thisIndex);
+        thisIndex -= 1;
+        let tempArray = [];
+        const temporaryValue = this.locations[thisIndex];
+        this.locations[thisIndex] = this.locations[randomIndex];
+        this.locations[randomIndex] = temporaryValue;
+        tempArray = this.locations;
+        this.locations = tempArray;
+        console.log(this.locations);
+      }
     this.time = this.clockService.getTime();
     this.timeLeft = this.clockService.getTimeLeft();
     this.userName = this.userService.userName;
+
+    return this.localClues;
   }
 
 }
+
