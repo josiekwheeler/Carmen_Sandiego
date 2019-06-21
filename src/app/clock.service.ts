@@ -20,6 +20,7 @@ export class ClockService {
   onClue() {
     this.clock.setHours(this.clock.getHours() + 1);
     this.timeLeft--;
+    this.isTimeLeft();
   }
   // onClue() {
   // return  this.time -= 1;
@@ -28,16 +29,21 @@ export class ClockService {
   onFlight() {
     this.clock.setHours(this.clock.getHours() + 3);
     this.timeLeft -= 4;
+    this.isTimeLeft();
   }
   onWrong() {
     this.clock.setHours(this.clock.getHours() + 5);
     this.timeLeft -= 5;
+    this.isTimeLeft();
   }
 
   isTimeLeft() {
+    console.log("timeleft")
     if (this.timeLeft > 0) {
+      console.log("timeleft over 0")
       return;
     } else {
+      console.log("timeleft under 0")
       this.router.navigate(['/gameover']);
     }
   }

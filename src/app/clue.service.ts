@@ -22,6 +22,9 @@ export class ClueService {
   loc2Clues;
   loc3Clues;
   stolenGood;
+  background1;
+  background2;
+  background3;
 
   constructor(private http: HttpClient, private router: Router, private pexelService: PexelApiService) { }
 
@@ -42,7 +45,7 @@ export class ClueService {
     this.locations.splice(randomIndex, 1);
     this.redHerrings.push(this.redHerring[randomIndex]);
     this.redHerring.splice(randomIndex, 1);
-    console.log(this.locations);
+    // console.log(this.locations);
     return this.locations;
   }
   setLocation2() {
@@ -51,7 +54,7 @@ export class ClueService {
     this.locations.splice(randomIndex, 1);
     this.redHerrings.push(this.redHerring[randomIndex]);
     this.redHerring.splice(randomIndex, 1);
-    console.log(this.locations);
+    // console.log(this.locations);
     return this.locations;
   }
   setLocation3() {
@@ -60,8 +63,8 @@ export class ClueService {
     this.locations.splice(randomIndex, 1);
     this.redHerrings.push(this.redHerring[randomIndex]);
     this.redHerring.splice(randomIndex, 1);
-    console.log(this.locations);
-    console.log(this.redHerrings);
+    // console.log(this.locations);
+    // console.log(this.redHerrings);
     return this.locations;
   }
 setLoc1Clues() {
@@ -71,7 +74,9 @@ setLoc1Clues() {
     // console.log(this.clues);
   });
   this.pexelService.getLocationPhoto(this.secondCity).subscribe(response => {
-    this.loc1Clues.push({ photo: response[`photos`][`${this.randomPhoto}`].src.small });
+    this.background2 = response[`photos`][`${this.randomPhoto}`].src.original;
+    console.log(this.background2);
+    this.loc1Clues.push({ photo: response[`photos`][`${this.randomPhoto}`].src.medium });
    });
   }
 setLoc2Clues() {
@@ -81,7 +86,8 @@ setLoc2Clues() {
     // console.log(this.clues);
   });
   this.pexelService.getLocationPhoto(this.thirdCity).subscribe(response => {
-    this.loc2Clues.push({ photo: response[`photos`][`${this.randomPhoto}`].src.small });
+    this.background3 = response[`photos`][`${this.randomPhoto}`].src.original;
+    this.loc2Clues.push({ photo: response[`photos`][`${this.randomPhoto}`].src.medium });
    });
 }
 setLoc3Clues() {
@@ -95,6 +101,6 @@ setLoc3Clues() {
    });
 }
 
+
+
 }
-
-

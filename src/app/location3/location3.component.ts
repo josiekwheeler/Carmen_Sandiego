@@ -79,6 +79,7 @@ export class Location3Component implements OnInit {
   ngOnInit() {
     this.currentCity = this.clueService.thirdCity;
     this.clues = this.clueService.loc3Clues;
+    this.photoURL = this.clueService.background3;
     // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
       this.photoURL = response[`photos`][`${this.randomPhoto}`].src.landscape;

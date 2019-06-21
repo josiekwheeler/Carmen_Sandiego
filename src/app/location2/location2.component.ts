@@ -81,6 +81,7 @@ export class Location2Component implements OnInit {
     this.currentCity = this.clueService.secondCity;
     this.nextCity = this.clueService.thirdCity;
     this.clues = this.clueService.loc2Clues;
+    this.photoURL = this.clueService.background2;
     // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
       this.photoURL = response[`photos`][`${this.randomPhoto}`].src.landscape;
