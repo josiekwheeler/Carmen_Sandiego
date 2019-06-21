@@ -9,8 +9,11 @@ export class PexelApiService {
 
   // apiKey:string = "563492ad6f9170000100000128cb04362abc4b32b717e2c8e9125276";
   // second key
-  apiKey:string = "563492ad6f917000010000014a9669d68f174ec5af529706f09b0407";
-    // apiKey:string = "563492ad6f91700001000001e6e48cd47bd449b78f60933192bbf8b8";
+  // apiKey:string = "563492ad6f917000010000014a9669d68f174ec5af529706f09b0407";
+    apiKey:string = "563492ad6f91700001000001e6e48cd47bd449b78f60933192bbf8b8";
+
+    photoURL;
+    randomPhoto: number = Math.floor((Math.random() * 10));
 
 
   httpOptions = {
@@ -24,4 +27,6 @@ export class PexelApiService {
   getLocationPhoto(location) {
     return this.http.get(`https://api.pexels.com/v1/search?query=${location}+query&per_page=10&page=1`, this.httpOptions);
   }
+
+
 }
