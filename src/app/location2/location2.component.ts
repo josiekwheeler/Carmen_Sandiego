@@ -10,7 +10,7 @@ import { UserService} from '../user.service';
 })
 export class Location2Component implements OnInit {
 
-
+userName:string;
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   time; // for timer, hold the remaining time.
   clues;  // array to hold our clues 

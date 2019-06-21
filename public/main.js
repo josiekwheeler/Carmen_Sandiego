@@ -290,22 +290,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _pexel_api_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pexel-api.service */ "./src/app/pexel-api.service.ts");
+
 
 
 
 
 var ClueService = /** @class */ (function () {
-    function ClueService(http, router) {
+    function ClueService(http, router, pexelService) {
         this.http = http;
         this.router = router;
-        // array for the locations carmen visits
-        this.locations = ['Paris', 'Moscow', 'Dubai', 'Detroit'];
-        // locations that are locations that are similar to the real locations, each one has the same index number as the real, to make it easy to match
-        this.redHerring = ['Cannes', 'Sochi', 'Abu Dhabi', 'Cleveland'];
-        // just random wrong locations to use
-        this.wrongLocations = ['London', 'Madrid', 'Hong Kong', 'Washington, DC', 'New York', 'Dublin', 'Berlin', 'Rome', 'Warsaw'];
-        // id is used to keep track of what location component we are in
-        this.id = 1;
+        this.pexelService = pexelService;
+        this.locations = ['Paris', 'Moscow', 'Dubai', 'Beijing', 'London', 'Berlin', 'Tokyo', 'Sydney'];
+        this.location4 = 'Detroit';
+        this.location4redHerring = 'Cleveland';
+        this.randomPhoto = Math.floor((Math.random() * 10));
+        this.redHerring = ['Cannes', 'Sochi', 'Abu Dhabi', 'Shanghai', 'Liverpool', 'Munich', 'Kyoto', 'Perth'];
+        this.redHerrings = [];
+        this.wrongLocations = ['Madrid', 'Hong Kong', 'Washington, DC', 'New York', 'Dublin', 'Rome', 'Warsaw', 'Lisbon', 'Mexico City'];
+        this.id = 0;
     }
     ClueService.prototype.getClues = function (nextCity) {
         return this.http.get("http://localhost:3000/clues/" + nextCity, { responseType: 'json' });
@@ -315,11 +318,72 @@ var ClueService = /** @class */ (function () {
         console.log(this.id);
         this.router.navigate(["/location" + this.id]);
     };
+    ClueService.prototype.setLocation1 = function () {
+        var randomIndex = Math.floor(Math.random() * this.locations.length);
+        this.startingCity = this.locations[randomIndex];
+        this.locations.splice(randomIndex, 1);
+        this.redHerrings.push(this.redHerring[randomIndex]);
+        this.redHerring.splice(randomIndex, 1);
+        console.log(this.locations);
+        return this.locations;
+    };
+    ClueService.prototype.setLocation2 = function () {
+        var randomIndex = Math.floor(Math.random() * this.locations.length);
+        this.secondCity = this.locations[randomIndex];
+        this.locations.splice(randomIndex, 1);
+        this.redHerrings.push(this.redHerring[randomIndex]);
+        this.redHerring.splice(randomIndex, 1);
+        console.log(this.locations);
+        return this.locations;
+    };
+    ClueService.prototype.setLocation3 = function () {
+        var randomIndex = Math.floor(Math.random() * this.locations.length);
+        this.thirdCity = this.locations[randomIndex];
+        this.locations.splice(randomIndex, 1);
+        this.redHerrings.push(this.redHerring[randomIndex]);
+        this.redHerring.splice(randomIndex, 1);
+        console.log(this.locations);
+        console.log(this.redHerrings);
+        return this.locations;
+    };
+    ClueService.prototype.setLoc1Clues = function () {
+        var _this = this;
+        this.getClues(this.secondCity).subscribe(function (response) {
+            _this.loc1Clues = response;
+            _this.loc1Clues.push({ flag: _this.loc1Clues[1].countrycode });
+            // console.log(this.clues);
+        });
+        this.pexelService.getLocationPhoto(this.secondCity).subscribe(function (response) {
+            _this.loc1Clues.unshift({ photo: response["photos"]["" + _this.randomPhoto].src.small });
+        });
+    };
+    ClueService.prototype.setLoc2Clues = function () {
+        var _this = this;
+        this.getClues(this.thirdCity).subscribe(function (response) {
+            _this.loc2Clues = response;
+            _this.loc2Clues.push({ flag: _this.loc2Clues[1].countrycode });
+            // console.log(this.clues);
+        });
+        this.pexelService.getLocationPhoto(this.thirdCity).subscribe(function (response) {
+            _this.loc2Clues.unshift({ photo: response["photos"]["" + _this.randomPhoto].src.small });
+        });
+    };
+    ClueService.prototype.setLoc3Clues = function () {
+        var _this = this;
+        this.getClues(this.location4).subscribe(function (response) {
+            _this.loc3Clues = response;
+            _this.loc3Clues.push({ flag: _this.loc3Clues[1].countrycode });
+            // console.log(this.clues);
+        });
+        this.pexelService.getLocationPhoto(this.location4).subscribe(function (response) {
+            _this.loc3Clues.unshift({ photo: response["photos"][0].src.small });
+        });
+    };
     ClueService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _pexel_api_service__WEBPACK_IMPORTED_MODULE_4__["PexelApiService"]])
     ], ClueService);
     return ClueService;
 }());
@@ -409,7 +473,7 @@ module.exports = "body{\n   background: url(https://i2.wp.com/www.kalusalonandsp
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<body>\n    \n              <div class=\"email\">\n              <p>ACME HEADQUARTERS</p>\n\n              <p>\n                <img src=\"src/app/home/giphy-3.gif\" alt=\"\">\n              </p>\n              <p>Agent {{userName}} we have just been informed that Carmen Sandiego has stolen the Eiffel Tower! You need to catch her</p>\n              <p>You have 24 hours to capture Carmen before the trail goes cold, hurry Agent {{userName}}, don't let Carmen escape! </p>\n              <button routerLink=\"/location1\" routerLinkActive=\"active\">View Message</button>\n            </div>\n        \n   \n</body>\n  "
+module.exports = "<body>\n    \n              <div class=\"email\">\n              <p>ACME HEADQUARTERS</p>\n\n              <p>\n                <!-- <img src=\"src/app/home/giphy-3.gif\" alt=\"\"> -->\n              </p>\n              <p>Agent {{userName}} we have just been informed that Carmen Sandiego has stolen the Eiffel Tower! You need to catch her</p>\n              <p>You have 24 hours to capture Carmen before the trail goes cold, hurry Agent {{userName}}, don't let Carmen escape! </p>\n              <button routerLink=\"/location1\" routerLinkActive=\"active\">View Message</button>\n            </div>\n        \n   \n</body>\n  "
 
 /***/ }),
 
@@ -492,17 +556,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../user.service */ "./src/app/user.service.ts");
+/* harmony import */ var _clue_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clue.service */ "./src/app/clue.service.ts");
+
 
 
 
 
 var LandingPageComponent = /** @class */ (function () {
-    function LandingPageComponent(route, userService) {
+    function LandingPageComponent(route, userService, clueService) {
         this.route = route;
         this.userService = userService;
+        this.clueService = clueService;
         this.shouldBeShown = true;
     }
     LandingPageComponent.prototype.ngOnInit = function () {
+    };
+    LandingPageComponent.prototype.startGame = function () {
+        this.clueService.setLocation1();
+        this.clueService.setLocation2();
+        this.clueService.setLocation3();
+        this.clueService.setLoc1Clues();
+        this.clueService.setLoc2Clues();
+        this.clueService.setLoc3Clues();
     };
     LandingPageComponent.prototype.toggleDisplay = function () {
         this.shouldBeShown = !this.shouldBeShown;
@@ -510,6 +585,7 @@ var LandingPageComponent = /** @class */ (function () {
     LandingPageComponent.prototype.setUserName = function (form) {
         console.log(form);
         this.userService.getUserName(form);
+        this.startGame();
         console.log(this.userName);
         // return this.userName
     };
@@ -519,7 +595,7 @@ var LandingPageComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./landing-page.component.html */ "./src/app/landing-page/landing-page.component.html"),
             styles: [__webpack_require__(/*! ./landing-page.component.css */ "./src/app/landing-page/landing-page.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"], _clue_service__WEBPACK_IMPORTED_MODULE_4__["ClueService"]])
     ], LandingPageComponent);
     return LandingPageComponent;
 }());
@@ -581,9 +657,7 @@ var Location1Component = /** @class */ (function () {
         this.clueNumber = -2; // variable that is used for ngIfs to only show one pop-up message/clue at a time
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
-        this.nextCity = 'Moscow'; // what the next city location is
-        this.currentCity = 'Paris'; // current city
-        this.randomPhoto = Math.floor((Math.random() * 8)); // used to get a random index number for background photo
+        this.randomPhoto = Math.floor((Math.random() * 15)); // used to get a random index number for background photo
         this.locations = [];
         this.wrong = false;
     }
@@ -634,19 +708,9 @@ var Location1Component = /** @class */ (function () {
     };
     Location1Component.prototype.ngOnInit = function () {
         var _this = this;
-        this.userName = this.userService.returnUserName();
-        console.log(this.userName);
-        // this brings in the clues from the DB and adds them to clues array on load
-        this.clueService.getClues(this.nextCity).subscribe(function (response) {
-            _this.clues = response;
-            _this.clues.push({ flag: _this.clues[1].countrycode });
-            // console.log(this.clues);
-        });
-        // gets a random photo for clue and adds it to clues array
-        this.pexelService.getLocationPhoto(this.nextCity).subscribe(function (response) {
-            _this.clues.unshift({ photo: response["photos"]["" + _this.randomPhoto].src.small });
-            // console.log(this.clues);
-        });
+        this.currentCity = this.clueService.startingCity;
+        this.nextCity = this.clueService.secondCity;
+        this.clues = this.clueService.loc1Clues;
         // this gets a random photo of current city to use as background image
         this.pexelService.getLocationPhoto(this.currentCity).subscribe(function (response) {
             _this.photoURL = response["photos"]["" + _this.randomPhoto].src.landscape;
@@ -659,15 +723,27 @@ var Location1Component = /** @class */ (function () {
                 _this.clues[currentIndex] = _this.clues[randomIndex];
                 _this.clues[randomIndex] = temporaryValue;
                 _this.localClues = _this.clues;
-                // console.log(this.localClues);
+                console.log(_this.localClues);
             }
             // gets the redHerring option from service then a wrong city
-            _this.redHerring = _this.clueService.redHerring[1];
-            _this.wrongLocation = _this.clueService.wrongLocations[1];
+            _this.redHerring = _this.clueService.redHerrings[1];
+            _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
         });
+        var currentIndex = this.locations.length;
+        while (0 !== currentIndex) {
+            var randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            var tempArray = [];
+            var temporaryValue = this.locations[currentIndex];
+            this.locations[currentIndex] = this.locations[randomIndex];
+            this.locations[randomIndex] = temporaryValue;
+            tempArray = this.locations;
+            this.locations = tempArray;
+            console.log(this.locations);
+        }
         this.time = this.clockService.getTime();
         this.timeLeft = this.clockService.getTimeLeft();
         this.userName = this.userService.userName;
@@ -705,7 +781,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n<section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n\n  <div class=\"clueOneScreen\">\n    <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\">\n      <div class=\"clock\">\n        <p> {{ time | date: 'shortTime'}} </p>\n        <p class=\"date\"> {{ time | date}} </p>\n      </div>\n      <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n      <button (click)=\"showClue()\">Let's Party!</button>\n    </div>\n\n    <div *ngFor=\"let clue of localClues; index as i\">\n      <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\">\n        <div class=\"clock\">\n          <p> {{ time | date: 'shortTime'}} </p>\n          <p class=\"date\"> {{ time | date}} </p>\n        </div>\n        <p *ngIf=\"clue.clues != undefined; else photo\"> {{clue.clues}} </p>\n        <ng-template #photo>\n          <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\" alt=\"\"> </p>\n        </ng-template>\n        <ng-template #flag>\n          <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p>\n        </ng-template>\n        <div class=\"buttons\">\n          <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i\n              class=\"material-icons\">fingerprint</i></button>\n          <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"flight\" class=\"flyOut\">\n      <div class=\"flyOutClock\">\n        <p> {{ time | date: 'shortTime'}} </p>\n        <p class=\"date\"> {{ time | date}} </p>\n      </div>\n      <div *ngFor=\"let location of locations\">\n        <label for=\"{{location}}\">\n          <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n          {{location}}\n        </label>\n      </div>\n      <button (click)=\"goBack()\">Return to clue</button>\n      <button (click)=\"selectLocation()\">Fly Out</button>\n    </div>\n    <div *ngIf=\"wrong\" class=\"wrong\">\n      <h2>Sorry, there's no sign of her here!</h2>\n      <button (click)=\"goBackAirport()\">Try Again!</button>\n    </div>\n  </div>\n</section>\n"
+module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
 
 /***/ }),
 
@@ -740,10 +816,7 @@ var Location2Component = /** @class */ (function () {
         this.clueNumber = -2; // variable that is used for ngIfs to only show one pop-up message/clue at a time
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
-        this.nextCity = 'Dubai'; // what the next city location is
-        this.currentCity = 'Moscow'; // current city
-        this.randomPhoto = Math.floor((Math.random() * 8)); // used to get a random index number for background photo
-        this.randomDetroitPhoto = Math.floor((Math.random() * 2)); // detroit only had 3 photos, this selects on of those
+        this.randomPhoto = Math.floor((Math.random() * 15)); // used to get a random index number for background photo
         this.locations = [];
         this.wrong = false;
     }
@@ -794,19 +867,9 @@ var Location2Component = /** @class */ (function () {
     };
     Location2Component.prototype.ngOnInit = function () {
         var _this = this;
-        // this brings in the clues from the DB and adds them to clues array on load
-        this.clueService.getClues(this.nextCity).subscribe(function (response) {
-            _this.clues = response;
-            _this.clues.push({ flag: _this.clues[1].countrycode });
-            // console.log(this.clues);
-            _this.userName = _this.userService.returnUserName();
-            console.log(_this.userName);
-        });
-        // gets a random photo for clue and adds it to clues array
-        this.pexelService.getLocationPhoto(this.nextCity).subscribe(function (response) {
-            _this.clues.unshift({ photo: response["photos"]["" + _this.randomPhoto].src.small });
-            console.log(_this.clues);
-        });
+        this.currentCity = this.clueService.secondCity;
+        this.nextCity = this.clueService.thirdCity;
+        this.clues = this.clueService.loc2Clues;
         // this gets a random photo of current city to use as background image
         this.pexelService.getLocationPhoto(this.currentCity).subscribe(function (response) {
             _this.photoURL = response["photos"]["" + _this.randomPhoto].src.landscape;
@@ -819,15 +882,27 @@ var Location2Component = /** @class */ (function () {
                 _this.clues[currentIndex] = _this.clues[randomIndex];
                 _this.clues[randomIndex] = temporaryValue;
                 _this.localClues = _this.clues;
-                // console.log(this.localClues);
+                console.log(_this.localClues);
             }
             // gets the redHerring option from service then a wrong city
-            _this.redHerring = _this.clueService.redHerring[2];
-            _this.wrongLocation = _this.clueService.wrongLocations[0];
+            _this.redHerring = _this.clueService.redHerrings[2];
+            _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
         });
+        var currentIndex = this.locations.length;
+        while (0 !== currentIndex) {
+            var randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            var tempArray = [];
+            var temporaryValue = this.locations[currentIndex];
+            this.locations[currentIndex] = this.locations[randomIndex];
+            this.locations[randomIndex] = temporaryValue;
+            tempArray = this.locations;
+            this.locations = tempArray;
+            console.log(this.locations);
+        }
         this.time = this.clockService.getTime();
         this.timeLeft = this.clockService.getTimeLeft();
         this.userName = this.userService.userName;
@@ -865,7 +940,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n<section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n\n  <div class=\"clueOneScreen\">\n    <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\">\n      <div class=\"clock\">\n        <p> {{ time | date: 'shortTime'}} </p>\n        <p class=\"date\"> {{ time | date}} </p>\n      </div>\n      <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n      <button (click)=\"showClue()\">Let's Party!</button>\n    </div>\n\n    <div *ngFor=\"let clue of localClues; index as i\">\n      <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\">\n        <div class=\"clock\">\n          <p> {{ time | date: 'shortTime'}} </p>\n          <p class=\"date\"> {{ time | date}} </p>\n        </div>\n        <p *ngIf=\"clue.clues != undefined; else photo\"> {{clue.clues}} </p>\n        <ng-template #photo>\n          <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\" alt=\"\"> </p>\n        </ng-template>\n        <ng-template #flag>\n          <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p>\n        </ng-template>\n        <div class=\"buttons\">\n          <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i\n              class=\"material-icons\">fingerprint</i></button>\n          <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"flight\" class=\"flyOut\">\n      <div class=\"flyOutClock\">\n        <p> {{ time | date: 'shortTime'}} </p>\n        <p class=\"date\"> {{ time | date}} </p>\n      </div>\n      <div *ngFor=\"let location of locations\">\n        <label for=\"{{location}}\">\n          <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n          {{location}}\n        </label>\n      </div>\n      <button (click)=\"goBack()\">Return to clue</button>\n      <button (click)=\"selectLocation()\">Fly Out</button>\n    </div>\n    <div *ngIf=\"wrong\" class=\"wrong\">\n      <h2>Sorry, there's no sign of her here!</h2>\n      <button (click)=\"goBackAirport()\">Try Again!</button>\n    </div>\n  </div>\n</section>"
+module.exports = "\n<link href=\"https://fonts.googleapis.com/css?family=Roboto:100&display=swap\" rel=\"stylesheet\"> <link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\"\nrel=\"stylesheet\">\n\n  <section class=\"background-image\" [ngStyle]=\"{'background-image': 'url('+ photoURL+')'}\">\n  \n        <div class=\"clueOneScreen\">\n              <div *ngIf=\"clueNumber === -2\" class=\"cluePopUp\" >\n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p class=\"clueText\">Hi Agent {{userName}} i am a Clue</p>\n              <button (click)=\"showClue()\">Let's Party!</button>\n          </div>\n           \n          <div *ngFor=\"let clue of localClues; index as i\" >\n            <div class=\"clueDiv\" *ngIf=\"i === this.clueNumber\" > \n              <div class=\"clock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n              <p *ngIf=\"clue.clues != undefined; else photo\" > {{clue.clues}} </p>\n              <ng-template #photo> <p *ngIf=\"clue.photo != undefined; else flag\"> She dropped this photo: <img src=\"{{clue.photo}}\"  alt=\"\"> </p> </ng-template>\n              <ng-template #flag> <p> She dropped this flag <img src=\"https://www.countryflags.io/{{clue.flag}}/shiny/64.png\"> </p> </ng-template>\n              <div class=\"buttons\">\n                <button *ngIf=\"this.clueNumber < 2\" (click)=\"nextClue()\">Clues <i class=\"material-icons\">fingerprint</i></button> \n                <button (click)=\"flyOut()\">Fly Out<i class=\"material-icons\">airplanemode_active</i> </button>\n              </div>\n            </div>\n          </div>\n\n        <div *ngIf=\"flight\" class=\"flyOut\"> \n            <div class=\"flyOutClock\"> <p> {{ time | date: 'shortTime'}} </p> <p class=\"date\"> {{ time | date}} </p> </div>\n          <div *ngFor=\"let location of locations\"> \n            <label for=\"{{location}}\">\n              <input type=\"radio\" id=\"{{location}}\" name=\"nextCity\" [value]=\"location\" [(ngModel)]=\"selectedCity\">\n              {{location}}\n            </label>\n          </div>\n          <button (click)=\"goBack()\">Return to clue</button>\n          <button (click)=\"selectLocation()\">Fly Out</button>\n      </div>\n      <div *ngIf=\"wrong\" class=\"wrong\">\n        <h2>Sorry, there's no sign of her here!</h2>\n          <button (click)=\"goBackAirport()\">Try Again!</button>\n            </div>\n</div>\n</section>\n\n"
 
 /***/ }),
 
@@ -901,9 +976,7 @@ var Location3Component = /** @class */ (function () {
         this.tempClueNumber = 0; // variable used in flyOut and goBack to save clue number so you can return to it from fly out page
         this.flight = false; //  used to toggle flight screen or not
         this.nextCity = 'Detroit'; // what the next city location is
-        this.currentCity = 'Dubai'; // current city
         this.randomPhoto = Math.floor((Math.random() * 8)); // used to get a random index number for background photo
-        this.randomDetroitPhoto = Math.floor((Math.random() * 2)); // detroit only had 3 photos, this selects on of those
         this.locations = [];
         this.wrong = false;
     }
@@ -954,17 +1027,8 @@ var Location3Component = /** @class */ (function () {
     };
     Location3Component.prototype.ngOnInit = function () {
         var _this = this;
-        // this brings in the clues from the DB and adds them to clues array on load
-        this.clueService.getClues(this.nextCity).subscribe(function (response) {
-            _this.clues = response;
-            _this.clues.push({ flag: _this.clues[1].countrycode });
-            // console.log(this.clues);
-        });
-        // gets a random photo for clue and adds it to clues array
-        this.pexelService.getLocationPhoto(this.nextCity).subscribe(function (response) {
-            _this.clues.unshift({ photo: response["photos"]["" + _this.randomDetroitPhoto].src.small });
-            console.log(_this.clues);
-        });
+        this.currentCity = this.clueService.thirdCity;
+        this.clues = this.clueService.loc3Clues;
         // this gets a random photo of current city to use as background image
         this.pexelService.getLocationPhoto(this.currentCity).subscribe(function (response) {
             _this.photoURL = response["photos"]["" + _this.randomPhoto].src.landscape;
@@ -977,15 +1041,27 @@ var Location3Component = /** @class */ (function () {
                 _this.clues[currentIndex] = _this.clues[randomIndex];
                 _this.clues[randomIndex] = temporaryValue;
                 _this.localClues = _this.clues;
-                // console.log(this.localClues);
+                console.log(_this.localClues);
             }
             // gets the redHerring option from service then a wrong city
-            _this.redHerring = _this.clueService.redHerring[3];
-            _this.wrongLocation = _this.clueService.wrongLocations[4];
+            _this.redHerring = _this.clueService.location4redHerring;
+            _this.wrongLocation = _this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
             _this.locations.push(_this.redHerring, _this.wrongLocation, _this.nextCity);
             console.log(_this.locations);
             return _this.localClues;
         });
+        var currentIndex = this.locations.length;
+        while (0 !== currentIndex) {
+            var randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            var tempArray = [];
+            var temporaryValue = this.locations[currentIndex];
+            this.locations[currentIndex] = this.locations[randomIndex];
+            this.locations[randomIndex] = temporaryValue;
+            tempArray = this.locations;
+            this.locations = tempArray;
+            console.log(this.locations);
+        }
         this.time = this.clockService.getTime();
         this.timeLeft = this.clockService.getTimeLeft();
         this.userName = this.userService.userName;
@@ -1012,7 +1088,7 @@ var Location3Component = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "body{\n          background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n          background-repeat: no-repeat;\n          background-size: cover;\n          display: flex;\n          flex-direction: column;\n          justify-content: center;\n          align-items: center;\n          height: 100vh;\n          width: 100vw;\n}\np {\n    display: flex;\n    font-size: 300px;\n    justify-content: center;\n    align-items: center;\n    font-family: 'Bangers', cursive;\n    margin-top: 0px;\n    position: absolute;\n    margin-top: 250px;\n    margin-right:100px;\n\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9jYXRpb240L2xvY2F0aW9uNC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO1VBQ1Usa0pBQWtKO1VBQ2xKLDRCQUE0QjtVQUM1QixzQkFBc0I7VUFDdEIsYUFBYTtVQUNiLHNCQUFzQjtVQUN0Qix1QkFBdUI7VUFDdkIsbUJBQW1CO1VBQ25CLGFBQWE7VUFDYixZQUFZO0FBQ3RCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsZ0JBQWdCO0lBQ2hCLHVCQUF1QjtJQUN2QixtQkFBbUI7SUFDbkIsK0JBQStCO0lBQy9CLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGtCQUFrQjs7QUFFdEIiLCJmaWxlIjoic3JjL2FwcC9sb2NhdGlvbjQvbG9jYXRpb240LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5e1xuICAgICAgICAgIGJhY2tncm91bmQ6IHVybChodHRwczovL2kyLndwLmNvbS93d3cua2FsdXNhbG9uYW5kc3BhLmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxNy8wMS9ibGFjay1icmljay1iYWNrZ3JvdW5kLWthbHUtc2Fsb24tYmxhY2stZnJpZGF5LXNhbGVzLXdlYi5qcGcpO1xuICAgICAgICAgIGJhY2tncm91bmQtcmVwZWF0OiBuby1yZXBlYXQ7XG4gICAgICAgICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAgICBoZWlnaHQ6IDEwMHZoO1xuICAgICAgICAgIHdpZHRoOiAxMDB2dztcbn1cbnAge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZm9udC1zaXplOiAzMDBweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGZvbnQtZmFtaWx5OiAnQmFuZ2VycycsIGN1cnNpdmU7XG4gICAgbWFyZ2luLXRvcDogMHB4O1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICBtYXJnaW4tdG9wOiAyNTBweDtcbiAgICBtYXJnaW4tcmlnaHQ6MTAwcHg7XG5cbn0iXX0= */"
+module.exports = "body {\n  background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);\n  background-repeat: no-repeat;\n  background-size: cover;\n  display: flex;\n  flex-direction: row-reverse;\n  justify-content: center;\n  align-items: center;\n  height: 100vh;\n  width: 100vw;\n}\nbutton{\n    align-items: center;\n    display: flex\n}\np {\n  display: flex;\n  font-size: 30px;\n  justify-content: center;\n  align-items: center;\n  font-family: 'Bangers', cursive;\n  margin-top: 0px;\n  margin-top: 25px;\n  margin-right: 10px;\ncolor: white;\nflex-direction: column;\ntext-align: center;\n}\n#top {\n  left: 5%;\n  top: 10%;\n  position: absolute;\n  width: 400px;\n  height: 400px\n}\n#under {\n  left: 5%;\n  top: 10%;\n  position: absolute;\n  width: 385px;\n  height: 385px\n}\n.jail{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n    height: 50%;\n    width: 50%\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbG9jYXRpb240L2xvY2F0aW9uNC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0pBQWtKO0VBQ2xKLDRCQUE0QjtFQUM1QixzQkFBc0I7RUFDdEIsYUFBYTtFQUNiLDJCQUEyQjtFQUMzQix1QkFBdUI7RUFDdkIsbUJBQW1CO0VBQ25CLGFBQWE7RUFDYixZQUFZO0FBQ2Q7QUFDQTtJQUNJLG1CQUFtQjtJQUNuQjtBQUNKO0FBQ0E7RUFDRSxhQUFhO0VBQ2IsZUFBZTtFQUNmLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFDbkIsK0JBQStCO0VBQy9CLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsa0JBQWtCO0FBQ3BCLFlBQVk7QUFDWixzQkFBc0I7QUFDdEIsa0JBQWtCO0FBQ2xCO0FBRUE7RUFDRSxRQUFRO0VBQ1IsUUFBUTtFQUNSLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1o7QUFDRjtBQUVBO0VBQ0UsUUFBUTtFQUNSLFFBQVE7RUFDUixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaO0FBQ0Y7QUFFQTtJQUNJLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLHNCQUFzQjtJQUN0QixXQUFXO0lBQ1g7QUFDSiIsImZpbGUiOiJzcmMvYXBwL2xvY2F0aW9uNC9sb2NhdGlvbjQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xuICBiYWNrZ3JvdW5kOiB1cmwoaHR0cHM6Ly9pMi53cC5jb20vd3d3LmthbHVzYWxvbmFuZHNwYS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTcvMDEvYmxhY2stYnJpY2stYmFja2dyb3VuZC1rYWx1LXNhbG9uLWJsYWNrLWZyaWRheS1zYWxlcy13ZWIuanBnKTtcbiAgYmFja2dyb3VuZC1yZXBlYXQ6IG5vLXJlcGVhdDtcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IHJvdy1yZXZlcnNlO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgaGVpZ2h0OiAxMDB2aDtcbiAgd2lkdGg6IDEwMHZ3O1xufVxuYnV0dG9ue1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZGlzcGxheTogZmxleFxufVxucCB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZvbnQtc2l6ZTogMzBweDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGZvbnQtZmFtaWx5OiAnQmFuZ2VycycsIGN1cnNpdmU7XG4gIG1hcmdpbi10b3A6IDBweDtcbiAgbWFyZ2luLXRvcDogMjVweDtcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xuY29sb3I6IHdoaXRlO1xuZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbnRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuI3RvcCB7XG4gIGxlZnQ6IDUlO1xuICB0b3A6IDEwJTtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB3aWR0aDogNDAwcHg7XG4gIGhlaWdodDogNDAwcHhcbn1cblxuI3VuZGVyIHtcbiAgbGVmdDogNSU7XG4gIHRvcDogMTAlO1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHdpZHRoOiAzODVweDtcbiAgaGVpZ2h0OiAzODVweFxufVxuXG4uamFpbHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBoZWlnaHQ6IDUwJTtcbiAgICB3aWR0aDogNTAlXG59Il19 */"
 
 /***/ }),
 
@@ -1023,7 +1099,7 @@ module.exports = "body{\n          background: url(https://i2.wp.com/www.kalusal
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Oswald&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css?family=Special+Elite&display=swap\" rel=\"stylesheet\">\n\n<body>\n  <div class=\"captured\">\n    <p class=\"animated bounceInDown\">CAPTURED!\n      <img src=\"jail_cell_bars.png\" alt=\"\">\n    </p>\n\n    <!-- <img src=\"http://penrycreative.com/wp-content/uploads/2016/08/Carmen-Sandiego_Circular-Logo-Design.png\"\n      alt=\"Carmen Sandiego Logo\"> -->\n  </div>\n\n\n  <div id=\"top\" style=\"left: 500px; top: 485px; position: absolute\"> <img src=\"jail_cell_bars.png\"> </div>\n\n  <div id=\"under\" style=\"left: 500px; top: 485px; position: absolute\"> <img\n      src=\"http://penrycreative.com/wp-content/uploads/2016/08/Carmen-Sandiego_Circular-Logo-Design.png\"> </div>\n\n\n\n  Read more: https://www.webdesign.org/html-and-css/tutorials/layering-images.8470.html#ixzz5rV7pKYZN\n  <button type=\"button\" class=\"beginNewCase\" routerLink=\"/landing-page\" routerLinkActive=\"active\">Return to\n    Office</button>\n\n\n\n</body>\n"
+module.exports = "<link href=\"https://fonts.googleapis.com/css?family=Oswald&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css?family=Special+Elite&display=swap\" rel=\"stylesheet\">\n<link href=\"https://fonts.googleapis.com/css?family=Bangers&display=swap\" rel=\"stylesheet\">\n\n\n<body>\n  <div class=\"captured\">\n    <p >Congradualtions agent {{userName}}.</p>\n    <p >You have captured Carmen Sandiego!</p>\n    <p> You have been promoted to the level of Sleuth.</p>\n      <button type=\"button\" class=\"beginNewCase\" routerLink=\"/landing-page\" routerLinkActive=\"active\">Return to\n        Office</button>\n  </div>\n<div class= \"jail\">\n<img id=\"under\"\n    src=\"https://vignette.wikia.nocookie.net/qubo-channel/images/e/ed/Carmen_Sandiego.png/revision/latest?cb=20170716201725\"\n   > \n  \n\n   <img id=\"top\" class=\"animated bounceInDown\"\n      src=\"https://ecowall.com.ua/files/images/fabric/6/4.png\"\n> \n    \n</div>\n</body>\n"
 
 /***/ }),
 
@@ -1160,8 +1236,8 @@ var PexelApiService = /** @class */ (function () {
         this.http = http;
         // apiKey:string = "563492ad6f9170000100000128cb04362abc4b32b717e2c8e9125276";
         // second key
-        // apiKey:string = "563492ad6f917000010000014a9669d68f174ec5af529706f09b0407";
-        this.apiKey = "563492ad6f91700001000001e6e48cd47bd449b78f60933192bbf8b8";
+        this.apiKey = "563492ad6f917000010000014a9669d68f174ec5af529706f09b0407";
+        // apiKey:string = "563492ad6f91700001000001e6e48cd47bd449b78f60933192bbf8b8";
         this.httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
                 Authorization: "" + this.apiKey

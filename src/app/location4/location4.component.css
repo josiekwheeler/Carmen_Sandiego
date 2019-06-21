@@ -9,7 +9,15 @@ body {
   height: 100vh;
   width: 100vw;
 }
+button {
+  height: 20px;
+  position: relative;
+  margin: -20px -50px;
+  width: 100px;
+  top: 50%;
+  left: 50%;
 
+}
 p {
   display: flex;
   font-size: 30px;
@@ -22,6 +30,7 @@ p {
 color: white;
 flex-direction: column;
 text-align: center;
+width: 450px
 }
 
 #top {
@@ -47,4 +56,28 @@ text-align: center;
     flex-direction: column;
     height: 50%;
     width: 50%
+}
+
+#spotlight {
+  animation: bottom-right 6s ease-in-out alternate infinite;
+  border-bottom: none;
+  border-left: solid 30vh transparent;
+  border-right: solid 30vh transparent;
+  border-bottom: solid 200vh rgba(255, 255, 255, .5);
+  transform-origin: top;
+
+}
+#spotlight {
+  animation: bottom-left 4s ease-in-out alternate infinite;
+  left: auto;
+  right: 0;
+}
+@keyframes bottom-left {
+  0% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(70deg);
+  }
 }
