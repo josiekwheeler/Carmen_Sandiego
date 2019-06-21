@@ -90,3 +90,29 @@ input {
 }
 
 
+#spotlight {
+  position: fixed;
+  animation: bottom-right 4s ease-in-out alternate infinite;
+  border-bottom: none;
+  border-left: solid 30vh transparent;
+  border-right: solid 30vh transparent;
+  border-bottom: solid 200vh rgba(255, 255, 255, .5);
+  transform-origin: top;
+
+}
+
+#spotlight {
+  animation: bottom-left 4s ease-in-out alternate infinite;
+  left: auto;
+  right: 0;
+}
+
+@keyframes bottom-left {
+  0% {
+    transform: rotate(-30deg);
+  }
+
+  100% {
+    transform: rotate(30deg);
+  }
+}
