@@ -16,8 +16,6 @@ body {
 
 
 .cluePopUp {
-    border-radius: 10px;
-    opacity: 0;
     -webkit-animation: fadeIn ease-in 1;
     -moz-animation: fadeIn ease-in 1;
     animation: fadeIn ease-in 1;
@@ -28,18 +26,21 @@ body {
     -moz-animation-duration: 0.5;
     animation-duration: 0.5;
     animation-delay: 2s;
-    background-color: rgba(247, 241, 233, 0.801);
-    width: 300px;
+    background-color: white;
+    opacity: 0.9;
+    border-radius: 20px;
     height: 500px;
+    width: 400px;
     display: flex !important;
-    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    flex-direction: column;
+   
 }
 
 .clueOneScreen {
-    width: 50%;
-    height: 100%;
+    width: 100vw;
+    height: stretch;
     display: flex !important;
     flex-direction: column;
     justify-content: center;
@@ -47,29 +48,12 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.time,
-.clueDiv {
-    display: flex;
-    justify-content: center;
-}
-
-.time {
-    font-size: 75px;
-    margin: 30px;
-    margin-bottom: 0px;
-    color: pink;
-}
-
-.date {
-    color: pink;
-    margin-top: 0px;
-}
 
 .clueDiv {
     background-color: white;
-    opacity: 0.8;
+    opacity: 0.9;
     border-radius: 20px;
-    height: 600px;
+    height: 500px;
     width: 400px;
     display: flex !important;
     justify-content: space-evenly;
@@ -91,17 +75,26 @@ justify-content: center;
 align-items: center;
 }
 
-
-.clock,
-.date {
-    color: pink;
-    text-align: center;
-    transform: translate(30);
+.thetime {
+  position: relative;
+  bottom: 70%;
+  display: flex;
+  flex-direction: column;
+  top: 10%;
+  position: absolute;
+  top: 15%;
 }
 
-.clueText {
+.clock, .date {
+  color: red;
+  text-align: center;
+}
+.clock {
+  font-size: 70px;
+}
 
-font-size: 25px;
+.date {
+  font-size: 45px;
 }
 
 .icons {
@@ -121,18 +114,17 @@ opacity: 0.75;
     font-size: 45px;
 }
 
-@media only screen and (min-width: 1024px) {
+/* @media only screen and (min-width: 1024px) {
     .clueOneScreen {
         width: 100%;
         height: 100%;
         display: flex !important;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-end;
-    }
+        
+    } */
 
     /* desktop styling------------------------------------ */
-    .clock {
+    /* .clock {
         color: pink;
         text-align: center;
         font-size: 50px;
@@ -167,7 +159,6 @@ opacity: 0.75;
         align-items: center;
         flex-direction: column;
         font-family: 'Roboto', sans-serif;
-        margin-right: 450px;
         margin-top: 200px;
     }
 
@@ -190,4 +181,4 @@ border-radius: 10px;
   color: white;
 
 }
-}
+} */
