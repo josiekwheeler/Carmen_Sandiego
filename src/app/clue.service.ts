@@ -36,7 +36,7 @@ export class ClueService {
   }
   rightChoice() {
     this.id++;
-    console.log(this.id)
+    console.log(this.id);
     this.router.navigate([`/location${this.id}`]);
   }
   setLocation1() {

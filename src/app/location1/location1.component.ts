@@ -97,7 +97,11 @@ export class Location1Component implements OnInit {
         this.localClues = this.clues;
         console.log(this.localClues);
       }
-    let thisIndex = this.locations.length;
+    this.redHerring = this.clueService.redHerrings[1];
+    this.wrongLocation = this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
+    this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
+    console.log(this.locations);
+    let thisIndex = 3;
     while (0 !== thisIndex) {
       const randomIndex = Math.floor(Math.random() * thisIndex);
       thisIndex -= 1;
@@ -112,10 +116,7 @@ export class Location1Component implements OnInit {
     this.time = this.clockService.getTime();
     this.timeLeft = this.clockService.getTimeLeft();
     this.userName = this.userService.userName;
-    this.redHerring = this.clueService.redHerrings[1];
-    this.wrongLocation = this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
-    this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
-    console.log(this.locations);
+
     return this.localClues;
   }
 

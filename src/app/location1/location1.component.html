@@ -24,7 +24,7 @@ rel="stylesheet">
             </div>
           </div>
 
-        <div *ngIf="flight" class="flyOut"> 
+          <div *ngIf="flight" class="flyOut"> 
             <div class="flyOutClock"> <p> {{ time | date: 'shortTime'}} </p> <p class="date"> {{ time | date}} </p> </div>
           <div *ngFor="let location of locations"> 
             <label for="{{location}}">
