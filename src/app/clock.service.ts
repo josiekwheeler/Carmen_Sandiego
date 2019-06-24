@@ -11,6 +11,10 @@ export class ClockService {
   timeLeft: number = 24;
 
   constructor(private router: Router) {}
+  resetTime() {
+    this.clock = new Date();
+    this.timeLeft = 24;
+  }
   getTimeLeft() {
     return this.timeLeft;
   }

@@ -12,7 +12,6 @@ import { UserService} from '../user.service';
 export class Location1Component implements OnInit { //defines the logic
  
   userName: string;
-
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   time; // for timer, hold the remaining time.
   clues;  // array to hold our clues
@@ -28,10 +27,26 @@ export class Location1Component implements OnInit { //defines the logic
   locations = [];
   wrong = false;
   selectedCity;
+  backgroundNoise = new Audio(`../../assets/${this.currentCity}.mp3`);
+  help = false;
+  itunes = false;
+  theme = new Audio('../../assets/Theme.mp3');
 
 
   constructor(private userService: UserService, private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
 
+  playTheme(){
+    this.itunes = !this.itunes;
+    this.theme = new Audio('../../assets/Theme.mp3');
+    this.theme.play();
+  }
+  stopTheme() {
+    this.itunes = !this.itunes;
+    this.theme.pause();
+  }
+  toggleHelp(){
+    this.help = !this.help;
+  }
   // method that increases clueNumber so we can show the next clue
   showClue() {
     this.clueNumber = 0;
@@ -62,6 +77,14 @@ export class Location1Component implements OnInit { //defines the logic
     this.time = this.clockService.getTime();
     this.timeLeft = this.clockService.getTimeLeft();
   }
+  startNoise() {
+    this.backgroundNoise = new Audio(`../../assets/${this.currentCity}.mp3`);
+    this.backgroundNoise.play();
+  }
+  stopNoise() {
+  this.backgroundNoise.pause();  
+    console.log('stop the fucking music');
+  }
   selectLocation() {
     if (this.selectedCity !== this.nextCity) {
       this.flight = !this.flight;
@@ -80,6 +103,7 @@ export class Location1Component implements OnInit { //defines the logic
     this.currentCity = this.clueService.startingCity; //how data is flowing
     this.nextCity = this.clueService.secondCity;
     this.clues = this.clueService.loc1Clues;
+    this.startNoise();
     // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
     this.photoURL = response[`photos`][0].src.original;

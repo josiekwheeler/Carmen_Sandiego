@@ -28,7 +28,7 @@ export class PexelApiService {
   constructor(private http: HttpClient) { }
 
   getLocationPhoto(location) {
-    return this.http.get(`https://api.pexels.com/v1/search?query=${location}+query&per_page=10&page=1`, this.httpOptions);
+    return this.http.get(`https://api.pexels.com/v1/search?query=${location}+query&per_page=15&page=1`, this.httpOptions);
   }
 
 
