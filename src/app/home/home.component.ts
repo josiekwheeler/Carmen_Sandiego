@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService} from '../user.service';
 import { ClueService } from '../clue.service';
+import { ClockService } from '../clock.service';
 
 @Component({
   selector: 'home',
@@ -14,9 +15,10 @@ userName: string;
   stolenGoods;
   startingCity;
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private clueService: ClueService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private clueService: ClueService, private clockService: ClockService) { }
 
   ngOnInit() {
+    this.clockService.resetTime();
     this.startingCity = this.clueService.startingCity;
     this.clueService.getStolenGoods(this.startingCity).subscribe(response => {
         this.stolenGoods = response;
