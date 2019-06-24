@@ -14,7 +14,7 @@ export class ClueService {
   redHerring = ['Cannes', 'Sochi', 'Abu Dhabi', 'Shanghai', 'Liverpool', 'Munich', 'Kyoto', 'Perth'];
   redHerrings = [];
   wrongLocations = ['Madrid', 'Hong Kong', 'Washington, DC', 'New York', 'Dublin', 'Rome', 'Warsaw', 'Lisbon', 'Mexico City'];
-  id:number = 0;
+  id:number = 1;
   secondCity;
   startingCity;
   thirdCity;

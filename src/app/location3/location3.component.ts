@@ -27,6 +27,8 @@ export class Location3Component implements OnInit {
   locations = [];
   wrong = false;
   selectedCity;
+  backgroundNoise = new Audio(`../../assets/${this.currentCity}.mp3`);
+
 
   constructor(private userService: UserService, private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
   // method that increases clueNumber so we can show the next clue
@@ -60,6 +62,14 @@ export class Location3Component implements OnInit {
     this.clockService.isTimeLeft();
     this.timeLeft = this.clockService.getTimeLeft();
   }
+  startNoise() {
+    this.backgroundNoise = new Audio(`../../assets/${this.currentCity}.mp3`);
+    this.backgroundNoise.play();
+  }
+  stopNoise() {
+  this.backgroundNoise.pause();  
+    console.log('stop the fucking music');
+  }
   selectLocation() {
     if (this.selectedCity !== this.nextCity) {
       this.flight = !this.flight;
@@ -69,6 +79,7 @@ export class Location3Component implements OnInit {
     } else {
       this.clockService.onFlight();
       this.clueService.rightChoice();
+      this.stopNoise();
     }
     console.log(this.selectedCity);
   }
@@ -79,6 +90,7 @@ export class Location3Component implements OnInit {
     this.currentCity = this.clueService.thirdCity;
     this.clues = this.clueService.loc3Clues;
     this.photoURL = this.clueService.background3;
+    this.startNoise();
       // below is used to shuffle clues array and save it as localClues array
     let currentIndex = this.clues.length;
     while (0 !== currentIndex) {

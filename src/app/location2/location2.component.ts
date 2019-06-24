@@ -27,6 +27,7 @@ userName:string;
   locations = [];
   wrong = false;
   selectedCity;
+  backgroundNoise = new Audio(`../../assets/${this.currentCity}.mp3`);
 
 
   constructor(private userService: UserService, private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
@@ -61,6 +62,14 @@ userName:string;
     this.clockService.isTimeLeft();
     this.timeLeft = this.clockService.getTimeLeft();
   }
+  startNoise() {
+    this.backgroundNoise = new Audio(`../../assets/${this.currentCity}.mp3`);
+    this.backgroundNoise.play();
+  }
+  stopNoise() {
+  this.backgroundNoise.pause();  
+    console.log('stop the fucking music');
+  }
   selectLocation() {
     if (this.selectedCity !== this.nextCity) {
       this.flight = !this.flight;
@@ -70,6 +79,7 @@ userName:string;
     } else {
       this.clockService.onFlight();
       this.clueService.rightChoice();
+      this.stopNoise();
     }
     console.log(this.selectedCity);
   }
@@ -81,6 +91,7 @@ userName:string;
     this.nextCity = this.clueService.thirdCity;
     this.clues = this.clueService.loc2Clues;
     this.photoURL = this.clueService.background2;
+    this.startNoise();
     // this gets a random photo of current city to use as background image
     let currentIndex = this.clues.length;
     while (0 !== currentIndex) {
