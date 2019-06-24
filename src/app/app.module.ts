@@ -15,7 +15,7 @@ import { ClockService} from './clock.service';
 import { GameoverComponent } from './gameover/gameover.component'
 
 const appRoutes: Routes = [
-  { path: "", redirectTo: "/landing-page", pathMatch: "full" },
+  { path: "", redirectTo: "/landing-page", pathMatch: "full" }, //goes to landing page
   { path: "landing-page", component: LandingPageComponent },
   { path: "home", component: HomeComponent },
   { path: "gameover", component: GameoverComponent },

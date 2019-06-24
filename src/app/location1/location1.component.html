@@ -1,7 +1,3 @@
-<link href="https://fonts.googleapis.com/css?family=Roboto:100&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
 <main>
   <header>
     <ul class="left">
@@ -72,7 +68,7 @@
           <p class="date">{{ time | date}} </p>
         </div>
         <img class="contact" src="http://www.iconarchive.com/download/i86753/ccard3dev/dynamic-yosemite/Contacts.ico" alt="">
-        <p class="clueText">Hi Agent {{userName}} i am a Clue</p>
+        <p class="clueText">Agent {{userName}}, you have a new clue. Click to view.</p>
         <!-- <button (click)="showClue()">Let's Party!</button> -->
       </div>
 
@@ -88,12 +84,12 @@
             </p>
           </ng-template>
           <ng-template #flag>
-            <p> She dropped this flag <img src="https://www.countryflags.io/{{clue.flag}}/shiny/64.png"> </p>
+            <p> She dropped this flag <img class="flag" src="https://www.countryflags.io/{{clue.flag}}/shiny/64.png"> </p>
           </ng-template>
           <div class="buttons">
-            <button *ngIf="this.clueNumber < 2" (click)="nextClue()">Clues <i
+            <button class="finger" *ngIf="this.clueNumber < 2" (click)="nextClue()"><i
                 class="material-icons">fingerprint</i></button>
-            <button (click)="flyOut()">Fly Out<i class="material-icons">airplanemode_active</i> </button>
+            <button class="plane" (click)="flyOut()"><i class="material-icons">airplanemode_active</i> </button>
           </div>
         </div>
       </div>
@@ -104,6 +100,7 @@
               <p class="clock"> {{ time | date: 'shortTime'}} </p>
               <p class="date">{{ time | date}} </p>
             </div>
+            <p class="city">Choose a city</p>
         <div *ngFor="let location of locations">
           <label for="{{location}}">
             <input type="radio" id="{{location}}" name="nextCity" [value]="location" [(ngModel)]="selectedCity">

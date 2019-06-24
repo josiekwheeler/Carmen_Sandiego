@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ClueService } from '../clue.service';
 import { PexelApiService } from '../pexel-api.service';
 import { ClockService } from '../clock.service';
-
 import { UserService} from '../user.service';
 
 @Component({
@@ -10,8 +9,8 @@ import { UserService} from '../user.service';
   templateUrl: './location1.component.html',
   styleUrls: ['./location1.component.css']
 })
-export class Location1Component implements OnInit {
-
+export class Location1Component implements OnInit { //defines the logic
+ 
   userName: string;
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   time; // for timer, hold the remaining time.
@@ -22,7 +21,6 @@ export class Location1Component implements OnInit {
   currentCity; // current city
   photoURL; // variable to hold URL for random background photo
   localClues;  // array to hold shuffled array of clues
-    // used to get a random index number for background photo
   redHerring; // a fake out location that is similar to the next city
   wrongLocation;  // a random wrong option
   timeLeft;
@@ -102,13 +100,13 @@ export class Location1Component implements OnInit {
 
 
   ngOnInit() {
-    this.currentCity = this.clueService.startingCity;
+    this.currentCity = this.clueService.startingCity; //how data is flowing
     this.nextCity = this.clueService.secondCity;
     this.clues = this.clueService.loc1Clues;
     this.startNoise();
     // this gets a random photo of current city to use as background image
     this.pexelService.getLocationPhoto(this.currentCity).subscribe(response => {
-      this.photoURL = response[`photos`][0].src.original;
+    this.photoURL = response[`photos`][0].src.original;
      });
       // below is used to shuffle clues array and save it as localClues array
     let currentIndex = this.clues.length;
@@ -125,7 +123,9 @@ export class Location1Component implements OnInit {
     this.wrongLocation = this.clueService.wrongLocations[Math.floor((Math.random() * 9))];
     this.locations.push(this.redHerring, this.wrongLocation, this.nextCity);
     console.log(this.locations);
+
     let thisIndex = 3;
+
     while (0 !== thisIndex) {
       const randomIndex = Math.floor(Math.random() * thisIndex);
       thisIndex -= 1;
@@ -137,6 +137,7 @@ export class Location1Component implements OnInit {
       this.locations = tempArray;
       console.log(this.locations);
     }
+    
     this.time = this.clockService.getTime();
     this.timeLeft = this.clockService.getTimeLeft();
     this.userName = this.userService.userName;

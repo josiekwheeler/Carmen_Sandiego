@@ -58,10 +58,10 @@ width: 450px
     align-items: center;
 
     font-family: 'Bangers', cursive;
-    margin-top: 0px;
+    /* margin-top: 0px;
     position: absolute;
     margin-top: 250px;
-    margin-right:100px;
+    margin-right:100px; */
     flex-direction: column;
     height: 50%;
     width: 50%

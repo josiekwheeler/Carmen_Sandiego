@@ -1,7 +1,6 @@
 
 body {
     background: url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);
-
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -28,8 +27,8 @@ body {
     background-color: white;
     border-radius: 8px;
     opacity: 0.7;
-    width: 50%;
-    height: 50%;
+    width: 90%;
+    height: 70%;
     font-family: 'Roboto Slab', serif;
     font-size: 20px;
     text-align: center;
@@ -55,3 +54,11 @@ body {
     opacity: 0.7;
     background-color: white;
   }
+
+  @media only screen and (min-width: 1024px) {
+
+  .email {
+    width: 50%;
+    height: 50%;
+  }
+}

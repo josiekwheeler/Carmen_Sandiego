@@ -13,10 +13,9 @@ export class LandingPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userService: UserService, private clueService: ClueService) { }
 
   shouldBeShown: boolean = true;
-userName: string;
-  ngOnInit() {
+  userName: string;
 
-  }
+  ngOnInit() { }
 
   startGame() {
     this.clueService.setLocation1();
@@ -26,15 +25,18 @@ userName: string;
     this.clueService.setLoc2Clues();
     this.clueService.setLoc3Clues();
   }
+
   toggleDisplay() :void {
     this.shouldBeShown = !this.shouldBeShown;
   }
+
   setUserName(form){
   console.log(form);
   this.userService.getUserName(form);
   this.startGame();
   console.log(this.userName);
   // return this.userName
-}
+  }
+
 }
 

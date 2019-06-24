@@ -22,7 +22,7 @@ button {
     font-size: 15px;
     height: 5%;
     width: 30%;
-    border-radius: 8px;
+    border-radius: 5px;
     margin-top: 2%;
     opacity: 0.7;
     background-color: white;
@@ -33,60 +33,88 @@ button {
     font-family: 'Roboto', sans-serif;
     position: relative;
     background-color: lightgray;
-    border-radius: 8px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50%;
-    width: 50%;
+    height: 40%;
+    width: 90%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .acme {
+    font-family: 'Roboto Slab', serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
     margin-bottom: 0px;
-    font-size: 20px;
+    margin-top:0px;
+    font-size: 15px;
 }
 
 .welcome {
     font-size: 30px;
     margin-top: 0px;
+    font-family: 'Bangers', cursive;
 }
 
 .beginCase {
+    font-family: 'Bangers', cursive;
     height: 40%;
     width: 90%;
-    border-radius: 8px;
-    color: black;
+    border-radius: 5px;
+    border: none;
+    opacity: .8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .form {
-    margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Roboto Slab', serif;
 }
 
 .enterName {
     margin-top: 0;
-    font-size: 20px;
+    font-size: 15px;
+    font-family: 'Roboto Slab', serif;
 }
 
 input {
-    width:300%;
-    border-radius: 8px;
+    width: 150%;
+    border-radius: 5px;
     height: 30px;
     margin-bottom: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+@media only screen and (min-width: 1024px) {
+
+  .enterName {
+    margin-top: 0;
+    font-size: 20px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.welcome {
+  font-size: 30px;
+  margin-top: 0px;
+  font-family: 'Bangers', cursive;
+}
+
+.form {
+  margin-top: 30px
+}
+
+.agentForm {
+  height: 50%;
+  width: 50%;
+}
 
 #spotlight {
   position: fixed;
@@ -113,4 +141,7 @@ input {
   100% {
     transform: rotate(30deg);
   }
+}
+
+
 }
