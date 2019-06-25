@@ -25,8 +25,19 @@ export class Location4Component implements OnInit {
   randomDetroitPhoto: number = Math.floor((Math.random() * 2));  // detroit only had 3 photos, this selects on of those
   redHerring; // a fake out location that is similar to the next city
   wrongLocation;  // a randomw wrong option
+  score;
+  scores;
 
   constructor(private userService: UserService,private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
+  
+  scoreGame() {
+    this.clockService.scoreGame();
+    this.score = this.clockService.score;
+    this.userName = this.userService.userName;
+    this.clueService.addScore({username: this.userName, score: this.score}).subscribe(response => {
+      this.scores = response;
+    });
+  }
   // method that increases clueNumber so we can show the next clue
   showClue() {
     this.clueNumber = 0;
@@ -89,5 +100,6 @@ export class Location4Component implements OnInit {
     });
     this.time = this.clockService.getTime();
     this.userName = this.userService.userName;
+    this.scoreGame();
   }
 }

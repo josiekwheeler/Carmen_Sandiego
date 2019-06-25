@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { PexelApiService } from './pexel-api.service';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +29,13 @@ export class ClueService {
 
   constructor(private http: HttpClient, private router: Router, private pexelService: PexelApiService) { }
 
+  getScores() {
+    return this.http.get('http://localhost:3000/scores', { responseType: 'json'});
+  }
+  addScore(userAndScore) {
+    console.log(userAndScore);
+    return this.http.post('http://localhost:3000/scores', userAndScore, { responseType: 'json'});
+  }
   getClues(nextCity) {
     return this.http.get(`http://localhost:3000/clues/${nextCity}`, { responseType: 'json'});
   }

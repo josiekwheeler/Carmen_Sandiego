@@ -24,6 +24,26 @@
       </li>
     </ul>
     <ul class="right">
+        <div class="thetime" *ngIf="clueNumber === -2 ">
+            <p class="clock"> {{ time | date: 'shortTime'}} </p>
+            <p class="date">{{ time | date}} </p>
+          </div>
+          <div class="thetime" *ngIf="clueNumber === 0 ">
+              <p class="clock"> {{ time | date: 'shortTime'}} </p>
+              <p class="date">{{ time | date}} </p>
+            </div>
+            <div class="thetime" *ngIf="clueNumber === -1 ">
+                <p class="clock"> {{ time | date: 'shortTime'}} </p>
+                <p class="date">{{ time | date}} </p>
+              </div>
+              <div class="thetime" *ngIf="clueNumber === 1 ">
+                  <p class="clock"> {{ time | date: 'shortTime'}} </p>
+                  <p class="date">{{ time | date}} </p>
+                </div>
+                <div class="thetime" *ngIf="clueNumber === 2 ">
+                    <p class="clock"> {{ time | date: 'shortTime'}} </p>
+                    <p class="date">{{ time | date}} </p>
+                  </div>
       <li>Agent {{userName}}</li>
     </ul>
   </header>
@@ -31,6 +51,11 @@
   <!-- desktop top---------------------------------------------- -->
 
   <section class="background-image" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
+      <div *ngIf="wrong" class="wrong">
+          <h2>Sorry, there's no sign of her here!</h2>
+          <button (click)="goBackAirport()">Try Again!</button>
+    </div>
+
    <div class="animated bounceOutLeft">
      <p>Oh No! Looks like you just miss her!</p>
      <img src=" https://media1.tenor.com/images/da099e784637d8479d509d7e0ba2601b/tenor.gif?itemid=10058320" alt="">
@@ -38,21 +63,23 @@
  <div class="clueOneScreen">
       <div *ngIf="clueNumber === -2" class="cluePopUp" (click)="showClue()">
         <div class="thetime">
+
           <p class="clock"> {{ time | date: 'shortTime'}} </p>
           <p class="date">{{ time | date}} </p>
-        </div>
-        <img class="contact" src="http://www.iconarchive.com/download/i86753/ccard3dev/dynamic-yosemite/Contacts.ico" alt="">
-        <p class="clueText">ATTENTION Agent {{userName}} You have a new clue!</p>
-
-        <!-- <button (click)="showClue()">Let's Party!</button> -->
+        </div> -->
+        <div class="cluePopUp animated bounceInRight">
+            <img class="contact" src="http://www.iconarchive.com/download/i86753/ccard3dev/dynamic-yosemite/Contacts.ico" alt="">
+            <p class="clueText">Agent {{userName}}, you have a new clue. Click to view.</p>
+            <!-- <button (click)="showClue()">Let's Party!</button> -->
+            </div>
       </div>
 
       <div *ngFor="let clue of localClues; index as i">
         <div class="clueDiv" *ngIf="i === this.clueNumber">
-          <div class="thetime">
+          <!-- <div class="thetime">
             <p class="clock"> {{ time | date: 'shortTime'}} </p>
             <p class="date">{{ time | date}} </p>
-          </div>
+          </div> -->
           <p *ngIf="clue.clues != undefined; else photo"> {{clue.clues}} </p>
           <ng-template #photo>
             <p *ngIf="clue.photo != undefined; else flag"> She dropped this photo: <img src="{{clue.photo}}" alt="">
@@ -72,10 +99,10 @@
 
 
       <div *ngIf="flight" class="flyOut">
-          <div class="thetime">
+          <!-- <div class="thetime">
               <p class="clock"> {{ time | date: 'shortTime'}} </p>
               <p class="date">{{ time | date}} </p>
-            </div>
+            </div> -->
             <p class="city">Choose a city</p>
 
         <div *ngFor="let location of locations">
@@ -88,10 +115,7 @@
         <button (click)="selectLocation()">Fly Out</button>
 
       </div>
-      <div *ngIf="wrong" class="wrong">
-        <h2>Sorry, there's no sign of her here!</h2>
-        <button (click)="goBackAirport()">Try Again!</button>
-      </div>
+      
     </div>
   </section>
   <!-- desktop bottom------------------------------------------------ -->

@@ -35,6 +35,7 @@ export class Location1Component implements OnInit { //defines the logic
 
   constructor(private userService: UserService, private clueService: ClueService, private pexelService: PexelApiService, private clockService: ClockService) { }
 
+  
   playTheme(){
     this.itunes = !this.itunes;
     this.theme = new Audio('../../assets/Theme.mp3');
@@ -52,6 +53,7 @@ export class Location1Component implements OnInit { //defines the logic
     this.clueNumber = 0;
     this.clockService.onClue();
     this.time = this.clockService.getTime();
+    this.timeLeft = this.clockService.getTimeLeft();
     // console.log(this.clueNumber);
   }
   // this method temporarily saves the clue number when you bring up the flight screen, sets cluenumber to -1 so it doesn't show
@@ -82,25 +84,27 @@ export class Location1Component implements OnInit { //defines the logic
     this.backgroundNoise.play();
   }
   stopNoise() {
-  this.backgroundNoise.pause();  
-    console.log('stop the fucking music');
+  this.backgroundNoise.pause();
+  console.log('stop the music');
   }
   selectLocation() {
     if (this.selectedCity !== this.nextCity) {
       this.flight = !this.flight;
       this.wrong = !this.wrong;
       this.clockService.onWrong();
+      this.theme.pause();
       // this.clockService.isTimeLeft();
     } else {
       this.clockService.onFlight();
       this.clueService.rightChoice();
+      this.theme.pause();
     }
     console.log(this.selectedCity);
   }
 
 
   ngOnInit() {
-    this.currentCity = this.clueService.startingCity; //how data is flowing
+    this.currentCity = this.clueService.startingCity; // how data is flowing
     this.nextCity = this.clueService.secondCity;
     this.clues = this.clueService.loc1Clues;
     this.startNoise();

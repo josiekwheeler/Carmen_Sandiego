@@ -1,7 +1,24 @@
-<p>
-  scores works!
-</p>
-<h3>TOP SCORES</h3>
-<div>{{this.scores}} </div>
 
-ngfor with 10 scores max. 
+<h1>Top Ten</h1>
+  <main> 
+
+
+  <section class="topTen">
+    <table> 
+      <tr>
+      <th>Rank</th>
+      <th>Name</th>
+      <th>Score</th>
+    </tr>
+    <tr *ngFor="let score of topTen; index as i">
+      <td> {{i+1}} </td>
+      <td> {{score.username}} </td>
+      <td> {{score.score}}  </td>
+    </tr>
+
+    </table>
+
+  </section>
+</main>
+
+<a href="./">Play Again</a>
