@@ -15,6 +15,7 @@ header {
 footer {
   display: none;
 }
+
 body {
   margin: 0;
   height: 100vh;
@@ -24,60 +25,67 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+/* 
 p {
   display: flex;
   flex-direction: column;
   text-align: center;
-}
+} */
 
-/* Below delays the clue pop-up for 2seconds  */
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
+  @keyframes bounceInRight {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    from {
+      opacity: 0;
+      transform: translate3d(3000px, 0, 0);
+    }
+  
+    60% {
+      opacity: 1;
+      transform: translate3d(-25px, 0, 0);
+    }
+  
+    75% {
+      transform: translate3d(10px, 0, 0);
+    }
+  
+    90% {
+      transform: translate3d(-5px, 0, 0);
+    }
+  
+    to {
+      transform: translate3d(0, 0, 0);
+    }
   }
-  to {
-    opacity: 1;
+  
+  .bounceInRight {
+    animation-name: bounceInRight;
   }
-}
-@-moz-keyframes fadeIn {
-  from {
-    opacity: 0;
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
   }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+
+
 
 .cluePopUp {
-  -webkit-animation: fadeIn ease-in 1;
-  -moz-animation: fadeIn ease-in 1;
-  animation: fadeIn ease-in 1;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-duration: 0.5;
-  -moz-animation-duration: 0.5;
-  animation-duration: 0.5;
-  animation-delay: 2s;
+  animation-delay: 1.5s;
   background-color: lightgrey;
   border-radius: 5px;
   height: 70px;
   width: 400px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  margin-top: 6px;
-  margin-right: 12px;
+  /* margin-top: 6px;
+  margin-right: 12px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -92,14 +100,52 @@ p {
 }
 
 
+.clueDiv .flyOut {
+  background-color: lightgrey;
+  /* opacity: 0.8; */
+  border-radius: 5px;
+  height: 300px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-/* .flyOut:hover input {
-  color: red;
+.flyOut {
+  background-color: lightgrey;
+}
+/* .flyOut {
+  background-color: white;
+
+  border-radius: 5px;
+  height: 400px;
+  width: 400px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+}
+
+
+.flyButtons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 10%;
+  width: 40%
+ margin-top: 200px;
 } */
+
 
 .city {
   font-size: 20px;
   margin-bottom: 0px;
+}
+
+.text {
+  text-align: center;
 }
 
 button {
@@ -107,22 +153,34 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: lightgrey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: "Roboto", sans-serif;
 }
 
 /* .buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 40%;
   position: absolute;
   top: 70%;
-} */
+  width: 50%;
+}
+
 
 .finger,
 .plane {
   display: flex;
   /* justify-content: center; */
   align-items: center;
+}
+
+.flag {
+  width: 100%;
+}
+
+.droppedPic {
+  width: 50%;
 }
 
 .thetime {
@@ -133,6 +191,18 @@ button {
   /* bottom: 50%; */
 }
 
+.wrong {
+  background-color: lightgrey;
+  border-radius: 5px;
+  height: 300px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+}
+
 .clock,
 .date {
   color: white;
@@ -140,11 +210,11 @@ button {
   text-align: center;
 }
 .clock {
-  font-size: 70px;
+  font-size: 60px;
 }
 
 .date {
-  font-size: 45px;
+  font-size: 25px;
 }
 
 .background-image {
@@ -185,6 +255,15 @@ button {
   align-items: center;
 }
 
+
+.flagClue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
 @media only screen and (min-width: 1024px) {
 
   .buttons {
@@ -216,11 +295,18 @@ button {
   }
 
   .thetime {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: row-reverse;
     top: 0%;
     right: 10%;
+  }
+  .thetimeFly {
+    position: fixed;
+    display: flex;
+    flex-direction: row-reverse;
+    top: 0%;
+    right: 0%;
   }
 
   .clock,
@@ -280,11 +366,11 @@ button {
   }
   
 
-
   .flag {
     width: 200%;
     height: 100%;
   }
+
 
     /* desktop styling------------------------------------ */
   
@@ -331,15 +417,69 @@ button {
     height: 200%;
   } */
 
+
+  /* desktop styling------------------------------------ */
+
+  section {
+    width: 100%;
+    height: 100%;
+  }
+
   .background-image {
     height: 100vh;
     width: 100vw;
-    background-repeat: no-repeat;
+    background: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
+    /* background-repeat: no-repeat;
+        background-size: contain; */
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+
+
+  .clueDiv,
+  .flyOut {
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+    height: 600px;
+    width: 800px;
+    display: flex !important;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    margin-top: 200px;
+  }
+
+
+  .city {
+    font-size: 30px;
+    margin-bottom: 0px;
+  }
+
+  /* desktop styling------------------------------------ */
+
+  
+
+  /* .clueDiv,
+  .flyOut {
+    background-color: white;
+    border-radius: 5px;
+    height: 600px;
+    width: 800px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    margin-top: 200px;
+  } */
 
 
   .material-icons {
@@ -350,15 +490,26 @@ button {
     align-items: center;
     border-radius: 5px;
   }
+
   .wrong {
     border-radius: 5px;
+
+
+    background-color: lightgrey;
+    border-radius: 5px;
+    height: 600px;
+    width: 800px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 65vw;
-    background-color: black;
+    flex-direction: column;
+    font-family: "Roboto Slab", serif;
+
+    height: 110vh;
+    width: 100vw;
+    background:url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);
     color: white;
+
   }
 
   body {
@@ -416,7 +567,6 @@ button {
     height: 85vh;
     padding: 25px;
     position: absolute;
-    /* right: ; */
     text-align: right;
     z-index: -1;
     width: 100%;
@@ -471,7 +621,6 @@ button {
     transition: transform 2s;
   }
 
-
   footer li:before {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 12px;
@@ -518,19 +667,7 @@ button {
     width: 3em;
   }
 
-  footer img  {
--webkit-box-reflect: below -5px -webkit-gradient(linear, left bottom, left top, color-stop(0%,rgba(230,230,230,0.2)), color-stop(100%,rgba(255,255,255,0)));
-align-items: center;
-bottom: 0;
-display: flex;
-justify-content: center;
-margin: 0 5px;
-position: relative;
-transform: scale(1);
-transform-origin: bottom center!important;
-transition: all 0.2s;
-  width: 3em;
-}
+
 
 /* footer img:hover  {
 margin: 0 10px;
@@ -539,6 +676,35 @@ transform: scale(1.5);
 footer img .clueIcon:hover  {
   margin: 0 10px;
   transform: scale(1.5);
+  }
+  footer img {
+    -webkit-box-reflect: below -5px -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0%, rgba(230, 230, 230, 0.2)),
+        color-stop(100%, rgba(255, 255, 255, 0))
+      );
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0 5px;
+    position: relative;
+    transform: scale(1);
+    transform-origin: bottom center !important;
+    transition: all 0.2s;
+    width: 3em;
+  }
+
+  footer img:hover {
+    margin: 0 10px;
+    transform: scale(1.5);
+  }
+  footer img .clueIcon:hover {
+    margin: 0 10px;
+    transform: scale(1.5);
+
   }
 
   footer img:hover {

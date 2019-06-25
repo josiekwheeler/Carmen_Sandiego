@@ -10,7 +10,7 @@ import { UserService} from '../user.service';
 })
 export class Location2Component implements OnInit {
 
-userName:string;
+userName: string;
   clueNumber = -2;  // variable that is used for ngIfs to only show one pop-up message/clue at a time
   time; // for timer, hold the remaining time.
   clues;  // array to hold our clues
@@ -36,6 +36,7 @@ userName:string;
     this.clueNumber = 0;
     this.clockService.onClue();
     this.time = this.clockService.getTime();
+    this.timeLeft = this.clockService.getTimeLeft();
     // console.log(this.clueNumber);
   }
   // this method temporarily saves the clue number when you bring up the flight screen, sets cluenumber to -1 so it doesn't show
@@ -67,8 +68,8 @@ userName:string;
     this.backgroundNoise.play();
   }
   stopNoise() {
-  this.backgroundNoise.pause();  
-    console.log('stop the fucking music');
+  this.backgroundNoise.pause();
+  console.log('stop the music');
   }
   selectLocation() {
     if (this.selectedCity !== this.nextCity) {
