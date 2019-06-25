@@ -15,6 +15,7 @@ header {
 footer {
   display: none;
 }
+
 body {
   margin: 0;
   height: 100vh;
@@ -24,12 +25,12 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+/* 
 p {
   display: flex;
   flex-direction: column;
   text-align: center;
-}
+} */
 
 /* Below delays the clue pop-up for 2seconds  */
 @-webkit-keyframes fadeIn {
@@ -74,11 +75,11 @@ p {
   height: 70px;
   width: 400px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  margin-top: 6px;
-  margin-right: 12px;
+  /* margin-top: 6px;
+  margin-right: 12px; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -99,22 +100,29 @@ p {
   height: 300px;
   width: 400px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
 .flyOut {
-  background-color: white;
+  background-color: lightgrey;
   border-radius: 5px;
-  height: 500px;
+  height: 400px;
   width: 400px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
   font-family: "Roboto", sans-serif;
-  margin-top: 200px;
+}
+
+.flyButtons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 10%;
+  width: 40%;
 }
 
 .city {
@@ -122,18 +130,25 @@ p {
   margin-bottom: 0px;
 }
 
+.text {
+  text-align: center;
+}
+
 button {
   border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: lightgrey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: "Roboto", sans-serif;
 }
 
 .buttons {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  width: 100%;
+  width: 50%;
 }
 
 .finger,
@@ -141,6 +156,14 @@ button {
   display: flex;
   /* justify-content: center; */
   align-items: center;
+}
+
+.flag {
+  width: 100%;
+}
+
+.droppedPic {
+  width: 50%;
 }
 
 .thetime {
@@ -151,6 +174,18 @@ button {
   /* bottom: 50%; */
 }
 
+.wrong {
+  background-color: lightgrey;
+  border-radius: 5px;
+  height: 300px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Roboto", sans-serif;
+}
+
 .clock,
 .date {
   color: white;
@@ -158,11 +193,11 @@ button {
   text-align: center;
 }
 .clock {
-  font-size: 70px;
+  font-size: 60px;
 }
 
 .date {
-  font-size: 45px;
+  font-size: 25px;
 }
 
 .background-image {
@@ -199,6 +234,13 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flagClue {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -256,45 +298,45 @@ button {
     margin-top: 50px;
   }
 
-
   .flag {
     width: 200%;
   }
 
-    /* desktop styling------------------------------------ */
-  
-    section {
-        width: 100%;
-        height: 100%;
-    }
-    .background-image {
-        height: 100vh;
-        width: 100vw;
-        background: no-repeat center center fixed; 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        /* background-repeat: no-repeat;
-        background-size: contain; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+  /* desktop styling------------------------------------ */
 
-    .clueDiv, .flyOut {
-        background-color: white;
-        opacity: 0.8;
-        border-radius: 20px;
-        height: 600px;
-        width: 800px;
-        display: flex !important;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-        font-family: 'Roboto', sans-serif;
-        margin-top: 200px;
-    }
+  section {
+    width: 100%;
+    height: 100%;
+  }
+  .background-image {
+    height: 100vh;
+    width: 100vw;
+    background: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* background-repeat: no-repeat;
+        background-size: contain; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .clueDiv,
+  .flyOut {
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 20px;
+    height: 600px;
+    width: 800px;
+    display: flex !important;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    margin-top: 200px;
+  }
 
   .city {
     font-size: 30px;
@@ -339,15 +381,17 @@ button {
     align-items: center;
     border-radius: 10px;
   }
+
   .wrong {
-    border-radius: 10px;
+    background-color: lightgrey;
+    border-radius: 5px;
+    height: 600px;
+    width: 800px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 65vw;
-    background-color: black;
-    color: white;
+    flex-direction: column;
+    font-family: "Roboto Slab", serif;
   }
 
   body {
@@ -405,7 +449,6 @@ button {
     height: 85vh;
     padding: 25px;
     position: absolute;
-    right: ;
     text-align: right;
     z-index: -1;
     width: 100%;
@@ -460,7 +503,6 @@ button {
     transition: transform 2s;
   }
 
-
   footer li:before {
     background: rgba(0, 0, 0, 0.3);
     border-radius: 12px;
@@ -505,29 +547,35 @@ button {
     transform-origin: bottom cente;
     transition: all 0.2s;
     width: 3em;
+  }
 
-footer img  {
--webkit-box-reflect: below -5px -webkit-gradient(linear, left bottom, left top, color-stop(0%,rgba(230,230,230,0.2)), color-stop(100%,rgba(255,255,255,0)));
-align-items: center;
-bottom: 0;
-display: flex;
-justify-content: center;
-margin: 0 5px;
-position: relative;
-transform: scale(1);
-transform-origin: bottom center!important;
-transition: all 0.2s;
-  width: 3em;
-}
+  footer img {
+    -webkit-box-reflect: below -5px -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0%, rgba(230, 230, 230, 0.2)),
+        color-stop(100%, rgba(255, 255, 255, 0))
+      );
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0 5px;
+    position: relative;
+    transform: scale(1);
+    transform-origin: bottom center !important;
+    transition: all 0.2s;
+    width: 3em;
+  }
 
-footer img:hover  {
-margin: 0 10px;
-transform: scale(1.5);
-}
-footer img .clueIcon:hover  {
-  margin: 0 10px;
-  transform: scale(1.5);
-
+  footer img:hover {
+    margin: 0 10px;
+    transform: scale(1.5);
+  }
+  footer img .clueIcon:hover {
+    margin: 0 10px;
+    transform: scale(1.5);
   }
 
   footer img:hover {
