@@ -19,7 +19,7 @@
       <li>Window
 
       </li>
-      <li (click)="toggleHelp()">Help
+      <li>Help
 
       </li>
     </ul>
@@ -47,11 +47,11 @@
       <li>Agent {{userName}}</li>
     </ul>
   </header>
- 
 
   <!-- desktop top---------------------------------------------- -->
 
   <section class="background-image" [ngStyle]="{'background-image': 'url('+ photoURL+')'}">
+
       <div class="windowBox" *ngIf="help">
           <div class="topbar">
             <div class="macButtons">
@@ -94,6 +94,7 @@
         <img class="contact" src="http://www.iconarchive.com/download/i86753/ccard3dev/dynamic-yosemite/Contacts.ico" alt="">
 
         <p class="clueText">Agent {{userName}}, you have a new clue. Click to view.</p>
+
         <!-- <button (click)="showClue()">Let's Party!</button> -->
         </div>
       </div>
@@ -113,12 +114,12 @@
             </p>
           </ng-template>
           <ng-template #flag>
+
             <p class="flagClue"> She dropped this flag: <img class="flag" src="https://www.countryflags.io/{{clue.flag}}/shiny/64.png"> </p>
           </ng-template>
           <div class="buttons">
-            <button class="finger" *ngIf="this.clueNumber < 2" (click)="nextClue()"><i
-                class="material-icons">fingerprint</i></button>
-            <button class="plane" (click)="flyOut()"><i class="material-icons">airplanemode_active</i> </button>
+            <button *ngIf="this.clueNumber < 2" (click)="nextClue()"><i class="material-icons">fingerprint</i></button>
+            <button (click)="flyOut()"><i class="material-icons">airplanemode_active</i> </button>
           </div>
         </div>
         </div>
@@ -126,23 +127,29 @@
 
 
       <div *ngIf="flight" class="flyOut">
+        <div class="thetime">
+          <p class="clock"> {{ time | date: 'shortTime'}} </p>
+          <p class="date">{{ time | date}} </p>
+        </div>
+
           <!-- <div class="thetime">
               <p class="clock"> {{ time | date: 'shortTime'}} </p>
               <p class="date">{{ time | date}} </p>
             </div> -->
-            <p class="city">Choose a city</p>
+
         <div *ngFor="let location of locations">
           <label for="{{location}}">
             <input type="radio" id="{{location}}" name="nextCity" [value]="location" [(ngModel)]="selectedCity">
             {{location}}
           </label>
         </div>
+
         <div class="flyButtons">
           <button (click)="goBack()">Return to clue</button>
           <button (click)="selectLocation(); stopNoise()">Fly Out</button>
         </div>
-      </div>
 
+      </div>
       <div *ngIf="wrong" class="wrong">
         <h2>Sorry, there's no sign of her here!</h2>
         <button (click)="goBackAirport()">Try Again!</button>
@@ -156,18 +163,18 @@
           src="https://harnerdesigns.com/wp-content/uploads/2018/05/finder.png"></li>
       <li data-title="Chrome"><img
           src="https://harnerdesigns.com/wp-content/uploads/2018/05/Google_Chrome_icon_2011.png"></li>
-      <li data-title="iTunes" class="closed" id="iTunes" (click)="playTheme(); toggleItunes()"> <img
+      <li data-title="iTunes" class="closed" id="iTunes"><img
           src="https://harnerdesigns.com/wp-content/uploads/2018/05/iTunes-logo.svg"></li>
       <li data-title="Photoshop"><img
           src="https://harnerdesigns.com/wp-content/uploads/2018/05/Adobe_Photoshop_CS6_icon.png"></li>
-      <li data-title="Clues"><img
-          src="../../assets/fingerprint.png" (click)="showClue()" class ="clueIcon "> </li>
+
+      <li data-title="Clues"><img src="../../assets/fingerprint.png" (click)="showClue()" class="clueIcon "></li>
+
       <!-- <li data-title="LinkedIn"><a href="https://www.linkedin.com/in/james-g-bosley/"><img
-            src=http://www.hr.ubc.ca/hr-networks/files/2014/04/linkedin-300x300.png> </a> </li>
-             -->
-             <li
-            data-title="System&nbsp;Preferences"><img
-            src="https://harnerdesigns.com/wp-content/uploads/2018/05/20140418_System_Preferences.png">
+                src=http://www.hr.ubc.ca/hr-networks/files/2014/04/linkedin-300x300.png> </a> </li>
+                 -->
+      <li data-title="System&nbsp;Preferences"><img
+          src="https://harnerdesigns.com/wp-content/uploads/2018/05/20140418_System_Preferences.png">
       </li>
       <li data-title="Trash"><img src="https://harnerdesigns.com/wp-content/uploads/2018/05/512-TrashIcon-macosx1.png">
       </li>
