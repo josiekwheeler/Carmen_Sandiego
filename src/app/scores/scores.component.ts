@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ClueService } from '../clue.service';
+
 
 @Component({
   selector: 'app-scores',
@@ -15,6 +17,7 @@ export class ScoresComponent implements OnInit {
     this.clueService.getScores().subscribe(response => {
       this.topTen = response;
      });
+
   }
 
 }

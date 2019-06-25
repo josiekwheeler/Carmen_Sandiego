@@ -17,6 +17,7 @@ import { ScoresComponent } from './scores/scores.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing-page", pathMatch: "full" }, //goes to landing page
   { path: "landing-page", component: LandingPageComponent },
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   { path: "location3", component: Location3Component, data: { animation: 'isRight'} },
   { path: "location4", component: Location4Component, data: { animation: 'isLeft'}  },
   { path: "scores", component: ScoresComponent, data: { animation: 'isLeft'} }
+
 ]
 
 @NgModule({

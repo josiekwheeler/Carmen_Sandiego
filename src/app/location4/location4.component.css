@@ -56,12 +56,11 @@ width: 450px
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-family: 'Bangers', cursive;
     /* margin-top: 0px;
-    position: absolute;
+    position: absolute;*/
     margin-top: 250px;
-    margin-right:100px; */
+    margin-right:100px; 
     flex-direction: column;
     height: 50%;
     width: 50%
