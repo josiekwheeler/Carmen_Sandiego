@@ -86,9 +86,13 @@
         <!-- <div class="thetime">
           <p class="clock"> {{ time | date: 'shortTime'}} </p>
           <p class="date">{{ time | date}} </p>
+        </div>
+        <i class="material-icons">fingerprint</i>
+
         </div> -->
         <div class="cluePopUp animated bounceInRight">
         <img class="contact" src="http://www.iconarchive.com/download/i86753/ccard3dev/dynamic-yosemite/Contacts.ico" alt="">
+
         <p class="clueText">Agent {{userName}}, you have a new clue. Click to view.</p>
         <!-- <button (click)="showClue()">Let's Party!</button> -->
         </div>
@@ -100,14 +104,16 @@
             <p class="clock"> {{ time | date: 'shortTime'}} </p>
             <p class="date">{{ time | date}} </p>
           </div> -->
+          
           <div id="clueDiv" class="clueDiv">
           <p *ngIf="clue.clues != undefined; else photo"> {{clue.clues}} </p>
+
           <ng-template #photo>
-            <p *ngIf="clue.photo != undefined; else flag"> She dropped this photo: <img src="{{clue.photo}}" alt="">
+            <p *ngIf="clue.photo != undefined; else flag" class="flagClue"> She dropped this photo: <img class="droppedPic" src="{{clue.photo}}" alt="">
             </p>
           </ng-template>
           <ng-template #flag>
-            <p> She dropped this flag <img class="flag" src="https://www.countryflags.io/{{clue.flag}}/shiny/64.png"> </p>
+            <p class="flagClue"> She dropped this flag: <img class="flag" src="https://www.countryflags.io/{{clue.flag}}/shiny/64.png"> </p>
           </ng-template>
           <div class="buttons">
             <button class="finger" *ngIf="this.clueNumber < 2" (click)="nextClue()"><i
@@ -131,9 +137,10 @@
             {{location}}
           </label>
         </div>
-        <button (click)="goBack()">Return to clue</button>
-        <button (click)="selectLocation(); stopNoise()">Fly Out</button>
-
+        <div class="flyButtons">
+          <button (click)="goBack()">Return to clue</button>
+          <button (click)="selectLocation(); stopNoise()">Fly Out</button>
+        </div>
       </div>
 
       <div *ngIf="wrong" class="wrong">

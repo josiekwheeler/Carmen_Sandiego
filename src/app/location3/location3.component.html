@@ -110,9 +110,10 @@
             {{location}}
           </label>
         </div>
-        <button (click)="goBack()">Return to clue</button>
-        <button (click)="selectLocation()">Fly Out</button>
-
+        <div class="flyButtons">
+            <button (click)="goBack()">Return to clue</button>
+            <button (click)="selectLocation(); stopNoise()">Fly Out</button>
+          </div>
       </div>
     
     </div>
@@ -142,3 +143,4 @@
         </ul>
   </footer>
 </main>
+
