@@ -77,7 +77,7 @@ p {
 .cluePopUp {
   animation-delay: 1.5s;
   background-color: lightgrey;
-  opacity: 0.9;
+  /* opacity: 0.9; */
   border-radius: 5px;
   height: 70px;
   width: 400px;
@@ -100,7 +100,7 @@ p {
   font-family: "Roboto", sans-serif;
 }
 
-.clueDiv .flyOut {
+.clueDiv, .flyOut {
   background-color: lightgrey;
   /* opacity: 0.8; */
   border-radius: 5px;
@@ -114,10 +114,6 @@ p {
 
 .flyOut {
   background-color: lightgrey;
-
-/* .flyOut {
-  background-color: white;
-
   border-radius: 5px;
   height: 400px;
   width: 400px;
@@ -135,10 +131,6 @@ p {
   height: 10%;
   width: 40%;
 }
-
-  margin-top: 200px;
-} */
-
 
 .city {
   font-size: 20px;
@@ -347,7 +339,7 @@ button {
     align-items: center;
   }
 
-
+/* 
   .clueDiv,
   .flyOut {
     background-color: white;
@@ -361,8 +353,35 @@ button {
     flex-direction: column;
     font-family: "Roboto", sans-serif;
     margin-top: 200px;
-  }
+  } */
 
+  .clueDiv {
+    background-color: lightgrey;
+    border-radius: 5px;
+    height: 300px;
+    width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+  }
+ 
+  .clueDiv img {
+    height: 200px;
+  }
+ 
+  .flyOut {
+    background-color: lightgrey;
+    border-radius: 5px;
+    height: 500px;
+    width: 400px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Roboto", sans-serif;
+    /* margin-top: 200px; */
+  }
 
   .city {
     font-size: 30px;
