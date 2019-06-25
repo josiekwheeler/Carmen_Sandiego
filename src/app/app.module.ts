@@ -12,7 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
 import { ClockService} from './clock.service';
-import { GameoverComponent } from './gameover/gameover.component'
+import { GameoverComponent } from './gameover/gameover.component';
+import { ScoresComponent } from './scores/scores.component'
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing-page", pathMatch: "full" }, //goes to landing page
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
   { path: "location1", component: Location1Component },
   { path: "location2", component: Location2Component },
   { path: "location3", component: Location3Component },
-  { path: "location4", component: Location4Component }
+  { path: "location4", component: Location4Component },
+  {path: "scores", component: ScoresComponent}
 ]
 
 @NgModule({
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     Location2Component,
     Location3Component,
     Location4Component,
-    GameoverComponent
+    GameoverComponent,
+    ScoresComponent
   ],
   imports: [
     BrowserModule,

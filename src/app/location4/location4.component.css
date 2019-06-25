@@ -37,16 +37,16 @@ width: 450px
 }
 
 #top {
-  left: 5%;
-  top: 10%;
+  left: 15%;
+  top: 20%;
   position: absolute;
   width: 400px;
   height: 400px
 }
 
 #under {
-  left: 5%;
-  top: 10%;
+  left: 15%;
+  top: 20%;
   position: absolute;
   width: 385px;
   height: 385px
@@ -56,12 +56,11 @@ width: 450px
     display: flex;
     justify-content: center;
     align-items: center;
-
     font-family: 'Bangers', cursive;
     /* margin-top: 0px;
-    position: absolute;
+    position: absolute;*/
     margin-top: 250px;
-    margin-right:100px; */
+    margin-right:100px; 
     flex-direction: column;
     height: 50%;
     width: 50%

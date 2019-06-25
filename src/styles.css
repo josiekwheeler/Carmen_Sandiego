@@ -340,13 +340,13 @@ button {
     border-radius: 10px;
   }
   .wrong {
-    border-radius: 10px;
+   
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    width: 65vw;
-    background-color: black;
+    height: 110vh;
+    width: 100vw;
+    background:url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);
     color: white;
   }
 
@@ -405,7 +405,6 @@ button {
     height: 85vh;
     padding: 25px;
     position: absolute;
-    right: ;
     text-align: right;
     z-index: -1;
     width: 100%;
@@ -505,6 +504,8 @@ button {
     transform-origin: bottom cente;
     transition: all 0.2s;
     width: 3em;
+
+  }
 
 footer img  {
 -webkit-box-reflect: below -5px -webkit-gradient(linear, left bottom, left top, color-stop(0%,rgba(230,230,230,0.2)), color-stop(100%,rgba(255,255,255,0)));
