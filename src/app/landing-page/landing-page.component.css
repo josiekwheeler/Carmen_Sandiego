@@ -142,6 +142,7 @@ input {
   border-bottom: solid 200vh rgba(255, 255, 255, .5);
   transform-origin: top;
   pointer-events: none;
+
 }
 
 #spotlight {

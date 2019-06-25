@@ -12,17 +12,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router'
 import { ClockService} from './clock.service';
-import { GameoverComponent } from './gameover/gameover.component'
+import { GameoverComponent } from './gameover/gameover.component';
+import { ScoresComponent } from './scores/scores.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 const appRoutes: Routes = [
   { path: "", redirectTo: "/landing-page", pathMatch: "full" }, //goes to landing page
   { path: "landing-page", component: LandingPageComponent },
-  { path: "home", component: HomeComponent },
-  { path: "gameover", component: GameoverComponent },
-  { path: "location1", component: Location1Component },
-  { path: "location2", component: Location2Component },
-  { path: "location3", component: Location3Component },
-  { path: "location4", component: Location4Component }
+  { path: "home", component: HomeComponent, data: { animations: 'isLeft'}  },
+  { path: "gameover", component: GameoverComponent, data: { animation: 'isRight'} },
+  { path: "location1", component: Location1Component, data: { animation: 'isRight'} },
+  { path: "location2", component: Location2Component, data: { animation: 'isLeft'}  },
+  { path: "location3", component: Location3Component, data: { animation: 'isRight'} },
+  { path: "location4", component: Location4Component, data: { animation: 'isLeft'}  },
+  { path: "scores", component: ScoresComponent, data: { animation: 'isLeft'} }
+
 ]
 
 @NgModule({
@@ -34,11 +40,13 @@ const appRoutes: Routes = [
     Location2Component,
     Location3Component,
     Location4Component,
-    GameoverComponent
+    GameoverComponent,
+    ScoresComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot(appRoutes)
   ],

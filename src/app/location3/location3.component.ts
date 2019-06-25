@@ -36,6 +36,7 @@ export class Location3Component implements OnInit {
     this.clueNumber = 0;
     this.clockService.onClue();
     this.time = this.clockService.getTime();
+    this.timeLeft = this.clockService.getTimeLeft();
     // console.log(this.clueNumber);
   }
   // this method temporarily saves the clue number when you bring up the flight screen, sets cluenumber to -1 so it doesn't show
@@ -67,8 +68,8 @@ export class Location3Component implements OnInit {
     this.backgroundNoise.play();
   }
   stopNoise() {
-  this.backgroundNoise.pause();  
-    console.log('stop the fucking music');
+  this.backgroundNoise.pause();
+  console.log('stop the music');
   }
   selectLocation() {
     if (this.selectedCity !== this.nextCity) {

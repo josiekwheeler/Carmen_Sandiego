@@ -9,6 +9,7 @@ export class ClockService {
   clock = new Date();
   // timeLeft is to keep track of how much time user has left if 0, game is over
   timeLeft: number = 24;
+  score;
 
   constructor(private router: Router) {}
   resetTime() {
@@ -50,5 +51,10 @@ export class ClockService {
       console.log("timeleft under 0")
       this.router.navigate(['/gameover']);
     }
+  }
+  scoreGame() {
+    this.score = 24 - this.timeLeft;
+    console.log(this.score);
+    return this.score;
   }
 }

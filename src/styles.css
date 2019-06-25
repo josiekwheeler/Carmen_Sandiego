@@ -32,43 +32,50 @@ p {
   text-align: center;
 } */
 
-/* Below delays the clue pop-up for 2seconds  */
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
+  @keyframes bounceInRight {
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+  
+    from {
+      opacity: 0;
+      transform: translate3d(3000px, 0, 0);
+    }
+  
+    60% {
+      opacity: 1;
+      transform: translate3d(-25px, 0, 0);
+    }
+  
+    75% {
+      transform: translate3d(10px, 0, 0);
+    }
+  
+    90% {
+      transform: translate3d(-5px, 0, 0);
+    }
+  
+    to {
+      transform: translate3d(0, 0, 0);
+    }
   }
-  to {
-    opacity: 1;
+  
+  .bounceInRight {
+    animation-name: bounceInRight;
   }
-}
-@-moz-keyframes fadeIn {
-  from {
-    opacity: 0;
+  .animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
   }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+
+
 
 .cluePopUp {
-  -webkit-animation: fadeIn ease-in 1;
-  -moz-animation: fadeIn ease-in 1;
-  animation: fadeIn ease-in 1;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -webkit-animation-duration: 0.5;
-  -moz-animation-duration: 0.5;
-  animation-duration: 0.5;
-  animation-delay: 2s;
+  animation-delay: 1.5s;
   background-color: lightgrey;
   opacity: 0.9;
   border-radius: 5px;
@@ -93,7 +100,7 @@ p {
   font-family: "Roboto", sans-serif;
 }
 
-.clueDiv {
+.clueDiv .flyOut {
   background-color: lightgrey;
   /* opacity: 0.8; */
   border-radius: 5px;
@@ -107,6 +114,10 @@ p {
 
 .flyOut {
   background-color: lightgrey;
+
+/* .flyOut {
+  background-color: white;
+
   border-radius: 5px;
   height: 400px;
   width: 400px;
@@ -124,6 +135,10 @@ p {
   height: 10%;
   width: 40%;
 }
+
+  margin-top: 200px;
+} */
+
 
 .city {
   font-size: 20px;
@@ -238,12 +253,14 @@ button {
   align-items: center;
 }
 
+
 .flagClue {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 
 @media only screen and (min-width: 1024px) {
   .cluePopUp {
@@ -263,11 +280,18 @@ button {
   }
 
   .thetime {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: row-reverse;
     top: 0%;
     right: 8%;
+  }
+  .thetimeFly {
+    position: fixed;
+    display: flex;
+    flex-direction: row-reverse;
+    top: 0%;
+    right: 0%;
   }
 
   .clock,
@@ -323,6 +347,7 @@ button {
     align-items: center;
   }
 
+
   .clueDiv,
   .flyOut {
     background-color: white;
@@ -338,6 +363,7 @@ button {
     margin-top: 200px;
   }
 
+
   .city {
     font-size: 30px;
     margin-bottom: 0px;
@@ -345,21 +371,9 @@ button {
 
   /* desktop styling------------------------------------ */
 
-  section {
-    height: 200%;
-  }
+  
 
-  .background-image {
-    height: 100vh;
-    width: 100vw;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .clueDiv,
+  /* .clueDiv,
   .flyOut {
     background-color: white;
     border-radius: 5px;
@@ -371,7 +385,7 @@ button {
     flex-direction: column;
     font-family: "Roboto", sans-serif;
     margin-top: 200px;
-  }
+  } */
 
   .material-icons {
     width: 10%;
@@ -383,6 +397,7 @@ button {
   }
 
   .wrong {
+
     background-color: lightgrey;
     border-radius: 5px;
     height: 600px;
@@ -392,6 +407,12 @@ button {
     align-items: center;
     flex-direction: column;
     font-family: "Roboto Slab", serif;
+
+    height: 110vh;
+    width: 100vw;
+    background:url(https://i2.wp.com/www.kalusalonandspa.com/wp-content/uploads/2017/01/black-brick-background-kalu-salon-black-friday-sales-web.jpg);
+    color: white;
+
   }
 
   body {
