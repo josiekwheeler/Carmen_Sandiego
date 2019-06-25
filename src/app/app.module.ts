@@ -21,12 +21,12 @@ const appRoutes: Routes = [
   { path: "", redirectTo: "/landing-page", pathMatch: "full" }, //goes to landing page
   { path: "landing-page", component: LandingPageComponent },
   { path: "home", component: HomeComponent, data: { animations: 'isLeft'}  },
-  { path: "gameover", component: GameoverComponent, data: { animation: 'isLeft' },
+  { path: "gameover", component: GameoverComponent, data: { animation: 'isRight'} },
   { path: "location1", component: Location1Component, data: { animation: 'isRight'} },
   { path: "location2", component: Location2Component, data: { animation: 'isLeft'}  },
   { path: "location3", component: Location3Component, data: { animation: 'isRight'} },
   { path: "location4", component: Location4Component, data: { animation: 'isLeft'}  },
-  { path: "scores", component: ScoresComponent, data: { animation: 'isRight'} }
+  { path: "scores", component: ScoresComponent, data: { animation: 'isLeft'} }
 ]
 
 @NgModule({
